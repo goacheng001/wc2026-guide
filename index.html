@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026世界杯 · 足球小白观赛全攻略</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #e10600;
+    --ink: #e8e8ee;
+    --gray: #8b8ba0;
+    --line: rgba(255,255,255,0.08);
+    --bg: #0f1117;
+    --card: rgba(255,255,255,0.04);
+    --gold: #f0b429;
+    --glass: rgba(255,255,255,0.06);
+    --glass-border: rgba(255,255,255,0.1);
+  }
+  html { scroll-behavior: smooth; }
+  body { animation: fadeIn .6s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(ellipse at 20% 50%, rgba(120,40,200,0.08) 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 20%, rgba(225,6,0,0.06) 0%, transparent 60%);
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+
+  /* ===== 顶部导航 ===== */
+  .topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(15,17,23,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .topnav .wrap { display: flex; gap: 4px; overflow-x: auto; padding: 10px 16px; }
+  .topnav a {
+    color: #fff; text-decoration: none; font-size: 14px; font-weight: 600;
+    white-space: nowrap; padding: 7px 14px; border-radius: 20px; opacity: 0.75;
+    transition: all .2s;
+  }
+  .topnav a:hover { background: var(--red); opacity: 1; }
+
+  /* ===== Hero ===== */
+  .hero {
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+    color: #fff; padding: 54px 0 46px; text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(225,6,0,0.12) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(120,40,200,0.1) 0%, transparent 50%);
+    animation: heroGlow 8s ease-in-out infinite alternate;
+  }
+  @keyframes heroGlow {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1.05) rotate(2deg); }
+  }
+  .hero h1 { font-size: 46px; font-weight: 900; letter-spacing: -1px; line-height: 1.1; }
+  .hero h1 .red { color: var(--red); }
+  .hero .sub { font-size: 18px; color: #b0b0c0; margin-top: 14px; }
+  .hero .meta {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 18px 30px; margin-top: 28px;
+  }
+  .hero .meta .item .v { font-size: 34px; font-weight: 900; color: var(--red); line-height: 1; }
+  .hero .meta .item .l { font-size: 13px; color: #9090a0; margin-top: 5px; letter-spacing: 1px; }
+
+  /* ===== 通用 section ===== */
+  section { padding: 40px 0 10px; }
+  .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+  .sec-head .badge {
+    background: linear-gradient(135deg, var(--red), #ff4444); color: #fff; font-size: 14px; font-weight: 900;
+    padding: 4px 12px; border-radius: 8px; letter-spacing: 1px;
+  }
+  .sec-head h2 { font-size: 28px; font-weight: 900; letter-spacing: -.5px; color: #fff; }
+  .sec-head .en { font-size: 14px; color: var(--gray); margin-left: auto; letter-spacing: 1px; }
+
+  /* ===== 小白须知 banner ===== */
+  .notice {
+    background: rgba(240,180,41,0.08); border: 1px solid rgba(240,180,41,0.3); border-radius: 16px;
+    padding: 22px 24px; margin-bottom: 8px;
+    backdrop-filter: blur(10px);
+  }
+  .notice h3 { font-size: 19px; color: var(--gold); margin-bottom: 10px; }
+  .notice p { font-size: 15.5px; color: #d0d0e0; margin-bottom: 8px; }
+  .notice b { color: #fff; }
+  .notice .tz {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px;
+  }
+  .notice .tz span {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(240,180,41,0.25); border-radius: 10px;
+    padding: 8px 14px; font-size: 14px; font-weight: 600; color: #d0d0e0;
+  }
+
+  /* ===== 小白指南卡片 ===== */
+  .guide-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .guide-card {
+    background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; padding: 22px;
+    backdrop-filter: blur(10px);
+    transition: all .3s ease;
+  }
+  .guide-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .guide-card h3 { font-size: 18px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .guide-card h3 .ico { font-size: 22px; }
+  .guide-card p, .guide-card li { font-size: 15px; color: #c8c8d8; }
+  .guide-card ul { padding-left: 20px; margin-top: 6px; }
+  .guide-card li { margin-bottom: 5px; }
+  .guide-card .hl { color: var(--red); font-weight: 700; }
+
+  /* ===== 小组卡片 ===== */
+  .group-card {
+    background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px;
+    padding: 0; margin-bottom: 24px; overflow: hidden;
+    backdrop-filter: blur(12px);
+    transition: all .3s ease;
+  }
+  .group-card:hover {
+    border-color: rgba(255,255,255,0.15);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+  .group-card .gc-head {
+    display: flex; align-items: center; gap: 12px; padding: 16px 22px;
+    background: linear-gradient(135deg, rgba(30,30,50,0.95), rgba(20,20,40,0.95)); color: #fff;
+    backdrop-filter: blur(8px);
+  }
+  .group-card .gc-head.death { background: linear-gradient(90deg, var(--red), #8b0000); }
+  .group-card .gc-head .gletter { font-size: 30px; font-weight: 900; }
+  .group-card .gc-head .gtitle { font-size: 18px; font-weight: 700; }
+  .group-card .gc-head .death-tag {
+    margin-left: auto; background: #fff; color: var(--red); font-size: 12px; font-weight: 900;
+    padding: 4px 10px; border-radius: 20px;
+  }
+  .teams { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .team {
+    padding: 16px 22px; border-top: 1px solid rgba(255,255,255,0.04); border-right: 1px solid rgba(255,255,255,0.04);
+  }
+  .team:nth-child(2n) { border-right: none; }
+  .team .tname { font-size: 17px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+  .team .flag { font-size: 22px; }
+  .team .rank {
+    font-size: 11px; font-weight: 700; color: #fff; padding: 2px 7px; border-radius: 10px; margin-left: auto;
+  }
+  .rank.t1 { background: #16a34a; }   /* 夺冠热门 */
+  .rank.t2 { background: #2563eb; }   /* 强队 */
+  .rank.t3 { background: #9333ea; }   /* 黑马 */
+  .rank.t4 { background: #6b7280; }   /* 鱼腩 */
+  .team .star { font-size: 14px; color: #a0a0b8; margin-top: 6px; }
+  .team .star b { color: #fff; }
+  .team .note { font-size: 13px; color: var(--gray); margin-top: 4px; }
+  .gc-foot { padding: 14px 22px; background: rgba(255,255,255,0.02); border-top: 1px solid var(--line); font-size: 14.5px; color: #c0c0d0; }
+  .gc-foot b { color: #fff; }
+
+  /* ===== 赛程日 ===== */
+  .matchday {
+    background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px;
+    margin-bottom: 14px; overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+  .md-head {
+    display: flex; align-items: center; gap: 12px; padding: 12px 18px;
+    background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--line);
+  }
+  .md-head .date { font-size: 19px; font-weight: 900; color: #fff; }
+  .md-head .dow { font-size: 13px; color: var(--gray); }
+  .md-head .round { margin-left: auto; font-size: 12px; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--red), #ff4444); padding: 3px 10px; border-radius: 12px; }
+  .match {
+    display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center;
+    padding: 12px 18px; border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .match:first-of-type { border-top: none; }
+  .match .when {
+    font-size: 13px; line-height: 1.4;
+  }
+  .match .when .bj { font-weight: 900; color: var(--red); font-size: 15px; }
+  .match .when .local { color: var(--gray); font-size: 12px; }
+  .match .info .vs-line { font-size: 17px; font-weight: 700; color: #e0e0ee; }
+  .match .info .vs-line .vs { color: var(--red); margin: 0 8px; font-weight: 900; }
+  .match .info .vs-line .g { font-size: 12px; color: #fff; background: rgba(255,255,255,0.15); padding: 1px 7px; border-radius: 8px; margin-left: 8px; vertical-align: middle; }
+  .match .info .pt { font-size: 13.5px; color: #9090a8; margin-top: 3px; }
+  .match .info .pt .fire { color: var(--red); font-weight: 700; }
+  .match.hot { background: rgba(225,6,0,0.08); }
+  .match.hot .info .vs-line::before { content: "🔥 "; }
+
+  /* ===== 淘汰赛 ===== */
+  .ko-stage { margin-bottom: 26px; }
+  .ko-stage h3 {
+    font-size: 21px; font-weight: 900; margin-bottom: 12px;
+    padding-left: 12px; border-left: 5px solid var(--red);
+    color: #fff;
+  }
+  .ko-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .ko-card {
+    background: var(--glass); border: 1px solid var(--glass-border); border-radius: 14px; padding: 14px 18px;
+    backdrop-filter: blur(8px);
+    transition: all .3s ease;
+  }
+  .ko-card:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .ko-card.final { grid-column: 1 / -1; background: linear-gradient(135deg, #0a0a0a, #2a0a0a); color: #fff; border: none; }
+  .ko-card .ko-when { font-size: 15px; font-weight: 900; color: var(--red); }
+  .ko-card.final .ko-when { color: #ffd700; font-size: 18px; }
+  .ko-card .ko-match { font-size: 16px; font-weight: 700; margin-top: 4px; }
+  .ko-card .ko-venue { font-size: 13px; color: var(--gray); margin-top: 3px; }
+
+  /* ===== 看点 ===== */
+  .watch-card {
+    background: var(--glass); border: 1px solid var(--glass-border); border-left: 6px solid var(--red);
+    border-radius: 14px; padding: 20px 24px; margin-bottom: 14px;
+    backdrop-filter: blur(10px);
+    transition: all .3s ease;
+  }
+  .watch-card:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateX(4px);
+  }
+  .watch-card .wnum { font-size: 13px; font-weight: 900; color: var(--red); letter-spacing: 2px; }
+  .watch-card h3 { font-size: 21px; margin: 4px 0 8px; color: #fff; }
+  .watch-card p { font-size: 15.5px; color: #b0b0c8; }
+  .watch-card p b { color: #fff; }
+
+  footer {
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.5)), #0a0a12; color: #666; text-align: center; padding: 30px 0; margin-top: 40px;
+    font-size: 13px; line-height: 1.8;
+  }
+  footer .red { color: var(--red); font-weight: 700; }
+
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 34px; }
+    .guide-grid, .teams, .ko-grid { grid-template-columns: 1fr; }
+    .team:nth-child(odd) { border-right: none; }
+    .match { grid-template-columns: 1fr; gap: 4px; }
+    .match .when { display: flex; gap: 10px; align-items: baseline; }
+    .sec-head h2 { font-size: 22px; }
+    .sec-head .en { display: none; }
+  }
+  /* Hyperlink styles for teams and players */
+  a.team-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed currentColor;
+    transition: all .15s;
+  }
+  a.team-link:hover {
+    color: #ff6666;
+    border-bottom-color: #ff6666;
+  }
+  a.player-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+    transition: all .15s;
+  }
+  a.player-link:hover {
+    color: #ff6666;
+    border-bottom-color: #ff6666;
+  }
+
+  /* ===== AI 比赛预测 ===== */
+  .pred-box {
+    margin-top: 8px; padding: 10px 14px;
+    background: rgba(74,144,217,0.08); 
+    border: 1px solid rgba(74,144,217,0.2); border-radius: 12px;
+    font-size: 13.5px; line-height: 1.55;
+    cursor: pointer; position: relative;
+    transition: all .2s ease;
+  }
+  .pred-box:hover { border-color: rgba(74,144,217,0.4); box-shadow: 0 2px 12px rgba(74,144,217,0.1); }
+  .pred-box .pred-head { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+  .pred-box .pred-tag {
+    font-size: 11px; font-weight: 800; color: #fff;
+    background: linear-gradient(135deg, #4a90d9, #357abd);
+    padding: 2px 8px; border-radius: 10px; letter-spacing: .5px;
+  }
+  .pred-box .pred-score { font-size: 15px; font-weight: 800; color: #7ab3d9; }
+  .pred-box .pred-conf { font-size: 11px; margin-left: auto; font-weight: 700; }
+  .pred-box .pred-conf.high { color: #16a34a; }
+  .pred-box .pred-conf.mid { color: #d97706; }
+  .pred-box .pred-conf.low { color: #9ca3af; }
+  .pred-box .pred-reason {
+    font-size: 12.5px; color: #8b9cb8; margin-top: 3px;
+    display: none;
+  }
+  .pred-box.open .pred-reason { display: block; }
+  .pred-box .pred-hint {
+    font-size: 11px; color: #94a3b8; margin-top: 4px;
+    display: none;
+  }
+  .pred-box:not(.open) .pred-hint { display: block; }
+  .match.hot .pred-box { background: rgba(225,6,0,0.08); border-color: rgba(225,6,0,0.25); }
+  .match.hot .pred-box .pred-tag { background: linear-gradient(135deg, #e10600, #c50500); }
+  @media (max-width: 720px) {
+    .pred-box .pred-head { flex-wrap: wrap; }
+    .pred-box .pred-conf { margin-left: 0; }
+  }
+
+  /* ===== 主题切换器 ===== */
+  .theme-switch { display: flex; gap: 6px; margin-left: auto; align-items: center; }
+  .theme-switch button {
+    width: 30px; height: 30px; border-radius: 50%; border: 2px solid rgba(255,255,255,.2);
+    background: transparent; font-size: 15px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s; position: relative;
+  }
+  .theme-switch button:hover { transform: scale(1.15); border-color: rgba(255,255,255,.5); }
+  .theme-switch button.active {
+    border-color: #fff; transform: scale(1.15);
+    box-shadow: 0 0 0 2px rgba(255,255,255,.3);
+  }
+
+  /* ===== Claude 主题 ===== */
+  [data-theme="claude"] {
+    --red: #D97706;
+    --ink: #1C1917;
+    --gray: #78716C;
+    --line: #E7E0D6;
+    --bg: #FFFBF0;
+    --card: #FFFFFF;
+    --gold: #B45309;
+    --glass: rgba(28,20,16,0.04);
+    --glass-border: rgba(28,20,16,0.1);
+  }
+  [data-theme="claude"] body { background: #FFFBF0; color: #1C1917; }
+  [data-theme="claude"] .topnav {
+    background: rgba(28,20,16,0.97);
+    border-bottom-color: #D97706;
+  }
+  [data-theme="claude"] .topnav a:hover { background: #D97706; }
+  [data-theme="claude"] .hero {
+    background: linear-gradient(135deg, #1C1410 0%, #2D1B0E 60%, #3D2510 100%);
+  }
+  [data-theme="claude"] .hero .meta .item .v { color: #F59E0B; }
+  [data-theme="claude"] .md-head { background: #F5EFE6; }
+  [data-theme="claude"] .match { border-top-color: #F0E8DC; }
+  [data-theme="claude"] .match.hot { background: #FFF7ED; }
+  [data-theme="claude"] .match.hot .pred-box { background: linear-gradient(135deg, #FEF3E2, #FDE8C8); border-color: #F5D0A0; }
+  [data-theme="claude"] .match.hot .pred-box .pred-tag { background: linear-gradient(135deg, #D97706, #B45309); }
+  [data-theme="claude"] .group-card .gc-head { background: #1C1410; }
+  [data-theme="claude"] .group-card .gc-head.death { background: linear-gradient(90deg, #D97706, #92400E); }
+  [data-theme="claude"] .ko-card.final { background: linear-gradient(135deg, #1C1410, #3D2510); }
+  [data-theme="claude"] .ko-card.final .ko-when { color: #FCD34D; }
+  [data-theme="claude"] .ko-stage h3 { border-left-color: #D97706; color: #1C1917; }
+  [data-theme="claude"] .sec-head .badge { background: #D97706; }
+  [data-theme="claude"] .sec-head h2 { color: #1C1917; }
+  [data-theme="claude"] .notice { background: #FFFBF0; border-color: #D97706; }
+  [data-theme="claude"] .notice h3 { color: #B45309; }
+  [data-theme="claude"] .notice p { color: #44403C; }
+  [data-theme="claude"] .notice .tz span { background: #FFF; border-color: #D97706; color: #44403C; }
+  [data-theme="claude"] .guide-card { background: #FFFFFF; border-color: #E7E0D6; }
+  [data-theme="claude"] .guide-card h3 { color: #1C1917; }
+  [data-theme="claude"] .guide-card p, [data-theme="claude"] .guide-card li { color: #44403C; }
+  [data-theme="claude"] .team .star { color: #44403C; }
+  [data-theme="claude"] .team .note { color: #78716C; }
+  [data-theme="claude"] .watch-card { background: #FFFFFF; border-color: #E7E0D6; border-left-color: #D97706; }
+  [data-theme="claude"] .watch-card h3 { color: #1C1917; }
+  [data-theme="claude"] .watch-card p { color: #44403C; }
+  [data-theme="claude"] .pred-box { background: linear-gradient(135deg, #FFFBF0, #FEF3C7); border-color: #FDE68A; }
+  [data-theme="claude"] .pred-box .pred-tag { background: linear-gradient(135deg, #D97706, #B45309); }
+  [data-theme="claude"] .pred-box .pred-score { color: #92400E; }
+  [data-theme="claude"] .pred-box .pred-reason { color: #78716C; }
+  [data-theme="claude"] .matchday { background: #FFFFFF; border-color: #E7E0D6; }
+  [data-theme="claude"] .group-card { border-color: #E7E0D6; }
+  [data-theme="claude"] .gc-foot { background: #FAF5EB; color: #44403C; }
+  [data-theme="claude"] footer { background: #1C1410; color: #A8A29E; }
+  [data-theme="claude"] footer .red { color: #D97706; }
+  [data-theme="claude"] .upd-fab { background: #D97706; box-shadow: 0 4px 14px rgba(217,119,6,.3); }
+  [data-theme="claude"] .upd-fab:hover { box-shadow: 0 6px 20px rgba(217,119,6,.45); }
+  [data-theme="claude"] .upd-pop { background: #FFFBF0; border: 1px solid #E7E0D6; }
+  [data-theme="claude"] .upd-pop .up-msg { color: #44403C; }
+  [data-theme="claude"] .upd-pop .up-cmd { background: #FEF3C7; border-color: #FDE68A; color: #D97706; }
+  [data-theme="claude"] .upd-pop .up-cmd:hover { background: #FDE68A; border-color: #D97706; }
+  [data-theme="claude"] .upd-pop .up-hint { color: #78716C; }
+  [data-theme="claude"] a.team-link:hover, [data-theme="claude"] a.player-link:hover { color: #D97706; border-bottom-color: #D97706; }
+
+  /* ===== ChatGPT 主题（深色） ===== */
+  [data-theme="chatgpt"] {
+    --red: #10A37F;
+    --ink: #ECECEC;
+    --gray: #8E8E8E;
+    --line: #424242;
+    --bg: #212121;
+    --card: #2F2F2F;
+    --gold: #10A37F;
+    --glass: rgba(16,163,127,0.06);
+    --glass-border: rgba(16,163,127,0.15);
+  }
+  [data-theme="chatgpt"] body { background: #212121; color: #ECECEC; }
+  [data-theme="chatgpt"] .topnav {
+    background: rgba(26,26,26,0.97);
+    border-bottom-color: #10A37F;
+  }
+  [data-theme="chatgpt"] .topnav a:hover { background: #10A37F; }
+  [data-theme="chatgpt"] .hero {
+    background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 50%, #0D2B22 100%);
+  }
+  [data-theme="chatgpt"] .hero h1 { color: #FFFFFF; }
+  [data-theme="chatgpt"] .hero .sub { color: #A0A0B0; }
+  [data-theme="chatgpt"] .hero .meta .item .v { color: #10A37F; }
+  [data-theme="chatgpt"] .hero .meta .item .l { color: #808090; }
+  [data-theme="chatgpt"] .sec-head h2 { color: #ECECEC; }
+  [data-theme="chatgpt"] .md-head { background: #383838; }
+  [data-theme="chatgpt"] .md-head .date { color: #ECECEC; }
+  [data-theme="chatgpt"] .match { border-top-color: #3A3A3A; }
+  [data-theme="chatgpt"] .match .info .vs-line { color: #ECECEC; }
+  [data-theme="chatgpt"] .match .info .pt { color: #A0A0A0; }
+  [data-theme="chatgpt"] .match.hot { background: #1A2E28; }
+  [data-theme="chatgpt"] .match.hot .pred-box { background: linear-gradient(135deg, #1A2E28, #162920); border-color: #1E5C4A; }
+  [data-theme="chatgpt"] .match.hot .pred-box .pred-tag { background: linear-gradient(135deg, #10A37F, #0D8A6A); }
+  [data-theme="chatgpt"] .group-card .gc-head { background: #1A1A1A; }
+  [data-theme="chatgpt"] .group-card .gc-head.death { background: linear-gradient(90deg, #10A37F, #0D5C4A); }
+  [data-theme="chatgpt"] .gc-foot { background: #262626; color: #C0C0C0; }
+  [data-theme="chatgpt"] .gc-foot b { color: #10A37F; }
+  [data-theme="chatgpt"] .team .star { color: #C0C0C0; }
+  [data-theme="chatgpt"] .team .star b { color: #10A37F; }
+  [data-theme="chatgpt"] .team .note { color: #8E8E8E; }
+  [data-theme="chatgpt"] .ko-card.final { background: linear-gradient(135deg, #0D2B22, #0D1A15); }
+  [data-theme="chatgpt"] .ko-card.final .ko-when { color: #34D399; }
+  [data-theme="chatgpt"] .ko-card .ko-match { color: #ECECEC; }
+  [data-theme="chatgpt"] .ko-stage h3 { color: #ECECEC; border-left-color: #10A37F; }
+  [data-theme="chatgpt"] .sec-head .badge { background: #10A37F; }
+  [data-theme="chatgpt"] .notice { background: #2A2518; border-color: #10A37F; }
+  [data-theme="chatgpt"] .notice h3 { color: #34D399; }
+  [data-theme="chatgpt"] .notice p { color: #C0C0C0; }
+  [data-theme="chatgpt"] .notice .tz span { background: #2F2F2F; border-color: #424242; color: #C0C0C0; }
+  [data-theme="chatgpt"] .guide-card { background: #2F2F2F; border-color: #424242; }
+  [data-theme="chatgpt"] .guide-card h3 { color: #ECECEC; }
+  [data-theme="chatgpt"] .guide-card p, [data-theme="chatgpt"] .guide-card li { color: #C0C0C0; }
+  [data-theme="chatgpt"] .guide-card .hl { color: #10A37F; }
+  [data-theme="chatgpt"] .watch-card { background: #2F2F2F; border-color: #424242; border-left-color: #10A37F; }
+  [data-theme="chatgpt"] .watch-card .wnum { color: #10A37F; }
+  [data-theme="chatgpt"] .watch-card h3 { color: #ECECEC; }
+  [data-theme="chatgpt"] .watch-card p { color: #C0C0C0; }
+  [data-theme="chatgpt"] .watch-card p b { color: #ECECEC; }
+  [data-theme="chatgpt"] .pred-box { background: linear-gradient(135deg, #1A2E28, #162920); border-color: #1E5C4A; }
+  [data-theme="chatgpt"] .pred-box .pred-tag { background: linear-gradient(135deg, #10A37F, #0D8A6A); }
+  [data-theme="chatgpt"] .pred-box .pred-score { color: #34D399; }
+  [data-theme="chatgpt"] .pred-box .pred-reason { color: #8E8E8E; }
+  [data-theme="chatgpt"] .pred-box .pred-hint { color: #6E6E6E; }
+  [data-theme="chatgpt"] .matchday { background: #2F2F2F; border-color: #424242; }
+  [data-theme="chatgpt"] .group-card { border-color: #424242; }
+  [data-theme="chatgpt"] footer { background: #0D0D0D; color: #8E8E8E; }
+  [data-theme="chatgpt"] footer .red { color: #10A37F; }
+  [data-theme="chatgpt"] .upd-fab { background: #10A37F; box-shadow: 0 4px 14px rgba(16,163,127,.3); }
+  [data-theme="chatgpt"] .upd-fab:hover { box-shadow: 0 6px 20px rgba(16,163,127,.45); }
+  [data-theme="chatgpt"] .upd-pop { background: #2F2F2F; border: 1px solid #424242; }
+  [data-theme="chatgpt"] .upd-pop .up-msg { color: #C0C0C0; }
+  [data-theme="chatgpt"] .upd-pop .up-msg b { color: #10A37F; }
+  [data-theme="chatgpt"] .upd-pop .up-cmd { background: #1A2E28; border-color: #1E5C4A; color: #10A37F; }
+  [data-theme="chatgpt"] .upd-pop .up-cmd:hover { background: #162920; border-color: #10A37F; }
+  [data-theme="chatgpt"] .upd-pop .up-hint { color: #8E8E8E; }
+  [data-theme="chatgpt"] a.team-link:hover, [data-theme="chatgpt"] a.player-link:hover { color: #10A37F; border-bottom-color: #10A37F; }
+</style>
+</head>
+<body>
+
+<!-- ===== 顶部导航 ===== -->
+<nav class="topnav">
+  <div class="wrap">
+    <a href="#guide">🔰 小白入门</a>
+    <a href="#groups">🏆 32强分组</a>
+    <a href="#group-stage">📅 小组赛</a>
+    <a href="#knockout">⚔️ 淘汰赛</a>
+    <a href="#watch">🔥 五大看点</a>
+    <a href="#final">🏅 决赛</a>
+    <div class="theme-switch">
+      <button data-theme="default" class="active" title="FIFA 经典" onclick="setTheme('default')">🔶</button>
+      <button data-theme="claude" title="Claude 风格" onclick="setTheme('claude')">🟠</button>
+      <button data-theme="chatgpt" title="ChatGPT 风格" onclick="setTheme('chatgpt')">🟢</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="wrap">
+    <h1>2026 <span class="red">世界杯</span><br>足球小白观赛全攻略</h1>
+    <p class="sub"><a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a> · <a href="https://baike.baidu.com/item/加拿大国家足球队" target="_blank" class="team-link" title="查看加拿大队阵容与概况">加拿大</a> · <a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a> 联合举办　|　2026年6月11日 → 7月19日</p>
+    <div class="meta">
+      <div class="item"><div class="v">48</div><div class="l">参赛球队</div></div>
+      <div class="item"><div class="v">104</div><div class="l">场比赛</div></div>
+      <div class="item"><div class="v">16</div><div class="l">主办城市</div></div>
+      <div class="item"><div class="v">39</div><div class="l">天狂欢</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 小白入门 ===== -->
+<section id="guide">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="badge">00</span>
+      <h2>看球前必读</h2>
+      <span class="en">START HERE</span>
+    </div>
+
+    <div class="notice">
+      <h3>⏰ 关于比赛时间（最重要！）</h3>
+      <p>本届世界杯在<b>北美洲</b>举办，和中国有巨大时差，<b>绝大多数比赛在北京时间的凌晨到上午</b>。下面每场比赛都标注了<b>北京时间</b>（红色大字）和当地时间。</p>
+      <p>⚠️ <b>注意：</b>FIFA 尚未公布每一场的精确开球时刻，本攻略的具体钟点为<b>按惯例推算的预计时间</b>，可能有 1-2 小时误差，<b>请在赛前一天以官方/转播平台为准</b>。日期是准确的。</p>
+      <div class="tz">
+        <span>🟦 东部城市（纽约/迈阿密等）= 北京 +12 小时</span>
+        <span>🟩 中部城市（达拉斯/休斯顿）= 北京 +13 小时</span>
+        <span>🟨 <a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a>（<a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a>城等）= 北京 +14 小时</span>
+        <span>🟥 西部城市（洛杉矶/西雅图）= 北京 +15 小时</span>
+      </div>
+    </div>
+
+    <div class="guide-grid" style="margin-top:16px;">
+      <div class="guide-card">
+        <h3><span class="ico">⚽</span> 世界杯是什么？</h3>
+        <p>全球最高水平的国家队足球赛，<span class="hl">每4年一届</span>，被称为"足球世界的奥运会"。本届是历史上第一次有 <span class="hl">48 支</span>球队参加（往届32支），也是第一次由<span class="hl">三个国家</span>联合举办。</p>
+      </div>
+      <div class="guide-card">
+        <h3><span class="ico">📋</span> 比赛怎么打？</h3>
+        <p>分两个阶段：</p>
+        <ul>
+          <li><b>小组赛</b>：48队分成12个小组（A–L），每组4队两两踢一场。</li>
+          <li><b>淘汰赛</b>：每组前2名 + 8个成绩最好的第3名，共<span class="hl">32队</span>晋级。之后<span class="hl">输一场就回家</span>，一路淘汰直到决赛。</li>
+        </ul>
+      </div>
+      <div class="guide-card">
+        <h3><span class="ico">🥅</span> 怎么算赢？</h3>
+        <p>把球踢进对方球门多的一方获胜。小组赛<span class="hl">赢3分、平1分、输0分</span>，积分高的出线。</p>
+        <p style="margin-top:6px;">淘汰赛如果90分钟打平 → 加时30分钟 → 还平就<span class="hl">点球大战</span>（轮流罚点球，超刺激）。</p>
+      </div>
+      <div class="guide-card">
+        <h3><span class="ico">📺</span> 在哪看？</h3>
+        <p>中国大陆预计由 <span class="hl">央视CCTV5</span> 转播大部分场次，手机可看<span class="hl">咪咕视频、央视频</span>。</p>
+        <p style="margin-top:6px;">建议：先收藏本页，挑你感兴趣的球队/球星场次，设个闹钟，凌晨场可以第二天看回放。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 32强分组 ===== -->
+<section id="groups">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="badge">01</span>
+      <h2>12个小组 · 球队与球星</h2>
+      <span class="en">GROUPS &amp; STARS</span>
+    </div>
+    <p style="color:#9090a8;font-size:15px;margin-bottom:20px;">
+      🟢绿=夺冠热门　🔵蓝=传统强队　🟣紫=潜力黑马　⚪灰=实力较弱。每队帮你标好了<b>当家球星</b>，认准他们就不会看错人。
+    </p>
+
+    <!-- A组 -->
+    <div class="group-card">
+      <div class="gc-head"><span class="gletter">A</span><span class="gtitle">东道主<a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a>领衔</span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇲🇽</span><a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a><span class="rank t2">东道主</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/圣地亚哥·希门内斯" target="_blank" class="player-link" title="查看圣地亚哥·希门尼斯的详细资料">圣地亚哥·希门尼斯</a></b>（前锋，AC米兰）、<a href="https://baike.baidu.com/item/埃德松·阿尔瓦雷斯" target="_blank" class="player-link" title="查看埃德森·阿尔瓦雷斯的详细资料">埃德森·阿尔瓦雷斯</a></div><div class="note">主场作战，揭幕战登场，志在出线</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇰🇷</span><a href="https://baike.baidu.com/item/大韩民国国家足球队" target="_blank" class="team-link" title="查看韩国队阵容与概况">韩国</a><span class="rank t2">亚洲强队</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/孙兴慜" target="_blank" class="player-link" title="查看孙兴慜的详细资料">孙兴慜</a></b>（队长，前热刺巨星）、<a href="https://baike.baidu.com/item/李刚仁" target="_blank" class="player-link" title="查看李刚仁的详细资料">李刚仁</a></div><div class="note">亚洲一流，<a href="https://baike.baidu.com/item/孙兴慜" target="_blank" class="player-link" title="查看孙兴慜的详细资料">孙兴慜</a>可能的最后一届世界杯</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇨🇿</span><a href="https://baike.baidu.com/item/捷克国家足球队" target="_blank" class="team-link" title="查看捷克队阵容与概况">捷克</a><span class="rank t3">欧洲黑马</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/帕特里克·希克" target="_blank" class="player-link" title="查看帕特里克·希克的详细资料">帕特里克·希克</a></b>（高中锋）、<a href="https://baike.baidu.com/item/托马什·苏切克" target="_blank" class="player-link" title="查看苏切克的详细资料">苏切克</a></div><div class="note">身材高大，擅长定位球</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇿🇦</span><a href="https://baike.baidu.com/item/南非国家足球队" target="_blank" class="team-link" title="查看南非队阵容与概况">南非</a><span class="rank t4">非洲球队</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/罗温·威廉姆斯" target="_blank" class="player-link" title="查看罗文·威廉姆斯的详细资料">罗文·威廉姆斯</a></b>（门将）、<a href="https://baike.baidu.com/item/莱尔·福斯特" target="_blank" class="player-link" title="查看莱尔·福斯特的详细资料">莱尔·福斯特</a></div><div class="note">速度快，本届非洲区杀出的黑马</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b><a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a>能否在主场球迷山呼海啸中顺利出线？<a href="https://baike.baidu.com/item/孙兴慜" target="_blank" class="player-link" title="查看孙兴慜的详细资料">孙兴慜</a>能否带<a href="https://baike.baidu.com/item/大韩民国国家足球队" target="_blank" class="team-link" title="查看韩国队阵容与概况">韩国</a>闯关？</div>
+    </div>
+
+    <!-- B组 -->
+    <div class="group-card">
+      <div class="gc-head"><span class="gletter">B</span><span class="gtitle">东道主<a href="https://baike.baidu.com/item/加拿大国家足球队" target="_blank" class="team-link" title="查看加拿大队阵容与概况">加拿大</a> + <a href="https://baike.baidu.com/item/瑞士国家足球队" target="_blank" class="team-link" title="查看瑞士队阵容与概况">瑞士</a></span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇨🇦</span><a href="https://baike.baidu.com/item/加拿大国家足球队" target="_blank" class="team-link" title="查看加拿大队阵容与概况">加拿大</a><span class="rank t3">东道主</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/阿方索·戴维斯" target="_blank" class="player-link" title="查看阿方索·戴维斯的详细资料">阿方索·戴维斯</a></b>（拜仁飞翼）、<a href="https://baike.baidu.com/item/乔纳森·戴维_(足球运动员)" target="_blank" class="player-link" title="查看乔纳森·戴维的详细资料">乔纳森·戴维</a></div><div class="note">速度型球队，主场作战想进淘汰赛</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇨🇭</span><a href="https://baike.baidu.com/item/瑞士国家足球队" target="_blank" class="team-link" title="查看瑞士队阵容与概况">瑞士</a><span class="rank t2">欧洲强队</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/格拉尼特·扎卡" target="_blank" class="player-link" title="查看扎卡的详细资料">扎卡</a></b>（队长，中场核心）、<a href="https://baike.baidu.com/item/曼努埃尔·阿坎吉" target="_blank" class="player-link" title="查看阿坎吉的详细资料">阿坎吉</a>、<a href="https://baike.baidu.com/item/布雷尔·恩博洛" target="_blank" class="player-link" title="查看恩博洛的详细资料">恩博洛</a></div><div class="note">作风硬朗，大赛从不缺席淘汰赛</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇧🇦</span><a href="https://baike.baidu.com/item/波斯尼亚和黑塞哥维那国家足球队" target="_blank" class="team-link" title="查看波黑队阵容与概况">波黑</a><span class="rank t3">欧洲黑马</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/埃丁·哲科" target="_blank" class="player-link" title="查看哲科的详细资料">哲科</a></b>（39岁老将射手）</div><div class="note">老将<a href="https://baike.baidu.com/item/埃丁·哲科" target="_blank" class="player-link" title="查看哲科的详细资料">哲科</a>宝刀未老</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇶🇦</span><a href="https://baike.baidu.com/item/卡塔尔国家足球队" target="_blank" class="team-link" title="查看卡塔尔队阵容与概况">卡塔尔</a><span class="rank t4">亚洲球队</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/阿克拉姆·阿菲夫" target="_blank" class="player-link" title="查看阿克拉姆·阿菲夫的详细资料">阿克拉姆·阿菲夫</a></b>（亚洲足球先生）</div><div class="note">上届东道主，两届亚洲杯冠军</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b><a href="https://baike.baidu.com/item/加拿大国家足球队" target="_blank" class="team-link" title="查看加拿大队阵容与概况">加拿大</a>主场能否爆冷？<a href="https://baike.baidu.com/item/瑞士国家足球队" target="_blank" class="team-link" title="查看瑞士队阵容与概况">瑞士</a>稳健能否压制对手？</div>
+    </div>
+
+    <!-- C组 -->
+    <div class="group-card">
+      <div class="gc-head death"><span class="gletter">C</span><span class="gtitle"><a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a>在此 · 强强对话</span><span class="death-tag">★ 死亡之组</span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇧🇷</span><a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a><span class="rank t1">夺冠大热</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/维尼修斯·儒尼奥尔" target="_blank" class="player-link" title="查看维尼修斯的详细资料">维尼修斯</a></b>（皇马飞翼）、<a href="https://baike.baidu.com/item/内马尔" target="_blank" class="player-link" title="查看内马尔的详细资料">内马尔</a>、<a href="https://baike.baidu.com/item/拉菲尼亚_(足球运动员)" target="_blank" class="player-link" title="查看拉菲尼亚的详细资料">拉菲尼亚</a>、<a href="https://baike.baidu.com/item/恩德里克·费利佩" target="_blank" class="player-link" title="查看恩德里克的详细资料">恩德里克</a></div><div class="note">5次夺冠的足球王国，进攻华丽</div></div>
+        <div class="team"><div class="tname"><span class="flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span><a href="https://baike.baidu.com/item/苏格兰国家足球队" target="_blank" class="team-link" title="查看苏格兰队阵容与概况">苏格兰</a><span class="rank t3">欧洲黑马</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/安德鲁·罗伯逊" target="_blank" class="player-link" title="查看罗伯逊的详细资料">罗伯逊</a></b>（利物浦后卫）、<a href="https://baike.baidu.com/item/斯科特·麦克托米奈" target="_blank" class="player-link" title="查看麦克托米奈的详细资料">麦克托米奈</a></div><div class="note">拼劲十足，球迷氛围火爆</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇭🇹</span><a href="https://baike.baidu.com/item/海地国家足球队" target="_blank" class="team-link" title="查看海地队阵容与概况">海地</a><span class="rank t4">中北美黑马</span></div><div class="star">球星：<a href="https://baike.baidu.com/item/达肯斯·纳松" target="_blank" class="player-link" title="查看达肯斯·纳松的详细资料">达肯斯·纳松</a></div><div class="note">本届最大黑马之一，首要任务是学习</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇲🇦</span><a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a><span class="rank t2">非洲一哥</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/阿什拉夫·哈基米" target="_blank" class="player-link" title="查看哈基米的详细资料">哈基米</a></b>（巴黎后卫）、卜拉欣·迪亚斯、<a href="https://baike.baidu.com/item/索菲扬·阿姆拉巴特" target="_blank" class="player-link" title="查看阿姆拉巴特的详细资料">阿姆拉巴特</a></div><div class="note">上届世界杯第4名，非洲历史最佳</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b><b><a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a> vs <a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a></b>（6/13）堪称提前上演的强强对话！<a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a>上届黑马本届还能延续吗？</div>
+    </div>
+
+    <!-- D组 -->
+    <div class="group-card">
+      <div class="gc-head"><span class="gletter">D</span><span class="gtitle">东道主<a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a>坐镇</span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇺🇸</span><a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a><span class="rank t2">东道主</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/克里斯蒂安·普利希奇" target="_blank" class="player-link" title="查看普利西奇的详细资料">普利西奇</a></b>（AC米兰，<a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a>队长）、<a href="https://baike.baidu.com/item/蒂莫西·维阿" target="_blank" class="player-link" title="查看韦阿的详细资料">韦阿</a></div><div class="note">主场作战，新生代天赋出色</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇦🇺</span><a href="https://baike.baidu.com/item/澳大利亚国家足球队" target="_blank" class="team-link" title="查看澳大利亚队阵容与概况">澳大利亚</a><span class="rank t3">亚洲球队</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/马修·瑞安_(足球运动员)" target="_blank" class="player-link" title="查看瑞安的详细资料">瑞安</a></b>（门将）、<a href="https://baike.baidu.com/item/加朗·库奥尔" target="_blank" class="player-link" title="查看伊兰昆达的详细资料">伊兰昆达</a>、<a href="https://baike.baidu.com/item/阿伊丁·赫鲁斯蒂奇" target="_blank" class="player-link" title="查看赫鲁斯蒂奇的详细资料">赫鲁斯蒂奇</a></div><div class="note">作风顽强的"袋鼠军团"</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇹🇷</span><a href="https://baike.baidu.com/item/土耳其国家足球队" target="_blank" class="team-link" title="查看土耳其队阵容与概况">土耳其</a><span class="rank t2">欧洲新星</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/阿尔达·居莱尔" target="_blank" class="player-link" title="查看阿尔达·古勒的详细资料">阿尔达·古勒</a></b>（皇马新星）、恰尔汗奥卢</div><div class="note">年轻有冲击力，潜力巨大</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇵🇾</span><a href="https://baike.baidu.com/item/巴拉圭国家足球队" target="_blank" class="team-link" title="查看巴拉圭队阵容与概况">巴拉圭</a><span class="rank t3">南美球队</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/米格尔·阿尔米隆" target="_blank" class="player-link" title="查看阿尔米隆的详细资料">阿尔米隆</a></b>（前纽卡）</div><div class="note">南美区杀出，防守稳固</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b><a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a>主场能走多远？<a href="https://baike.baidu.com/item/土耳其国家足球队" target="_blank" class="team-link" title="查看土耳其队阵容与概况">土耳其</a>新星古勒会不会一战成名？</div>
+    </div>
+
+    <!-- E组 -->
+    <div class="group-card">
+      <div class="gc-head"><span class="gletter">E</span><span class="gtitle"><a href="https://baike.baidu.com/item/德国国家足球队" target="_blank" class="team-link" title="查看德国队阵容与概况">德国</a>战车重启</span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇩🇪</span><a href="https://baike.baidu.com/item/德国国家足球队" target="_blank" class="team-link" title="查看德国队阵容与概况">德国</a><span class="rank t1">夺冠热门</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/弗洛里安·维尔茨" target="_blank" class="player-link" title="查看维尔茨的详细资料">维尔茨</a></b>、<b><a href="https://baike.baidu.com/item/贾马尔·穆西亚拉" target="_blank" class="player-link" title="查看穆西亚拉的详细资料">穆西亚拉</a></b>（双星）、<a href="https://baike.baidu.com/item/凯·哈弗茨" target="_blank" class="player-link" title="查看哈弗茨的详细资料">哈弗茨</a></div><div class="note">4次夺冠，新一代天才井喷</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇨🇮</span><a href="https://baike.baidu.com/item/科特迪瓦国家足球队" target="_blank" class="team-link" title="查看科特迪瓦队阵容与概况">科特迪瓦</a><span class="rank t3">非洲黑马</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/弗兰克·凯西" target="_blank" class="player-link" title="查看凯西的详细资料">凯西</a></b>（中场核心）、<a href="https://baike.baidu.com/item/尼古拉斯·佩佩" target="_blank" class="player-link" title="查看佩佩的详细资料">佩佩</a>、阿马德·迪亚洛</div><div class="note">非洲杯冠军，身体强壮</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇪🇨</span><a href="https://baike.baidu.com/item/厄瓜多尔国家足球队" target="_blank" class="team-link" title="查看厄瓜多尔队阵容与概况">厄瓜多尔</a><span class="rank t3">南美黑马</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/莫伊塞斯·凯塞多" target="_blank" class="player-link" title="查看莫伊塞斯·凯塞多的详细资料">莫伊塞斯·凯塞多</a></b>（切尔西中场）</div><div class="note">年轻有活力，中场强硬</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇨🇼</span><a href="https://baike.baidu.com/item/库拉索国家足球队" target="_blank" class="team-link" title="查看库拉索队阵容与概况">库拉索</a><span class="rank t4">史上最小国</span></div><div class="star">球星：塔希斯·钟</div><div class="note">仅15万人口，创造历史首次参赛</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b><a href="https://baike.baidu.com/item/德国国家足球队" target="_blank" class="team-link" title="查看德国队阵容与概况">德国</a>能否重回巅峰？人口仅15万的<a href="https://baike.baidu.com/item/库拉索国家足球队" target="_blank" class="team-link" title="查看库拉索队阵容与概况">库拉索</a>是本届最励志的故事。</div>
+    </div>
+
+    <!-- F组 -->
+    <div class="group-card">
+      <div class="gc-head"><span class="gletter">F</span><span class="gtitle"><a href="https://baike.baidu.com/item/荷兰国家足球队" target="_blank" class="team-link" title="查看荷兰队阵容与概况">荷兰</a> + 亚洲之光<a href="https://baike.baidu.com/item/日本国家足球队" target="_blank" class="team-link" title="查看日本队阵容与概况">日本</a></span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇳🇱</span><a href="https://baike.baidu.com/item/荷兰国家足球队" target="_blank" class="team-link" title="查看荷兰队阵容与概况">荷兰</a><span class="rank t1">夺冠热门</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/维吉尔·范戴克" target="_blank" class="player-link" title="查看范戴克的详细资料">范戴克</a></b>（队长）、<a href="https://baike.baidu.com/item/弗伦基·德容" target="_blank" class="player-link" title="查看德容的详细资料">德容</a>、<a href="https://baike.baidu.com/item/科迪·加克波" target="_blank" class="player-link" title="查看加克波的详细资料">加克波</a></div><div class="note">三度打进决赛的"无冕之王"</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇯🇵</span><a href="https://baike.baidu.com/item/日本国家足球队" target="_blank" class="team-link" title="查看日本队阵容与概况">日本</a><span class="rank t2">亚洲最强</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/久保建英" target="_blank" class="player-link" title="查看久保建英的详细资料">久保建英</a></b>（皇马新星）、<b><a href="https://baike.baidu.com/item/远藤航" target="_blank" class="player-link" title="查看远藤航的详细资料">远藤航</a></b>（利物浦中场）、<a href="https://baike.baidu.com/item/堂安律" target="_blank" class="player-link" title="查看堂安律的详细资料">堂安律</a></div><div class="note">旅欧球员众多，亚洲头号种子</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇸🇪</span><a href="https://baike.baidu.com/item/瑞典国家足球队" target="_blank" class="team-link" title="查看瑞典队阵容与概况">瑞典</a><span class="rank t2">北欧劲旅</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/亚历山大·伊萨克" target="_blank" class="player-link" title="查看伊萨克的详细资料">伊萨克</a></b>、<b><a href="https://baike.baidu.com/item/维克托·久克雷斯" target="_blank" class="player-link" title="查看久克雷斯的详细资料">久克雷斯</a></b>（双高中锋）</div><div class="note">锋线火力凶猛</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇹🇳</span><a href="https://baike.baidu.com/item/突尼斯国家足球队" target="_blank" class="team-link" title="查看突尼斯队阵容与概况">突尼斯</a><span class="rank t4">非洲球队</span></div><div class="star">球星：<a href="https://baike.baidu.com/item/迈赫迪·穆莱" target="_blank" class="player-link" title="查看迈赫迪·穆莱的详细资料">迈赫迪·穆莱</a></div><div class="note">防守反击型球队</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b><b><a href="https://baike.baidu.com/item/荷兰国家足球队" target="_blank" class="team-link" title="查看荷兰队阵容与概况">荷兰</a> vs <a href="https://baike.baidu.com/item/日本国家足球队" target="_blank" class="team-link" title="查看日本队阵容与概况">日本</a></b>（6/14）是亚洲球迷必看！<a href="https://baike.baidu.com/item/日本国家足球队" target="_blank" class="team-link" title="查看日本队阵容与概况">日本</a>能否再次掀翻欧洲豪强？</div>
+    </div>
+
+    <!-- G组 -->
+    <div class="group-card">
+      <div class="gc-head"><span class="gletter">G</span><span class="gtitle"><a href="https://baike.baidu.com/item/比利时国家足球队" target="_blank" class="team-link" title="查看比利时队阵容与概况">比利时</a> + <a href="https://baike.baidu.com/item/埃及国家足球队" target="_blank" class="team-link" title="查看埃及队阵容与概况">埃及</a>法老<a href="https://baike.baidu.com/item/穆罕默德·萨拉赫" target="_blank" class="player-link" title="查看萨拉赫的详细资料">萨拉赫</a></span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇧🇪</span><a href="https://baike.baidu.com/item/比利时国家足球队" target="_blank" class="team-link" title="查看比利时队阵容与概况">比利时</a><span class="rank t2">欧洲强队</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/凯文·德布劳内" target="_blank" class="player-link" title="查看德布劳内的详细资料">德布劳内</a></b>（中场大师）、<a href="https://baike.baidu.com/item/罗梅卢·卢卡库" target="_blank" class="player-link" title="查看卢卡库的详细资料">卢卡库</a>、<a href="https://baike.baidu.com/item/杰里米·多库" target="_blank" class="player-link" title="查看多库的详细资料">多库</a></div><div class="note">"黄金一代"末班车</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇪🇬</span><a href="https://baike.baidu.com/item/埃及国家足球队" target="_blank" class="team-link" title="查看埃及队阵容与概况">埃及</a><span class="rank t2">非洲强队</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/穆罕默德·萨拉赫" target="_blank" class="player-link" title="查看萨拉赫的详细资料">萨拉赫</a></b>（利物浦<a href="https://baike.baidu.com/item/埃及国家足球队" target="_blank" class="team-link" title="查看埃及队阵容与概况">埃及</a>法老）</div><div class="note">全队围绕巨星<a href="https://baike.baidu.com/item/穆罕默德·萨拉赫" target="_blank" class="player-link" title="查看萨拉赫的详细资料">萨拉赫</a></div></div>
+        <div class="team"><div class="tname"><span class="flag">🇮🇷</span><a href="https://baike.baidu.com/item/伊朗国家足球队" target="_blank" class="team-link" title="查看伊朗队阵容与概况">伊朗</a><span class="rank t3">亚洲劲旅</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/迈赫迪·塔雷米" target="_blank" class="player-link" title="查看塔雷米的详细资料">塔雷米</a></b>（国际米兰前锋）、<a href="https://baike.baidu.com/item/阿里雷扎·贾汉巴赫什" target="_blank" class="player-link" title="查看贾汉巴赫什的详细资料">贾汉巴赫什</a></div><div class="note">亚洲传统强队，防守扎实</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇳🇿</span><a href="https://baike.baidu.com/item/新西兰国家足球队" target="_blank" class="team-link" title="查看新西兰队阵容与概况">新西兰</a><span class="rank t4">大洋洲冠军</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/克里斯·伍德_(足球运动员)" target="_blank" class="player-link" title="查看克里斯·伍德的详细资料">克里斯·伍德</a></b>（中锋）</div><div class="note">大洋洲霸主，身体对抗强</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b><a href="https://baike.baidu.com/item/凯文·德布劳内" target="_blank" class="player-link" title="查看德布劳内的详细资料">德布劳内</a>和<a href="https://baike.baidu.com/item/穆罕默德·萨拉赫" target="_blank" class="player-link" title="查看萨拉赫的详细资料">萨拉赫</a>两大巨星同组飙戏，谁能带队出线？</div>
+    </div>
+
+    <!-- H组 -->
+    <div class="group-card">
+      <div class="gc-head"><span class="gletter">H</span><span class="gtitle">卫冕欧洲杯的<a href="https://baike.baidu.com/item/西班牙国家足球队" target="_blank" class="team-link" title="查看西班牙队阵容与概况">西班牙</a></span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇪🇸</span><a href="https://baike.baidu.com/item/西班牙国家足球队" target="_blank" class="team-link" title="查看西班牙队阵容与概况">西班牙</a><span class="rank t1">夺冠大热</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/拉米内·亚马尔" target="_blank" class="player-link" title="查看亚马尔的详细资料">亚马尔</a></b>（18岁天才）、<b><a href="https://baike.baidu.com/item/佩德里" target="_blank" class="player-link" title="查看佩德里的详细资料">佩德里</a></b>、罗德里</div><div class="note">现欧洲杯冠军，传控艺术足球</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇺🇾</span><a href="https://baike.baidu.com/item/乌拉圭国家足球队" target="_blank" class="team-link" title="查看乌拉圭队阵容与概况">乌拉圭</a><span class="rank t2">南美劲旅</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/达尔文·努涅斯" target="_blank" class="player-link" title="查看努涅斯的详细资料">努涅斯</a></b>、<b><a href="https://baike.baidu.com/item/费德里科·巴尔韦德" target="_blank" class="player-link" title="查看巴尔韦德的详细资料">巴尔韦德</a></b>、<a href="https://baike.baidu.com/item/罗纳德·阿劳霍" target="_blank" class="player-link" title="查看阿劳霍的详细资料">阿劳霍</a></div><div class="note">两届世界杯冠军，作风强悍</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇸🇦</span><a href="https://baike.baidu.com/item/沙特阿拉伯国家足球队" target="_blank" class="team-link" title="查看沙特队阵容与概况">沙特</a><span class="rank t4">亚洲球队</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/萨利姆·道萨里" target="_blank" class="player-link" title="查看萨利姆·多萨里的详细资料">萨利姆·多萨里</a></b></div><div class="note">上届曾爆冷击败<a href="https://baike.baidu.com/item/阿根廷国家足球队" target="_blank" class="team-link" title="查看阿根廷队阵容与概况">阿根廷</a></div></div>
+        <div class="team"><div class="tname"><span class="flag">🇨🇻</span><a href="https://baike.baidu.com/item/佛得角国家足球队" target="_blank" class="team-link" title="查看佛得角队阵容与概况">佛得角</a><span class="rank t4">非洲黑马</span></div><div class="star">球星：贝贝、<a href="https://baike.baidu.com/item/马修·瑞安_(足球运动员)" target="_blank" class="player-link" title="查看瑞安的详细资料">瑞安</a>·门德斯</div><div class="note">人口仅50万，首次参赛创历史</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b><b><a href="https://baike.baidu.com/item/乌拉圭国家足球队" target="_blank" class="team-link" title="查看乌拉圭队阵容与概况">乌拉圭</a> vs <a href="https://baike.baidu.com/item/西班牙国家足球队" target="_blank" class="team-link" title="查看西班牙队阵容与概况">西班牙</a></b>（6/26）南美硬汉对决欧洲艺术足球，18岁<a href="https://baike.baidu.com/item/拉米内·亚马尔" target="_blank" class="player-link" title="查看亚马尔的详细资料">亚马尔</a>值得关注！</div>
+    </div>
+
+    <!-- I组 -->
+    <div class="group-card">
+      <div class="gc-head death"><span class="gletter">I</span><span class="gtitle"><a href="https://baike.baidu.com/item/法国国家足球队" target="_blank" class="team-link" title="查看法国队阵容与概况">法国</a> vs <a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a>的<a href="https://baike.baidu.com/item/挪威国家足球队" target="_blank" class="team-link" title="查看挪威队阵容与概况">挪威</a></span><span class="death-tag">★ 死亡之组</span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇫🇷</span><a href="https://baike.baidu.com/item/法国国家足球队" target="_blank" class="team-link" title="查看法国队阵容与概况">法国</a><span class="rank t1">夺冠大热</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/基利安·姆巴佩" target="_blank" class="player-link" title="查看姆巴佩的详细资料">姆巴佩</a></b>（队长，皇马巨星）、<a href="https://baike.baidu.com/item/奥雷利安·楚阿梅尼" target="_blank" class="player-link" title="查看楚阿梅尼的详细资料">楚阿梅尼</a></div><div class="note">上届亚军，球星如云</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇸🇳</span><a href="https://baike.baidu.com/item/塞内加尔国家足球队" target="_blank" class="team-link" title="查看塞内加尔队阵容与概况">塞内加尔</a><span class="rank t2">非洲强队</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/伊斯梅拉·萨尔" target="_blank" class="player-link" title="查看萨尔的详细资料">萨尔</a></b>、<a href="https://baike.baidu.com/item/卡利杜·库利巴利" target="_blank" class="player-link" title="查看库利巴利的详细资料">库利巴利</a>、<a href="https://baike.baidu.com/item/爱德华·门迪" target="_blank" class="player-link" title="查看门迪的详细资料">门迪</a></div><div class="note">非洲身体素质代表队</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇳🇴</span><a href="https://baike.baidu.com/item/挪威国家足球队" target="_blank" class="team-link" title="查看挪威队阵容与概况">挪威</a><span class="rank t2">超级射手</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a></b>（曼城进球机器）、<a href="https://baike.baidu.com/item/马丁·厄德高" target="_blank" class="player-link" title="查看厄德高的详细资料">厄德高</a></div><div class="note">时隔28年重返世界杯，<a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a>首秀</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇮🇶</span><a href="https://baike.baidu.com/item/伊拉克国家足球队" target="_blank" class="team-link" title="查看伊拉克队阵容与概况">伊拉克</a><span class="rank t4">亚洲黑马</span></div><div class="star">球星：艾门德·阿里</div><div class="note">时隔多年重返世界杯舞台</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b><b><a href="https://baike.baidu.com/item/法国国家足球队" target="_blank" class="team-link" title="查看法国队阵容与概况">法国</a> vs <a href="https://baike.baidu.com/item/塞内加尔国家足球队" target="_blank" class="team-link" title="查看塞内加尔队阵容与概况">塞内加尔</a></b>（6/16揭幕）+ <b><a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a>世界杯首秀</b>！<a href="https://baike.baidu.com/item/基利安·姆巴佩" target="_blank" class="player-link" title="查看姆巴佩的详细资料">姆巴佩</a>对决<a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a>是顶级享受。</div>
+    </div>
+
+    <!-- J组 -->
+    <div class="group-card">
+      <div class="gc-head"><span class="gletter">J</span><span class="gtitle"><a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a>的卫冕之旅</span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇦🇷</span><a href="https://baike.baidu.com/item/阿根廷国家足球队" target="_blank" class="team-link" title="查看阿根廷队阵容与概况">阿根廷</a><span class="rank t1">卫冕冠军</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a></b>（球王，可能最后一届）、<a href="https://baike.baidu.com/item/劳塔罗·马丁内斯" target="_blank" class="player-link" title="查看劳塔罗的详细资料">劳塔罗</a></div><div class="note">上届冠军，<a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a>的告别之舞</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇩🇿</span><a href="https://baike.baidu.com/item/阿尔及利亚国家足球队" target="_blank" class="team-link" title="查看阿尔及利亚队阵容与概况">阿尔及利亚</a><span class="rank t3">非洲黑马</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/里亚德·马赫雷斯" target="_blank" class="player-link" title="查看马赫雷斯的详细资料">马赫雷斯</a></b>（前曼城边锋）</div><div class="note">技术细腻的北非劲旅</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇦🇹</span><a href="https://baike.baidu.com/item/奥地利国家足球队" target="_blank" class="team-link" title="查看奥地利队阵容与概况">奥地利</a><span class="rank t2">欧洲黑马</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/马塞尔·萨比策" target="_blank" class="player-link" title="查看萨比策的详细资料">萨比策</a></b>、<a href="https://baike.baidu.com/item/克里斯托夫·鲍姆加特纳" target="_blank" class="player-link" title="查看鲍姆加特纳的详细资料">鲍姆加特纳</a></div><div class="note">欧洲整体性强的球队</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇯🇴</span><a href="https://baike.baidu.com/item/约旦国家足球队" target="_blank" class="team-link" title="查看约旦队阵容与概况">约旦</a><span class="rank t4">亚洲黑马</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/穆萨·塔马里" target="_blank" class="player-link" title="查看穆萨·塔马里的详细资料">穆萨·塔马里</a></b></div><div class="note">首次打进世界杯，历史性突破</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b>这很可能是<b><a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a>的最后一届世界杯</b>，全球球迷都想再看球王一眼！</div>
+    </div>
+
+    <!-- K组 -->
+    <div class="group-card">
+      <div class="gc-head"><span class="gletter">K</span><span class="gtitle"><a href="https://baike.baidu.com/item/克里斯蒂亚诺·罗纳尔多" target="_blank" class="player-link" title="查看C罗的详细资料">C罗</a>的最后一舞</span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🇵🇹</span><a href="https://baike.baidu.com/item/葡萄牙国家足球队" target="_blank" class="team-link" title="查看葡萄牙队阵容与概况">葡萄牙</a><span class="rank t1">夺冠大热</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/克里斯蒂亚诺·罗纳尔多" target="_blank" class="player-link" title="查看C罗的详细资料">C罗</a></b>（41岁传奇）、<a href="https://baike.baidu.com/item/布鲁诺·费尔南德斯" target="_blank" class="player-link" title="查看B费的详细资料">B费</a>、<a href="https://baike.baidu.com/item/拉斐尔·莱昂" target="_blank" class="player-link" title="查看莱奥的详细资料">莱奥</a></div><div class="note">现欧国联冠军，<a href="https://baike.baidu.com/item/克里斯蒂亚诺·罗纳尔多" target="_blank" class="player-link" title="查看C罗的详细资料">C罗</a>谢幕之战</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇨🇩</span><a href="https://baike.baidu.com/item/刚果民主共和国国家足球队" target="_blank" class="team-link" title="查看刚果(金)队阵容与概况">刚果(金)</a><span class="rank t3">非洲黑马</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/姆本巴" target="_blank" class="player-link" title="查看姆本巴的详细资料">姆本巴</a></b>、西拉斯</div><div class="note">非洲身体流派代表</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇺🇿</span><a href="https://baike.baidu.com/item/乌兹别克斯坦国家足球队" target="_blank" class="team-link" title="查看乌兹别克队阵容与概况">乌兹别克</a><span class="rank t4">亚洲新军</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/埃尔多·绍穆罗多夫" target="_blank" class="player-link" title="查看绍穆罗多夫的详细资料">绍穆罗多夫</a></b></div><div class="note">历史首次晋级世界杯</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇨🇴</span><a href="https://baike.baidu.com/item/哥伦比亚国家足球队" target="_blank" class="team-link" title="查看哥伦比亚队阵容与概况">哥伦比亚</a><span class="rank t2">南美强队</span></div><div class="star">球星：<b>哈梅斯·<a href="https://baike.baidu.com/item/罗德里_(足球运动员)" target="_blank" class="player-link" title="查看罗德里的详细资料">罗德里格斯</a></b>、<a href="https://baike.baidu.com/item/路易斯·迪亚斯_(足球运动员)" target="_blank" class="player-link" title="查看路易斯·迪亚斯的详细资料">路易斯·迪亚斯</a></div><div class="note">技术华丽的南美劲旅</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b>41岁的<b><a href="https://baike.baidu.com/item/克里斯蒂亚诺·罗纳尔多" target="_blank" class="player-link" title="查看C罗的详细资料">C罗</a>最后一届世界杯</b>！和<a href="https://baike.baidu.com/item/哥伦比亚国家足球队" target="_blank" class="team-link" title="查看哥伦比亚队阵容与概况">哥伦比亚</a>的强强对话（6/27）是出线关键。</div>
+    </div>
+
+    <!-- L组 -->
+    <div class="group-card">
+      <div class="gc-head death"><span class="gletter">L</span><span class="gtitle"><a href="https://baike.baidu.com/item/英格兰国家足球队" target="_blank" class="team-link" title="查看英格兰队阵容与概况">英格兰</a> vs <a href="https://baike.baidu.com/item/卢卡·莫德里奇" target="_blank" class="player-link" title="查看莫德里奇的详细资料">莫德里奇</a>的<a href="https://baike.baidu.com/item/克罗地亚国家足球队" target="_blank" class="team-link" title="查看克罗地亚队阵容与概况">克罗地亚</a></span><span class="death-tag">★ 死亡之组</span></div>
+      <div class="teams">
+        <div class="team"><div class="tname"><span class="flag">🏴󠁐󠁢󠁥󠁮󠁐󠁿</span><a href="https://baike.baidu.com/item/英格兰国家足球队" target="_blank" class="team-link" title="查看英格兰队阵容与概况">英格兰</a><span class="rank t1">夺冠大热</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/祖德·贝林厄姆" target="_blank" class="player-link" title="查看贝林厄姆的详细资料">贝林厄姆</a></b>、<b><a href="https://baike.baidu.com/item/哈里·凯恩" target="_blank" class="player-link" title="查看凯恩的详细资料">凯恩</a></b>（队长）、<a href="https://baike.baidu.com/item/布卡约·萨卡" target="_blank" class="player-link" title="查看萨卡的详细资料">萨卡</a></div><div class="note">连续两届欧洲杯亚军，渴望大赛冠军</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇭🇷</span><a href="https://baike.baidu.com/item/克罗地亚国家足球队" target="_blank" class="team-link" title="查看克罗地亚队阵容与概况">克罗地亚</a><span class="rank t2">欧洲劲旅</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/卢卡·莫德里奇" target="_blank" class="player-link" title="查看莫德里奇的详细资料">莫德里奇</a></b>（40岁中场大师）</div><div class="note">上两届世界杯亚军+季军</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇬🇭</span><a href="https://baike.baidu.com/item/加纳国家足球队" target="_blank" class="team-link" title="查看加纳队阵容与概况">加纳</a><span class="rank t3">非洲黑马</span></div><div class="star">球星：<b><a href="https://baike.baidu.com/item/托马斯·帕尔特伊" target="_blank" class="player-link" title="查看托马斯·帕尔特伊的详细资料">托马斯·帕尔特伊</a></b>（阿森纳中场）、<a href="https://baike.baidu.com/item/伊尼亚基·威廉姆斯" target="_blank" class="player-link" title="查看伊尼亚基·威廉姆斯的详细资料">伊尼亚基·威廉姆斯</a>、<a href="https://baike.baidu.com/item/乔丹·阿尤" target="_blank" class="player-link" title="查看乔丹·阿尤的详细资料">乔丹·阿尤</a></div><div class="note">非洲技术流，年轻有冲击</div></div>
+        <div class="team"><div class="tname"><span class="flag">🇵🇦</span><a href="https://baike.baidu.com/item/巴拿马国家足球队" target="_blank" class="team-link" title="查看巴拿马队阵容与概况">巴拿马</a><span class="rank t4">中北美黑马</span></div><div class="star">球星：<a href="https://baike.baidu.com/item/阿尼瓦尔·戈多伊" target="_blank" class="player-link" title="查看阿尼巴尔·戈多伊的详细资料">阿尼巴尔·戈多伊</a></div><div class="note">顽强的中北美球队</div></div>
+      </div>
+      <div class="gc-foot">👀 <b>小组看点：</b><b><a href="https://baike.baidu.com/item/英格兰国家足球队" target="_blank" class="team-link" title="查看英格兰队阵容与概况">英格兰</a> vs <a href="https://baike.baidu.com/item/克罗地亚国家足球队" target="_blank" class="team-link" title="查看克罗地亚队阵容与概况">克罗地亚</a></b>（6/17）是2018世界杯半决赛的复仇之战！<a href="https://baike.baidu.com/item/祖德·贝林厄姆" target="_blank" class="player-link" title="查看贝林厄姆的详细资料">贝林厄姆</a> vs 40岁<a href="https://baike.baidu.com/item/卢卡·莫德里奇" target="_blank" class="player-link" title="查看莫德里奇的详细资料">莫德里奇</a>，两代中场对话。</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 小组赛赛程 ===== -->
+<section id="group-stage">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="badge">02</span>
+      <h2>小组赛完整赛程</h2>
+      <span class="en">GROUP STAGE</span>
+    </div>
+    <p style="color:#9090a8;font-size:14.5px;margin-bottom:18px;">
+      📌 <b>红色大字 = 北京时间</b>（已帮你换算好，注意大多是次日凌晨到上午）。🔥 = 强烈推荐观看的焦点场。括号内字母为小组。<b>时间为预计，以官方为准。</b>
+    </p>
+
+    <!-- 6/11 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月11日</span><span class="dow">周四</span><span class="round">揭幕战</span></div>
+      <div class="match hot"><div class="when"><div class="bj">6/12 10:00</div><div class="local"><a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a>城 20:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/南非国家足球队" target="_blank" class="team-link" title="查看南非队阵容与概况">南非</a> <span class="g">A</span></div><div class="pt"><span class="fire">世界杯揭幕战！</span>东道主主场，开幕式+首球，仪式感拉满，值得熬夜看开场</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/12 07:00</div><div class="local">瓜达拉哈拉 17:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/大韩民国国家足球队" target="_blank" class="team-link" title="查看韩国队阵容与概况">韩国</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/捷克国家足球队" target="_blank" class="team-link" title="查看捷克队阵容与概况">捷克</a> <span class="g">A</span></div><div class="pt"><a href="https://baike.baidu.com/item/孙兴慜" target="_blank" class="player-link" title="查看孙兴慜的详细资料">孙兴慜</a>世界杯首秀，亚洲球迷关注</div></div></div>
+    </div>
+
+    <!-- 6/12 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月12日</span><span class="dow">周五</span></div>
+      <div class="match"><div class="when"><div class="bj">6/13 06:00</div><div class="local">多伦多 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/加拿大国家足球队" target="_blank" class="team-link" title="查看加拿大队阵容与概况">加拿大</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/波斯尼亚和黑塞哥维那国家足球队" target="_blank" class="team-link" title="查看波黑队阵容与概况">波黑</a> <span class="g">B</span></div><div class="pt">东道主<a href="https://baike.baidu.com/item/加拿大国家足球队" target="_blank" class="team-link" title="查看加拿大队阵容与概况">加拿大</a>首战，飞翼戴维斯领衔</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/13 09:00</div><div class="local">洛杉矶 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/巴拉圭国家足球队" target="_blank" class="team-link" title="查看巴拉圭队阵容与概况">巴拉圭</a> <span class="g">D</span></div><div class="pt"><span class="fire">东道主<a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a>首秀！</span>队长<a href="https://baike.baidu.com/item/克里斯蒂安·普利希奇" target="_blank" class="player-link" title="查看普利西奇的详细资料">普利西奇</a>坐镇，主场氛围火爆</div></div></div>
+    </div>
+
+    <!-- 6/13 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月13日</span><span class="dow">周六</span></div>
+      <div class="match"><div class="when"><div class="bj">6/14 00:00</div><div class="local">波士顿 12:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/海地国家足球队" target="_blank" class="team-link" title="查看海地队阵容与概况">海地</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/苏格兰国家足球队" target="_blank" class="team-link" title="查看苏格兰队阵容与概况">苏格兰</a> <span class="g">C</span></div><div class="pt"><a href="https://baike.baidu.com/item/苏格兰国家足球队" target="_blank" class="team-link" title="查看苏格兰队阵容与概况">苏格兰</a>球迷以热情著称，气氛好</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/14 04:00</div><div class="local">旧金山 13:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/卡塔尔国家足球队" target="_blank" class="team-link" title="查看卡塔尔队阵容与概况">卡塔尔</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/瑞士国家足球队" target="_blank" class="team-link" title="查看瑞士队阵容与概况">瑞士</a> <span class="g">B</span></div><div class="pt"><a href="https://baike.baidu.com/item/瑞士国家足球队" target="_blank" class="team-link" title="查看瑞士队阵容与概况">瑞士</a>稳健，力争开门红</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/14 06:00</div><div class="local">温哥华 15:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/澳大利亚国家足球队" target="_blank" class="team-link" title="查看澳大利亚队阵容与概况">澳大利亚</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/土耳其国家足球队" target="_blank" class="team-link" title="查看土耳其队阵容与概况">土耳其</a> <span class="g">D</span></div><div class="pt">关注皇马新星<a href="https://baike.baidu.com/item/阿尔达·居莱尔" target="_blank" class="player-link" title="查看阿尔达·古勒的详细资料">阿尔达·古勒</a></div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/14 09:00</div><div class="local">纽约 21:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a> <span class="g">C</span></div><div class="pt"><span class="fire">死亡之组焦点！</span>夺冠大热<a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a> vs 上届黑马<a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a>，<a href="https://baike.baidu.com/item/维尼修斯·儒尼奥尔" target="_blank" class="player-link" title="查看维尼修斯的详细资料">维尼修斯</a> vs <a href="https://baike.baidu.com/item/阿什拉夫·哈基米" target="_blank" class="player-link" title="查看哈基米的详细资料">哈基米</a></div></div></div>
+    </div>
+
+    <!-- 6/14 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月14日</span><span class="dow">周日</span></div>
+      <div class="match"><div class="when"><div class="bj">6/15 00:00</div><div class="local">费城 12:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/科特迪瓦国家足球队" target="_blank" class="team-link" title="查看科特迪瓦队阵容与概况">科特迪瓦</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/厄瓜多尔国家足球队" target="_blank" class="team-link" title="查看厄瓜多尔队阵容与概况">厄瓜多尔</a> <span class="g">E</span></div><div class="pt">非洲杯冠军出战</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/15 06:00</div><div class="local">休斯顿 17:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/德国国家足球队" target="_blank" class="team-link" title="查看德国队阵容与概况">德国</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/库拉索国家足球队" target="_blank" class="team-link" title="查看库拉索队阵容与概况">库拉索</a> <span class="g">E</span></div><div class="pt"><a href="https://baike.baidu.com/item/德国国家足球队" target="_blank" class="team-link" title="查看德国队阵容与概况">德国</a>双星<a href="https://baike.baidu.com/item/弗洛里安·维尔茨" target="_blank" class="player-link" title="查看维尔茨的详细资料">维尔茨</a>、<a href="https://baike.baidu.com/item/贾马尔·穆西亚拉" target="_blank" class="player-link" title="查看穆西亚拉的详细资料">穆西亚拉</a>登场；<a href="https://baike.baidu.com/item/库拉索国家足球队" target="_blank" class="team-link" title="查看库拉索队阵容与概况">库拉索</a>创造历史</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/15 07:00</div><div class="local">蒙特雷 17:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/瑞典国家足球队" target="_blank" class="team-link" title="查看瑞典队阵容与概况">瑞典</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/突尼斯国家足球队" target="_blank" class="team-link" title="查看突尼斯队阵容与概况">突尼斯</a> <span class="g">F</span></div><div class="pt"><a href="https://baike.baidu.com/item/瑞典国家足球队" target="_blank" class="team-link" title="查看瑞典队阵容与概况">瑞典</a>双高中锋<a href="https://baike.baidu.com/item/亚历山大·伊萨克" target="_blank" class="player-link" title="查看伊萨克的详细资料">伊萨克</a>、<a href="https://baike.baidu.com/item/维克托·久克雷斯" target="_blank" class="player-link" title="查看久克雷斯的详细资料">久克雷斯</a></div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/15 09:00</div><div class="local">达拉斯 20:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/荷兰国家足球队" target="_blank" class="team-link" title="查看荷兰队阵容与概况">荷兰</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/日本国家足球队" target="_blank" class="team-link" title="查看日本队阵容与概况">日本</a> <span class="g">F</span></div><div class="pt"><span class="fire">亚洲球迷必看！</span><a href="https://baike.baidu.com/item/日本国家足球队" target="_blank" class="team-link" title="查看日本队阵容与概况">日本</a><a href="https://baike.baidu.com/item/久保建英" target="_blank" class="player-link" title="查看久保建英的详细资料">久保建英</a>、<a href="https://baike.baidu.com/item/远藤航" target="_blank" class="player-link" title="查看远藤航的详细资料">远藤航</a>挑战欧洲豪强<a href="https://baike.baidu.com/item/荷兰国家足球队" target="_blank" class="team-link" title="查看荷兰队阵容与概况">荷兰</a></div></div></div>
+    </div>
+
+    <!-- 6/15 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月15日</span><span class="dow">周一</span></div>
+      <div class="match"><div class="when"><div class="bj">6/16 03:00</div><div class="local">洛杉矶 12:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/伊朗国家足球队" target="_blank" class="team-link" title="查看伊朗队阵容与概况">伊朗</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/新西兰国家足球队" target="_blank" class="team-link" title="查看新西兰队阵容与概况">新西兰</a> <span class="g">G</span></div><div class="pt">两支防守型球队的较量</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/16 06:00</div><div class="local">迈阿密 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/沙特阿拉伯国家足球队" target="_blank" class="team-link" title="查看沙特队阵容与概况">沙特</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/乌拉圭国家足球队" target="_blank" class="team-link" title="查看乌拉圭队阵容与概况">乌拉圭</a> <span class="g">H</span></div><div class="pt"><a href="https://baike.baidu.com/item/乌拉圭国家足球队" target="_blank" class="team-link" title="查看乌拉圭队阵容与概况">乌拉圭</a>三叉戟<a href="https://baike.baidu.com/item/达尔文·努涅斯" target="_blank" class="player-link" title="查看努涅斯的详细资料">努涅斯</a>、<a href="https://baike.baidu.com/item/费德里科·巴尔韦德" target="_blank" class="player-link" title="查看巴尔韦德的详细资料">巴尔韦德</a></div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/16 09:00</div><div class="local">西雅图 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/比利时国家足球队" target="_blank" class="team-link" title="查看比利时队阵容与概况">比利时</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/埃及国家足球队" target="_blank" class="team-link" title="查看埃及队阵容与概况">埃及</a> <span class="g">G</span></div><div class="pt"><a href="https://baike.baidu.com/item/凯文·德布劳内" target="_blank" class="player-link" title="查看德布劳内的详细资料">德布劳内</a> vs <a href="https://baike.baidu.com/item/穆罕默德·萨拉赫" target="_blank" class="player-link" title="查看萨拉赫的详细资料">萨拉赫</a>，两大巨星对飙</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/16 09:00</div><div class="local">亚特兰大 21:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/西班牙国家足球队" target="_blank" class="team-link" title="查看西班牙队阵容与概况">西班牙</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/佛得角国家足球队" target="_blank" class="team-link" title="查看佛得角队阵容与概况">佛得角</a> <span class="g">H</span></div><div class="pt"><span class="fire">看18岁天才！</span>欧洲杯冠军<a href="https://baike.baidu.com/item/西班牙国家足球队" target="_blank" class="team-link" title="查看西班牙队阵容与概况">西班牙</a>，重点看<a href="https://baike.baidu.com/item/拉米内·亚马尔" target="_blank" class="player-link" title="查看亚马尔的详细资料">亚马尔</a>、<a href="https://baike.baidu.com/item/佩德里" target="_blank" class="player-link" title="查看佩德里的详细资料">佩德里</a>的传控魔术</div></div></div>
+    </div>
+
+    <!-- 6/16 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月16日</span><span class="dow">周二</span></div>
+      <div class="match hot"><div class="when"><div class="bj">6/17 03:00</div><div class="local">波士顿 15:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/伊拉克国家足球队" target="_blank" class="team-link" title="查看伊拉克队阵容与概况">伊拉克</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/挪威国家足球队" target="_blank" class="team-link" title="查看挪威队阵容与概况">挪威</a> <span class="g">I</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a>世界杯首秀！</span><a href="https://baike.baidu.com/item/挪威国家足球队" target="_blank" class="team-link" title="查看挪威队阵容与概况">挪威</a>时隔28年回归，看进球机器<a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a>如何表演</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/17 03:00</div><div class="local">旧金山 12:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/奥地利国家足球队" target="_blank" class="team-link" title="查看奥地利队阵容与概况">奥地利</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/约旦国家足球队" target="_blank" class="team-link" title="查看约旦队阵容与概况">约旦</a> <span class="g">J</span></div><div class="pt"><a href="https://baike.baidu.com/item/约旦国家足球队" target="_blank" class="team-link" title="查看约旦队阵容与概况">约旦</a>首次参加世界杯</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/17 09:00</div><div class="local">纽约 21:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/法国国家足球队" target="_blank" class="team-link" title="查看法国队阵容与概况">法国</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/塞内加尔国家足球队" target="_blank" class="team-link" title="查看塞内加尔队阵容与概况">塞内加尔</a> <span class="g">I</span></div><div class="pt"><span class="fire">死亡之组揭幕！</span><a href="https://baike.baidu.com/item/基利安·姆巴佩" target="_blank" class="player-link" title="查看姆巴佩的详细资料">姆巴佩</a>领衔的<a href="https://baike.baidu.com/item/法国国家足球队" target="_blank" class="team-link" title="查看法国队阵容与概况">法国</a>对阵非洲劲旅<a href="https://baike.baidu.com/item/塞内加尔国家足球队" target="_blank" class="team-link" title="查看塞内加尔队阵容与概况">塞内加尔</a></div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/17 09:00</div><div class="local">堪萨斯城 20:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/阿根廷国家足球队" target="_blank" class="team-link" title="查看阿根廷队阵容与概况">阿根廷</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/阿尔及利亚国家足球队" target="_blank" class="team-link" title="查看阿尔及利亚队阵容与概况">阿尔及利亚</a> <span class="g">J</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a>亮相！</span>卫冕冠军<a href="https://baike.baidu.com/item/阿根廷国家足球队" target="_blank" class="team-link" title="查看阿根廷队阵容与概况">阿根廷</a>首战，球王<a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a>可能的最后一届世界杯</div></div></div>
+    </div>
+
+    <!-- 6/17 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月17日</span><span class="dow">周三</span></div>
+      <div class="match"><div class="when"><div class="bj">6/18 00:00</div><div class="local">多伦多 12:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/加纳国家足球队" target="_blank" class="team-link" title="查看加纳队阵容与概况">加纳</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/巴拿马国家足球队" target="_blank" class="team-link" title="查看巴拿马队阵容与概况">巴拿马</a> <span class="g">L</span></div><div class="pt"><a href="https://baike.baidu.com/item/加纳国家足球队" target="_blank" class="team-link" title="查看加纳队阵容与概况">加纳</a>新星<a href="https://baike.baidu.com/item/穆罕默德·库杜斯" target="_blank" class="player-link" title="查看库杜斯的详细资料">库杜斯</a>值得关注</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/18 06:00</div><div class="local">达拉斯 17:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/英格兰国家足球队" target="_blank" class="team-link" title="查看英格兰队阵容与概况">英格兰</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/克罗地亚国家足球队" target="_blank" class="team-link" title="查看克罗地亚队阵容与概况">克罗地亚</a> <span class="g">L</span></div><div class="pt"><span class="fire">复仇之战！</span>2018半决赛重演，<a href="https://baike.baidu.com/item/祖德·贝林厄姆" target="_blank" class="player-link" title="查看贝林厄姆的详细资料">贝林厄姆</a> vs 40岁<a href="https://baike.baidu.com/item/卢卡·莫德里奇" target="_blank" class="player-link" title="查看莫德里奇的详细资料">莫德里奇</a></div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/18 09:00</div><div class="local">休斯顿 20:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/葡萄牙国家足球队" target="_blank" class="team-link" title="查看葡萄牙队阵容与概况">葡萄牙</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/刚果民主共和国国家足球队" target="_blank" class="team-link" title="查看刚果(金)队阵容与概况">刚果(金)</a> <span class="g">K</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/克里斯蒂亚诺·罗纳尔多" target="_blank" class="player-link" title="查看C罗的详细资料">C罗</a>谢幕之旅首战！</span>41岁的<a href="https://baike.baidu.com/item/克里斯蒂亚诺·罗纳尔多" target="_blank" class="player-link" title="查看C罗的详细资料">C罗</a>，可能是你最后一次在世界杯看到他</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/18 09:00</div><div class="local"><a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a>城 19:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/乌兹别克斯坦国家足球队" target="_blank" class="team-link" title="查看乌兹别克队阵容与概况">乌兹别克</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/哥伦比亚国家足球队" target="_blank" class="team-link" title="查看哥伦比亚队阵容与概况">哥伦比亚</a> <span class="g">K</span></div><div class="pt"><a href="https://baike.baidu.com/item/哥伦比亚国家足球队" target="_blank" class="team-link" title="查看哥伦比亚队阵容与概况">哥伦比亚</a>名将哈梅斯、<a href="https://baike.baidu.com/item/路易斯·迪亚斯_(足球运动员)" target="_blank" class="player-link" title="查看路易斯·迪亚斯的详细资料">路易斯·迪亚斯</a></div></div></div>
+    </div>
+
+    <!-- 6/18 第二轮 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月18日</span><span class="dow">周四</span><span class="round">第二轮</span></div>
+      <div class="match"><div class="when"><div class="bj">6/19 00:00</div><div class="local">亚特兰大 12:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/捷克国家足球队" target="_blank" class="team-link" title="查看捷克队阵容与概况">捷克</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/南非国家足球队" target="_blank" class="team-link" title="查看南非队阵容与概况">南非</a> <span class="g">A</span></div><div class="pt">两队的出线关键战</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/19 06:00</div><div class="local">温哥华 15:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/加拿大国家足球队" target="_blank" class="team-link" title="查看加拿大队阵容与概况">加拿大</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/卡塔尔国家足球队" target="_blank" class="team-link" title="查看卡塔尔队阵容与概况">卡塔尔</a> <span class="g">B</span></div><div class="pt">东道主<a href="https://baike.baidu.com/item/加拿大国家足球队" target="_blank" class="team-link" title="查看加拿大队阵容与概况">加拿大</a>力争出线</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/19 09:00</div><div class="local">洛杉矶 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/瑞士国家足球队" target="_blank" class="team-link" title="查看瑞士队阵容与概况">瑞士</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/波斯尼亚和黑塞哥维那国家足球队" target="_blank" class="team-link" title="查看波黑队阵容与概况">波黑</a> <span class="g">B</span></div><div class="pt">老将<a href="https://baike.baidu.com/item/埃丁·哲科" target="_blank" class="player-link" title="查看哲科的详细资料">哲科</a>能否建功</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/19 09:00</div><div class="local">瓜达拉哈拉 19:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/大韩民国国家足球队" target="_blank" class="team-link" title="查看韩国队阵容与概况">韩国</a> <span class="g">A</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/孙兴慜" target="_blank" class="player-link" title="查看孙兴慜的详细资料">孙兴慜</a>对决东道主！</span>关键之战，决定出线形势</div></div></div>
+    </div>
+
+    <!-- 6/19 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月19日</span><span class="dow">周五</span></div>
+      <div class="match"><div class="when"><div class="bj">6/20 00:00</div><div class="local">波士顿 12:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/苏格兰国家足球队" target="_blank" class="team-link" title="查看苏格兰队阵容与概况">苏格兰</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a> <span class="g">C</span></div><div class="pt"><a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a>力争小组出线</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/20 06:00</div><div class="local">旧金山 15:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/土耳其国家足球队" target="_blank" class="team-link" title="查看土耳其队阵容与概况">土耳其</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/巴拉圭国家足球队" target="_blank" class="team-link" title="查看巴拉圭队阵容与概况">巴拉圭</a> <span class="g">D</span></div><div class="pt">古勒能否率队取胜</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/20 06:00</div><div class="local">费城 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/海地国家足球队" target="_blank" class="team-link" title="查看海地队阵容与概况">海地</a> <span class="g">C</span></div><div class="pt"><a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a>有望大胜，欣赏桑巴足球</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/20 09:00</div><div class="local">西雅图 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/澳大利亚国家足球队" target="_blank" class="team-link" title="查看澳大利亚队阵容与概况">澳大利亚</a> <span class="g">D</span></div><div class="pt"><span class="fire">东道主关键战</span>，<a href="https://baike.baidu.com/item/克里斯蒂安·普利希奇" target="_blank" class="player-link" title="查看普利西奇的详细资料">普利西奇</a>率<a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a>冲击出线</div></div></div>
+    </div>
+
+    <!-- 6/20 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月20日</span><span class="dow">周六</span></div>
+      <div class="match"><div class="when"><div class="bj">6/21 03:00</div><div class="local">堪萨斯城 14:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/厄瓜多尔国家足球队" target="_blank" class="team-link" title="查看厄瓜多尔队阵容与概况">厄瓜多尔</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/库拉索国家足球队" target="_blank" class="team-link" title="查看库拉索队阵容与概况">库拉索</a> <span class="g">E</span></div><div class="pt"><a href="https://baike.baidu.com/item/厄瓜多尔国家足球队" target="_blank" class="team-link" title="查看厄瓜多尔队阵容与概况">厄瓜多尔</a>中场卡塞多领衔</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/21 06:00</div><div class="local">休斯顿 17:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/荷兰国家足球队" target="_blank" class="team-link" title="查看荷兰队阵容与概况">荷兰</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/瑞典国家足球队" target="_blank" class="team-link" title="查看瑞典队阵容与概况">瑞典</a> <span class="g">F</span></div><div class="pt"><a href="https://baike.baidu.com/item/荷兰国家足球队" target="_blank" class="team-link" title="查看荷兰队阵容与概况">荷兰</a><a href="https://baike.baidu.com/item/维吉尔·范戴克" target="_blank" class="player-link" title="查看范戴克的详细资料">范戴克</a>坐镇后防</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/21 09:00</div><div class="local">多伦多 21:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/德国国家足球队" target="_blank" class="team-link" title="查看德国队阵容与概况">德国</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/科特迪瓦国家足球队" target="_blank" class="team-link" title="查看科特迪瓦队阵容与概况">科特迪瓦</a> <span class="g">E</span></div><div class="pt"><span class="fire">强强对话</span>，<a href="https://baike.baidu.com/item/德国国家足球队" target="_blank" class="team-link" title="查看德国队阵容与概况">德国</a>战车对阵非洲杯冠军</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/21 09:00</div><div class="local">蒙特雷 19:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/突尼斯国家足球队" target="_blank" class="team-link" title="查看突尼斯队阵容与概况">突尼斯</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/日本国家足球队" target="_blank" class="team-link" title="查看日本队阵容与概况">日本</a> <span class="g">F</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/日本国家足球队" target="_blank" class="team-link" title="查看日本队阵容与概况">日本</a>出线关键战</span>，<a href="https://baike.baidu.com/item/久保建英" target="_blank" class="player-link" title="查看久保建英的详细资料">久保建英</a>、<a href="https://baike.baidu.com/item/堂安律" target="_blank" class="player-link" title="查看堂安律的详细资料">堂安律</a>冲锋</div></div></div>
+    </div>
+
+    <!-- 6/21 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月21日</span><span class="dow">周日</span></div>
+      <div class="match"><div class="when"><div class="bj">6/22 00:00</div><div class="local">迈阿密 12:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/乌拉圭国家足球队" target="_blank" class="team-link" title="查看乌拉圭队阵容与概况">乌拉圭</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/佛得角国家足球队" target="_blank" class="team-link" title="查看佛得角队阵容与概况">佛得角</a> <span class="g">H</span></div><div class="pt"><a href="https://baike.baidu.com/item/乌拉圭国家足球队" target="_blank" class="team-link" title="查看乌拉圭队阵容与概况">乌拉圭</a>力争提前出线</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/22 06:00</div><div class="local">温哥华 15:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/新西兰国家足球队" target="_blank" class="team-link" title="查看新西兰队阵容与概况">新西兰</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/埃及国家足球队" target="_blank" class="team-link" title="查看埃及队阵容与概况">埃及</a> <span class="g">G</span></div><div class="pt"><span class="fire">看<a href="https://baike.baidu.com/item/穆罕默德·萨拉赫" target="_blank" class="player-link" title="查看萨拉赫的详细资料">萨拉赫</a>！</span><a href="https://baike.baidu.com/item/埃及国家足球队" target="_blank" class="team-link" title="查看埃及队阵容与概况">埃及</a>法老<a href="https://baike.baidu.com/item/穆罕默德·萨拉赫" target="_blank" class="player-link" title="查看萨拉赫的详细资料">萨拉赫</a>的个人秀</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/22 09:00</div><div class="local">洛杉矶 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/比利时国家足球队" target="_blank" class="team-link" title="查看比利时队阵容与概况">比利时</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/伊朗国家足球队" target="_blank" class="team-link" title="查看伊朗队阵容与概况">伊朗</a> <span class="g">G</span></div><div class="pt"><a href="https://baike.baidu.com/item/凯文·德布劳内" target="_blank" class="player-link" title="查看德布劳内的详细资料">德布劳内</a>指挥<a href="https://baike.baidu.com/item/比利时国家足球队" target="_blank" class="team-link" title="查看比利时队阵容与概况">比利时</a>进攻</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/22 09:00</div><div class="local">亚特兰大 21:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/西班牙国家足球队" target="_blank" class="team-link" title="查看西班牙队阵容与概况">西班牙</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/沙特阿拉伯国家足球队" target="_blank" class="team-link" title="查看沙特队阵容与概况">沙特</a> <span class="g">H</span></div><div class="pt"><span class="fire">夺冠热门出战</span>，<a href="https://baike.baidu.com/item/西班牙国家足球队" target="_blank" class="team-link" title="查看西班牙队阵容与概况">西班牙</a>传控继续表演</div></div></div>
+    </div>
+
+    <!-- 6/22 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月22日</span><span class="dow">周一</span></div>
+      <div class="match hot"><div class="when"><div class="bj">6/23 03:00</div><div class="local">纽约 15:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/挪威国家足球队" target="_blank" class="team-link" title="查看挪威队阵容与概况">挪威</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/塞内加尔国家足球队" target="_blank" class="team-link" title="查看塞内加尔队阵容与概况">塞内加尔</a> <span class="g">I</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a> vs 非洲铁卫</span>，死亡之组激战</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/23 03:00</div><div class="local">旧金山 12:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/约旦国家足球队" target="_blank" class="team-link" title="查看约旦队阵容与概况">约旦</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/阿尔及利亚国家足球队" target="_blank" class="team-link" title="查看阿尔及利亚队阵容与概况">阿尔及利亚</a> <span class="g">J</span></div><div class="pt"><a href="https://baike.baidu.com/item/里亚德·马赫雷斯" target="_blank" class="player-link" title="查看马赫雷斯的详细资料">马赫雷斯</a>领衔<a href="https://baike.baidu.com/item/阿尔及利亚国家足球队" target="_blank" class="team-link" title="查看阿尔及利亚队阵容与概况">阿尔及利亚</a></div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/23 06:00</div><div class="local">费城 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/法国国家足球队" target="_blank" class="team-link" title="查看法国队阵容与概况">法国</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/伊拉克国家足球队" target="_blank" class="team-link" title="查看伊拉克队阵容与概况">伊拉克</a> <span class="g">I</span></div><div class="pt"><a href="https://baike.baidu.com/item/基利安·姆巴佩" target="_blank" class="player-link" title="查看姆巴佩的详细资料">姆巴佩</a>有望刷新数据</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/23 09:00</div><div class="local">达拉斯 20:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/阿根廷国家足球队" target="_blank" class="team-link" title="查看阿根廷队阵容与概况">阿根廷</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/奥地利国家足球队" target="_blank" class="team-link" title="查看奥地利队阵容与概况">奥地利</a> <span class="g">J</span></div><div class="pt"><span class="fire">看<a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a>！</span>卫冕冠军关键战，<a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a>继续告别巡演</div></div></div>
+    </div>
+
+    <!-- 6/23 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月23日</span><span class="dow">周二</span></div>
+      <div class="match"><div class="when"><div class="bj">6/24 00:00</div><div class="local">多伦多 12:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/巴拿马国家足球队" target="_blank" class="team-link" title="查看巴拿马队阵容与概况">巴拿马</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/克罗地亚国家足球队" target="_blank" class="team-link" title="查看克罗地亚队阵容与概况">克罗地亚</a> <span class="g">L</span></div><div class="pt"><a href="https://baike.baidu.com/item/卢卡·莫德里奇" target="_blank" class="player-link" title="查看莫德里奇的详细资料">莫德里奇</a>指挥<a href="https://baike.baidu.com/item/克罗地亚国家足球队" target="_blank" class="team-link" title="查看克罗地亚队阵容与概况">克罗地亚</a></div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/24 06:00</div><div class="local">休斯顿 17:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/葡萄牙国家足球队" target="_blank" class="team-link" title="查看葡萄牙队阵容与概况">葡萄牙</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/乌兹别克斯坦国家足球队" target="_blank" class="team-link" title="查看乌兹别克队阵容与概况">乌兹别克</a> <span class="g">K</span></div><div class="pt"><a href="https://baike.baidu.com/item/克里斯蒂亚诺·罗纳尔多" target="_blank" class="player-link" title="查看C罗的详细资料">C罗</a>冲击进球纪录</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/24 09:00</div><div class="local">瓜达拉哈拉 19:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/哥伦比亚国家足球队" target="_blank" class="team-link" title="查看哥伦比亚队阵容与概况">哥伦比亚</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/刚果民主共和国国家足球队" target="_blank" class="team-link" title="查看刚果(金)队阵容与概况">刚果(金)</a> <span class="g">K</span></div><div class="pt"><a href="https://baike.baidu.com/item/哥伦比亚国家足球队" target="_blank" class="team-link" title="查看哥伦比亚队阵容与概况">哥伦比亚</a>力争小组头名</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/24 09:00</div><div class="local">波士顿 21:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/英格兰国家足球队" target="_blank" class="team-link" title="查看英格兰队阵容与概况">英格兰</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/加纳国家足球队" target="_blank" class="team-link" title="查看加纳队阵容与概况">加纳</a> <span class="g">L</span></div><div class="pt"><span class="fire">夺冠热门出战</span>，<a href="https://baike.baidu.com/item/哈里·凯恩" target="_blank" class="player-link" title="查看凯恩的详细资料">凯恩</a>、<a href="https://baike.baidu.com/item/祖德·贝林厄姆" target="_blank" class="player-link" title="查看贝林厄姆的详细资料">贝林厄姆</a>领衔<a href="https://baike.baidu.com/item/英格兰国家足球队" target="_blank" class="team-link" title="查看英格兰队阵容与概况">英格兰</a></div></div></div>
+    </div>
+
+    <!-- 6/24 第三轮 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月24日</span><span class="dow">周三</span><span class="round">小组收官·同时开球</span></div>
+      <div class="match hot"><div class="when"><div class="bj">6/25 04:00</div><div class="local">迈阿密 16:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/苏格兰国家足球队" target="_blank" class="team-link" title="查看苏格兰队阵容与概况">苏格兰</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a> <span class="g">C</span></div><div class="pt"><span class="fire">死亡之组生死战</span>，<a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a>收官，<a href="https://baike.baidu.com/item/维尼修斯·儒尼奥尔" target="_blank" class="player-link" title="查看维尼修斯的详细资料">维尼修斯</a>表演时刻</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/25 04:00</div><div class="local">亚特兰大 16:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/海地国家足球队" target="_blank" class="team-link" title="查看海地队阵容与概况">海地</a> <span class="g">C</span></div><div class="pt"><a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a>力争出线（与上场同时进行）</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/25 08:00</div><div class="local"><a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a>城 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/捷克国家足球队" target="_blank" class="team-link" title="查看捷克队阵容与概况">捷克</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a> <span class="g">A</span></div><div class="pt">东道主收官，主场冲击头名</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/25 08:00</div><div class="local">蒙特雷 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/南非国家足球队" target="_blank" class="team-link" title="查看南非队阵容与概况">南非</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/大韩民国国家足球队" target="_blank" class="team-link" title="查看韩国队阵容与概况">韩国</a> <span class="g">A</span></div><div class="pt"><a href="https://baike.baidu.com/item/孙兴慜" target="_blank" class="player-link" title="查看孙兴慜的详细资料">孙兴慜</a>最后的出线机会（与上场同时）</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/25 10:00</div><div class="local">温哥华 19:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/瑞士国家足球队" target="_blank" class="team-link" title="查看瑞士队阵容与概况">瑞士</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/加拿大国家足球队" target="_blank" class="team-link" title="查看加拿大队阵容与概况">加拿大</a> <span class="g">B</span></div><div class="pt">东道主<a href="https://baike.baidu.com/item/加拿大国家足球队" target="_blank" class="team-link" title="查看加拿大队阵容与概况">加拿大</a>主场收官</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/25 10:00</div><div class="local">西雅图 19:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/波斯尼亚和黑塞哥维那国家足球队" target="_blank" class="team-link" title="查看波黑队阵容与概况">波黑</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/卡塔尔国家足球队" target="_blank" class="team-link" title="查看卡塔尔队阵容与概况">卡塔尔</a> <span class="g">B</span></div><div class="pt">两队争夺出线（与上场同时）</div></div></div>
+    </div>
+
+    <!-- 6/25 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月25日</span><span class="dow">周四</span><span class="round">小组收官·同时开球</span></div>
+      <div class="match hot"><div class="when"><div class="bj">6/26 04:00</div><div class="local">纽约 16:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/厄瓜多尔国家足球队" target="_blank" class="team-link" title="查看厄瓜多尔队阵容与概况">厄瓜多尔</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/德国国家足球队" target="_blank" class="team-link" title="查看德国队阵容与概况">德国</a> <span class="g">E</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/德国国家足球队" target="_blank" class="team-link" title="查看德国队阵容与概况">德国</a>出线战</span>，<a href="https://baike.baidu.com/item/弗洛里安·维尔茨" target="_blank" class="player-link" title="查看维尔茨的详细资料">维尔茨</a>、<a href="https://baike.baidu.com/item/贾马尔·穆西亚拉" target="_blank" class="player-link" title="查看穆西亚拉的详细资料">穆西亚拉</a>冲击头名</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/26 04:00</div><div class="local">费城 16:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/库拉索国家足球队" target="_blank" class="team-link" title="查看库拉索队阵容与概况">库拉索</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/科特迪瓦国家足球队" target="_blank" class="team-link" title="查看科特迪瓦队阵容与概况">科特迪瓦</a> <span class="g">E</span></div><div class="pt">非洲杯冠军力争晋级（与上场同时）</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/26 08:00</div><div class="local">达拉斯 19:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/日本国家足球队" target="_blank" class="team-link" title="查看日本队阵容与概况">日本</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/瑞典国家足球队" target="_blank" class="team-link" title="查看瑞典队阵容与概况">瑞典</a> <span class="g">F</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/日本国家足球队" target="_blank" class="team-link" title="查看日本队阵容与概况">日本</a>出线收官战</span>，旅欧军团全力冲击淘汰赛</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/26 08:00</div><div class="local">堪萨斯城 19:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/突尼斯国家足球队" target="_blank" class="team-link" title="查看突尼斯队阵容与概况">突尼斯</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/荷兰国家足球队" target="_blank" class="team-link" title="查看荷兰队阵容与概况">荷兰</a> <span class="g">F</span></div><div class="pt"><a href="https://baike.baidu.com/item/荷兰国家足球队" target="_blank" class="team-link" title="查看荷兰队阵容与概况">荷兰</a>收官，力争头名（与上场同时）</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/26 09:00</div><div class="local">洛杉矶 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/土耳其国家足球队" target="_blank" class="team-link" title="查看土耳其队阵容与概况">土耳其</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a> <span class="g">D</span></div><div class="pt"><span class="fire">东道主收官战</span>，<a href="https://baike.baidu.com/item/美国国家足球队" target="_blank" class="team-link" title="查看美国队阵容与概况">美国</a> vs <a href="https://baike.baidu.com/item/土耳其国家足球队" target="_blank" class="team-link" title="查看土耳其队阵容与概况">土耳其</a>新星古勒</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/26 09:00</div><div class="local">旧金山 18:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/巴拉圭国家足球队" target="_blank" class="team-link" title="查看巴拉圭队阵容与概况">巴拉圭</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/澳大利亚国家足球队" target="_blank" class="team-link" title="查看澳大利亚队阵容与概况">澳大利亚</a> <span class="g">D</span></div><div class="pt">争夺出线名额（与上场同时）</div></div></div>
+    </div>
+
+    <!-- 6/26 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月26日</span><span class="dow">周五</span><span class="round">小组收官·同时开球</span></div>
+      <div class="match"><div class="when"><div class="bj">6/27 03:00</div><div class="local">休斯顿 14:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/佛得角国家足球队" target="_blank" class="team-link" title="查看佛得角队阵容与概况">佛得角</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/沙特阿拉伯国家足球队" target="_blank" class="team-link" title="查看沙特队阵容与概况">沙特</a> <span class="g">H</span></div><div class="pt">争夺出线名额</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/27 04:00</div><div class="local">瓜达拉哈拉 16:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/乌拉圭国家足球队" target="_blank" class="team-link" title="查看乌拉圭队阵容与概况">乌拉圭</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/西班牙国家足球队" target="_blank" class="team-link" title="查看西班牙队阵容与概况">西班牙</a> <span class="g">H</span></div><div class="pt"><span class="fire">强强对话！</span>南美硬汉 vs 欧洲冠军，<a href="https://baike.baidu.com/item/拉米内·亚马尔" target="_blank" class="player-link" title="查看亚马尔的详细资料">亚马尔</a> vs <a href="https://baike.baidu.com/item/费德里科·巴尔韦德" target="_blank" class="player-link" title="查看巴尔韦德的详细资料">巴尔韦德</a></div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/27 06:00</div><div class="local">西雅图 15:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/埃及国家足球队" target="_blank" class="team-link" title="查看埃及队阵容与概况">埃及</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/伊朗国家足球队" target="_blank" class="team-link" title="查看伊朗队阵容与概况">伊朗</a> <span class="g">G</span></div><div class="pt"><a href="https://baike.baidu.com/item/穆罕默德·萨拉赫" target="_blank" class="player-link" title="查看萨拉赫的详细资料">萨拉赫</a>的出线关键战</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/27 06:00</div><div class="local">温哥华 15:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/新西兰国家足球队" target="_blank" class="team-link" title="查看新西兰队阵容与概况">新西兰</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/比利时国家足球队" target="_blank" class="team-link" title="查看比利时队阵容与概况">比利时</a> <span class="g">G</span></div><div class="pt"><a href="https://baike.baidu.com/item/凯文·德布劳内" target="_blank" class="player-link" title="查看德布劳内的详细资料">德布劳内</a>冲击头名（与上场同时）</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/27 09:00</div><div class="local">波士顿 21:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/挪威国家足球队" target="_blank" class="team-link" title="查看挪威队阵容与概况">挪威</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/法国国家足球队" target="_blank" class="team-link" title="查看法国队阵容与概况">法国</a> <span class="g">I</span></div><div class="pt"><span class="fire">巨星对决！</span><a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a> vs <a href="https://baike.baidu.com/item/基利安·姆巴佩" target="_blank" class="player-link" title="查看姆巴佩的详细资料">姆巴佩</a>，死亡之组头名之争，必看！</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/27 09:00</div><div class="local">多伦多 21:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/塞内加尔国家足球队" target="_blank" class="team-link" title="查看塞内加尔队阵容与概况">塞内加尔</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/伊拉克国家足球队" target="_blank" class="team-link" title="查看伊拉克队阵容与概况">伊拉克</a> <span class="g">I</span></div><div class="pt"><a href="https://baike.baidu.com/item/塞内加尔国家足球队" target="_blank" class="team-link" title="查看塞内加尔队阵容与概况">塞内加尔</a>争夺出线（与上场同时）</div></div></div>
+    </div>
+
+    <!-- 6/27 -->
+    <div class="matchday">
+      <div class="md-head"><span class="date">6月27日</span><span class="dow">周六</span><span class="round">小组收官·同时开球</span></div>
+      <div class="match hot"><div class="when"><div class="bj">6/28 04:00</div><div class="local">迈阿密 16:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/哥伦比亚国家足球队" target="_blank" class="team-link" title="查看哥伦比亚队阵容与概况">哥伦比亚</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/葡萄牙国家足球队" target="_blank" class="team-link" title="查看葡萄牙队阵容与概况">葡萄牙</a> <span class="g">K</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/克里斯蒂亚诺·罗纳尔多" target="_blank" class="player-link" title="查看C罗的详细资料">C罗</a>收官战！</span><a href="https://baike.baidu.com/item/葡萄牙国家足球队" target="_blank" class="team-link" title="查看葡萄牙队阵容与概况">葡萄牙</a> vs <a href="https://baike.baidu.com/item/哥伦比亚国家足球队" target="_blank" class="team-link" title="查看哥伦比亚队阵容与概况">哥伦比亚</a>，强强对话定头名</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/28 04:00</div><div class="local">亚特兰大 16:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/刚果民主共和国国家足球队" target="_blank" class="team-link" title="查看刚果(金)队阵容与概况">刚果(金)</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/乌兹别克斯坦国家足球队" target="_blank" class="team-link" title="查看乌兹别克队阵容与概况">乌兹别克</a> <span class="g">K</span></div><div class="pt">争夺出线名额（与上场同时）</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/28 09:00</div><div class="local">堪萨斯城 20:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/阿根廷国家足球队" target="_blank" class="team-link" title="查看阿根廷队阵容与概况">阿根廷</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/约旦国家足球队" target="_blank" class="team-link" title="查看约旦队阵容与概况">约旦</a> <span class="g">J</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a>小组收官</span>，卫冕冠军冲击头名出线</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/28 09:00</div><div class="local">达拉斯 20:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/阿尔及利亚国家足球队" target="_blank" class="team-link" title="查看阿尔及利亚队阵容与概况">阿尔及利亚</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/奥地利国家足球队" target="_blank" class="team-link" title="查看奥地利队阵容与概况">奥地利</a> <span class="g">J</span></div><div class="pt">争夺出线（与上场同时）</div></div></div>
+      <div class="match hot"><div class="when"><div class="bj">6/28 09:00</div><div class="local">纽约 21:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/巴拿马国家足球队" target="_blank" class="team-link" title="查看巴拿马队阵容与概况">巴拿马</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/英格兰国家足球队" target="_blank" class="team-link" title="查看英格兰队阵容与概况">英格兰</a> <span class="g">L</span></div><div class="pt"><span class="fire"><a href="https://baike.baidu.com/item/英格兰国家足球队" target="_blank" class="team-link" title="查看英格兰队阵容与概况">英格兰</a>收官</span>，<a href="https://baike.baidu.com/item/哈里·凯恩" target="_blank" class="player-link" title="查看凯恩的详细资料">凯恩</a>、<a href="https://baike.baidu.com/item/祖德·贝林厄姆" target="_blank" class="player-link" title="查看贝林厄姆的详细资料">贝林厄姆</a>冲击小组头名</div></div></div>
+      <div class="match"><div class="when"><div class="bj">6/28 09:00</div><div class="local">费城 21:00</div></div><div class="info"><div class="vs-line"><a href="https://baike.baidu.com/item/克罗地亚国家足球队" target="_blank" class="team-link" title="查看克罗地亚队阵容与概况">克罗地亚</a> <span class="vs">VS</span> <a href="https://baike.baidu.com/item/加纳国家足球队" target="_blank" class="team-link" title="查看加纳队阵容与概况">加纳</a> <span class="g">L</span></div><div class="pt"><a href="https://baike.baidu.com/item/卢卡·莫德里奇" target="_blank" class="player-link" title="查看莫德里奇的详细资料">莫德里奇</a>率队冲淘汰赛（与上场同时）</div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 淘汰赛 ===== -->
+<section id="knockout">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="badge">03</span>
+      <h2>淘汰赛 · 输一场就回家</h2>
+      <span class="en">KNOCKOUT</span>
+    </div>
+    <p style="color:#9090a8;font-size:14.5px;margin-bottom:20px;">
+      🏆 从这里开始<b>残酷的单场淘汰</b>：90分钟平了就加时，再平就<b>点球大战</b>。具体对阵要等小组赛结束才知道，下面是赛程框架（A1=A组第一名，B2=B组第二名，以此类推）。
+    </p>
+
+    <div class="ko-stage">
+      <h3>1/16 决赛（32强 → 16强）</h3>
+      <div class="ko-grid">
+        <div class="ko-card"><div class="ko-when">6/29 周一 06:00</div><div class="ko-match">A组第2 vs B组第2</div><div class="ko-venue">📍 洛杉矶 | 当地 6/28 15:00</div></div>
+        <div class="ko-card"><div class="ko-when">6/30 周二 00:00</div><div class="ko-match">E组第1 vs 第三名之一</div><div class="ko-venue">📍 波士顿 | 当地 6/29 12:00</div></div>
+        <div class="ko-card"><div class="ko-when">6/30 周二 08:00</div><div class="ko-match">F组第1 vs C组第2</div><div class="ko-venue">📍 蒙特雷 | 当地 6/29 18:00</div></div>
+        <div class="ko-card"><div class="ko-when">6/30 周二 09:00</div><div class="ko-match">C组第1 vs F组第2</div><div class="ko-venue">📍 休斯顿 | 当地 6/29 20:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/1 周三 04:00</div><div class="ko-match">E组第2 vs I组第2</div><div class="ko-venue">📍 达拉斯 | 当地 6/30 15:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/1 周三 06:00</div><div class="ko-match">I组第1 vs 第三名之一</div><div class="ko-venue">📍 纽约 | 当地 6/30 18:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/1 周三 09:00</div><div class="ko-match">A组第1 vs 第三名之一</div><div class="ko-venue">📍 <a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a>城 | 当地 6/30 19:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/2 周四 06:00</div><div class="ko-match">L组第1 vs 第三名之一</div><div class="ko-venue">📍 亚特兰大 | 当地 7/1 18:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/2 周四 06:00</div><div class="ko-match">G组第1 vs 第三名之一</div><div class="ko-venue">📍 西雅图 | 当地 7/1 15:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/2 周四 09:00</div><div class="ko-match">D组第1 vs 第三名之一</div><div class="ko-venue">📍 旧金山 | 当地 7/1 18:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/3 周五 00:00</div><div class="ko-match">K组第2 vs L组第2</div><div class="ko-venue">📍 多伦多 | 当地 7/2 12:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/3 周五 06:00</div><div class="ko-match">B组第1 vs 第三名之一</div><div class="ko-venue">📍 温哥华 | 当地 7/2 15:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/3 周五 09:00</div><div class="ko-match">H组第1 vs J组第2</div><div class="ko-venue">📍 洛杉矶 | 当地 7/2 18:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/4 周六 04:00</div><div class="ko-match">D组第2 vs G组第2</div><div class="ko-venue">📍 达拉斯 | 当地 7/3 15:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/4 周六 06:00</div><div class="ko-match">J组第1 vs H组第2</div><div class="ko-venue">📍 迈阿密 | 当地 7/3 18:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/4 周六 09:00</div><div class="ko-match">K组第1 vs 第三名之一</div><div class="ko-venue">📍 堪萨斯城 | 当地 7/3 20:00</div></div>
+      </div>
+    </div>
+
+    <div class="ko-stage">
+      <h3>1/8 决赛（16强 → 8强）</h3>
+      <div class="ko-grid">
+        <div class="ko-card"><div class="ko-when">7/5 周日 04:00</div><div class="ko-match">16强对阵 ①</div><div class="ko-venue">📍 费城 | 当地 7/4 16:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/5 周日 09:00</div><div class="ko-match">16强对阵 ②</div><div class="ko-venue">📍 休斯顿 | 当地 7/4 20:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/6 周一 04:00</div><div class="ko-match">16强对阵 ③</div><div class="ko-venue">📍 纽约 | 当地 7/5 16:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/6 周一 09:00</div><div class="ko-match">16强对阵 ④</div><div class="ko-venue">📍 <a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a>城 | 当地 7/5 19:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/7 周二 09:00</div><div class="ko-match">16强对阵 ⑤</div><div class="ko-venue">📍 达拉斯 | 当地 7/6 20:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/7 周二 06:00</div><div class="ko-match">16强对阵 ⑥</div><div class="ko-venue">📍 西雅图 | 当地 7/6 15:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/8 周三 06:00</div><div class="ko-match">16强对阵 ⑦</div><div class="ko-venue">📍 亚特兰大 | 当地 7/7 18:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/8 周三 07:00</div><div class="ko-match">16强对阵 ⑧</div><div class="ko-venue">📍 温哥华 | 当地 7/7 16:00</div></div>
+      </div>
+    </div>
+
+    <div class="ko-stage">
+      <h3>1/4 决赛（8强 → 4强）</h3>
+      <div class="ko-grid">
+        <div class="ko-card"><div class="ko-when">7/10 周五 09:00</div><div class="ko-match">八强战 ①</div><div class="ko-venue">📍 波士顿 | 当地 7/9 21:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/11 周六 09:00</div><div class="ko-match">八强战 ②</div><div class="ko-venue">📍 洛杉矶 | 当地 7/10 18:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/12 周日 04:00</div><div class="ko-match">八强战 ③</div><div class="ko-venue">📍 迈阿密 | 当地 7/11 16:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/12 周日 09:00</div><div class="ko-match">八强战 ④</div><div class="ko-venue">📍 堪萨斯城 | 当地 7/11 20:00</div></div>
+      </div>
+    </div>
+
+    <div class="ko-stage">
+      <h3>半决赛（4强 → 决赛）</h3>
+      <div class="ko-grid">
+        <div class="ko-card"><div class="ko-when">7/15 周三 09:00</div><div class="ko-match">半决赛 ①</div><div class="ko-venue">📍 达拉斯 | 当地 7/14 20:00</div></div>
+        <div class="ko-card"><div class="ko-when">7/16 周四 08:00</div><div class="ko-match">半决赛 ②</div><div class="ko-venue">📍 亚特兰大 | 当地 7/15 20:00</div></div>
+      </div>
+    </div>
+
+    <div class="ko-stage" id="final">
+      <h3>季军赛 &amp; 总决赛</h3>
+      <div class="ko-grid">
+        <div class="ko-card"><div class="ko-when">7/19 周日 04:00</div><div class="ko-match">🥉 季军赛（两支半决赛负者）</div><div class="ko-venue">📍 迈阿密 | 当地 7/18 16:00</div></div>
+        <div class="ko-card final">
+          <div class="ko-when">🏆 7/20 周一 03:00（北京时间）</div>
+          <div class="ko-match" style="font-size:22px;margin-top:6px;">2026世界杯 总决赛</div>
+          <div class="ko-venue">📍 纽约 · 大都会人寿球场（MetLife Stadium，8.2万座）<br>当地时间 7/19 15:00 | 全球数十亿人见证新王诞生</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 五大看点 ===== -->
+<section id="watch">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="badge">04</span>
+      <h2>五大必看理由</h2>
+      <span class="en">MUST WATCH</span>
+    </div>
+
+    <div class="watch-card">
+      <div class="wnum">看点 01</div>
+      <h3>⚽ 三大球王的谢幕之舞</h3>
+      <p>这很可能是 <b><a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a></b>（<a href="https://baike.baidu.com/item/阿根廷国家足球队" target="_blank" class="team-link" title="查看阿根廷队阵容与概况">阿根廷</a>，39岁）、<b><a href="https://baike.baidu.com/item/克里斯蒂亚诺·罗纳尔多" target="_blank" class="player-link" title="查看C罗的详细资料">C罗</a></b>（<a href="https://baike.baidu.com/item/葡萄牙国家足球队" target="_blank" class="team-link" title="查看葡萄牙队阵容与概况">葡萄牙</a>，41岁）、<b><a href="https://baike.baidu.com/item/卢卡·莫德里奇" target="_blank" class="player-link" title="查看莫德里奇的详细资料">莫德里奇</a></b>（<a href="https://baike.baidu.com/item/克罗地亚国家足球队" target="_blank" class="team-link" title="查看克罗地亚队阵容与概况">克罗地亚</a>，40岁）三位传奇的<b>最后一届世界杯</b>。看一场少一场，尤其<a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a>作为卫冕冠军核心，值得每个球迷送别。</p>
+    </div>
+
+    <div class="watch-card">
+      <div class="wnum">看点 02</div>
+      <h3>🌟 新生代天才大爆发</h3>
+      <p>足球的未来已来：<a href="https://baike.baidu.com/item/西班牙国家足球队" target="_blank" class="team-link" title="查看西班牙队阵容与概况">西班牙</a> <b><a href="https://baike.baidu.com/item/拉米内·亚马尔" target="_blank" class="player-link" title="查看亚马尔的详细资料">亚马尔</a></b>（18岁，已是世界顶级）、<a href="https://baike.baidu.com/item/英格兰国家足球队" target="_blank" class="team-link" title="查看英格兰队阵容与概况">英格兰</a> <b><a href="https://baike.baidu.com/item/祖德·贝林厄姆" target="_blank" class="player-link" title="查看贝林厄姆的详细资料">贝林厄姆</a></b>、<a href="https://baike.baidu.com/item/德国国家足球队" target="_blank" class="team-link" title="查看德国队阵容与概况">德国</a> <b><a href="https://baike.baidu.com/item/弗洛里安·维尔茨" target="_blank" class="player-link" title="查看维尔茨的详细资料">维尔茨</a>/<a href="https://baike.baidu.com/item/贾马尔·穆西亚拉" target="_blank" class="player-link" title="查看穆西亚拉的详细资料">穆西亚拉</a></b>、<a href="https://baike.baidu.com/item/挪威国家足球队" target="_blank" class="team-link" title="查看挪威队阵容与概况">挪威</a> <b><a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a></b>（进球机器世界杯首秀）、<a href="https://baike.baidu.com/item/法国国家足球队" target="_blank" class="team-link" title="查看法国队阵容与概况">法国</a> <b><a href="https://baike.baidu.com/item/基利安·姆巴佩" target="_blank" class="player-link" title="查看姆巴佩的详细资料">姆巴佩</a></b>（当今第一人）。新老交替的最佳观察窗口。</p>
+    </div>
+
+    <div class="watch-card">
+      <div class="wnum">看点 03</div>
+      <h3>💀 三个死亡之组，场场硬仗</h3>
+      <p><b>C组</b>（<a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a>/<a href="https://baike.baidu.com/item/苏格兰国家足球队" target="_blank" class="team-link" title="查看苏格兰队阵容与概况">苏格兰</a>/<a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a>/<a href="https://baike.baidu.com/item/海地国家足球队" target="_blank" class="team-link" title="查看海地队阵容与概况">海地</a>）、<b>I组</b>（<a href="https://baike.baidu.com/item/法国国家足球队" target="_blank" class="team-link" title="查看法国队阵容与概况">法国</a>/<a href="https://baike.baidu.com/item/塞内加尔国家足球队" target="_blank" class="team-link" title="查看塞内加尔队阵容与概况">塞内加尔</a>/<a href="https://baike.baidu.com/item/挪威国家足球队" target="_blank" class="team-link" title="查看挪威队阵容与概况">挪威</a>/<a href="https://baike.baidu.com/item/伊拉克国家足球队" target="_blank" class="team-link" title="查看伊拉克队阵容与概况">伊拉克</a>）、<b>L组</b>（<a href="https://baike.baidu.com/item/英格兰国家足球队" target="_blank" class="team-link" title="查看英格兰队阵容与概况">英格兰</a>/<a href="https://baike.baidu.com/item/克罗地亚国家足球队" target="_blank" class="team-link" title="查看克罗地亚队阵容与概况">克罗地亚</a>/<a href="https://baike.baidu.com/item/加纳国家足球队" target="_blank" class="team-link" title="查看加纳队阵容与概况">加纳</a>/<a href="https://baike.baidu.com/item/巴拿马国家足球队" target="_blank" class="team-link" title="查看巴拿马队阵容与概况">巴拿马</a>）。强队扎堆，小组赛就有淘汰赛级别的对决，<b>6/13<a href="https://baike.baidu.com/item/巴西国家足球队" target="_blank" class="team-link" title="查看巴西队阵容与概况">巴西</a>vs<a href="https://baike.baidu.com/item/摩洛哥国家足球队" target="_blank" class="team-link" title="查看摩洛哥队阵容与概况">摩洛哥</a>、6/27<a href="https://baike.baidu.com/item/挪威国家足球队" target="_blank" class="team-link" title="查看挪威队阵容与概况">挪威</a>vs<a href="https://baike.baidu.com/item/法国国家足球队" target="_blank" class="team-link" title="查看法国队阵容与概况">法国</a>（<a href="https://baike.baidu.com/item/埃尔林·哈兰德" target="_blank" class="player-link" title="查看哈兰德的详细资料">哈兰德</a>vs<a href="https://baike.baidu.com/item/基利安·姆巴佩" target="_blank" class="player-link" title="查看姆巴佩的详细资料">姆巴佩</a>）</b>千万别错过。</p>
+    </div>
+
+    <div class="watch-card">
+      <div class="wnum">看点 04</div>
+      <h3>🎉 史上最大规模 · 48队104场</h3>
+      <p>第一次扩军到 <b>48支</b>球队、<b>104场</b>比赛（比上届多40场），第一次<b>三国联合举办</b>。<a href="https://baike.baidu.com/item/库拉索国家足球队" target="_blank" class="team-link" title="查看库拉索队阵容与概况">库拉索</a>（15万人口）、<a href="https://baike.baidu.com/item/佛得角国家足球队" target="_blank" class="team-link" title="查看佛得角队阵容与概况">佛得角</a>（50万人口）、<a href="https://baike.baidu.com/item/约旦国家足球队" target="_blank" class="team-link" title="查看约旦队阵容与概况">约旦</a>、<a href="https://baike.baidu.com/item/乌兹别克斯坦国家足球队" target="_blank" class="team-link" title="查看乌兹别克队阵容与概况">乌兹别克</a>等首次亮相，<b>小国圆梦</b>的故事格外动人。</p>
+    </div>
+
+    <div class="watch-card">
+      <div class="wnum">看点 05</div>
+      <h3>🇨🇳 中国时间友好 · 上午黄金档</h3>
+      <p>虽然在北美，但因为时差，<b>大量焦点战落在北京时间上午9点</b>左右——正好是周末睡醒、工作日通勤后的时间，比起欧洲世界杯的深夜场，这届对中国球迷其实<b>更友好</b>。揭幕战、<a href="https://baike.baidu.com/item/利昂内尔·梅西" target="_blank" class="player-link" title="查看梅西的详细资料">梅西</a>、<a href="https://baike.baidu.com/item/克里斯蒂亚诺·罗纳尔多" target="_blank" class="player-link" title="查看C罗的详细资料">C罗</a>的比赛大多在上午，起床就能看。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><span class="red">2026 FIFA 世界杯</span> · 足球小白观赛全攻略</p>
+    <p>赛程数据来源：FIFA 官方 fifa.com｜比赛日期准确，<b style="color:#fff;">具体开球钟点为按惯例预计，请在赛前以官方/转播平台为准</b></p>
+    <p style="margin-top:8px;color:#666;">⏰ 北京时间 = 美东+12 / 美中+13 / <a href="https://baike.baidu.com/item/墨西哥国家足球队" target="_blank" class="team-link" title="查看墨西哥队阵容与概况">墨西哥</a>+14 / 美西+15 小时　|　🏆 决赛：北京时间 7月20日 03:00</p>
+  </div>
+</footer>
+
+<!-- ===== 更新按钮 ===== -->
+<style>
+  .upd-fab{position:fixed;bottom:28px;right:28px;z-index:999;width:52px;height:52px;border-radius:50%;border:none;background:var(--red);color:#fff;font-size:22px;cursor:pointer;box-shadow:0 4px 14px rgba(225,6,0,.3);transition:.2s;display:flex;align-items:center;justify-content:center}
+  .upd-fab:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(225,6,0,.45)}
+  .upd-fab:active{transform:scale(.95)}
+  .upd-pop{display:none;position:fixed;bottom:92px;right:28px;z-index:999;background:rgba(30,30,50,0.95);border:1px solid rgba(255,255,255,0.1);border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.4);width:260px;overflow:hidden;animation:popIn .2s ease;backdrop-filter:blur(16px)}
+  .upd-pop.show{display:block}
+  @keyframes popIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .upd-pop .up-msg{padding:14px 16px;font-size:14px;color:#c8c8d8;line-height:1.6}
+  .upd-pop .up-msg b{color:var(--red)}
+  .upd-pop .up-cmd{display:block;margin:0 16px 14px;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;font-family:'SF Mono',Menlo,monospace;font-size:13px;color:var(--red);cursor:pointer;user-select:all;text-align:center;transition:.15s}
+  .upd-pop .up-cmd:hover{background:rgba(225,6,0,0.1);border-color:var(--red)}
+  .upd-pop .up-hint{padding:0 16px 14px;font-size:12px;color:var(--gray)}
+</style>
+
+<button class="upd-fab" id="updFab" onclick="toggleUpd()" title="更新指南">🔄</button>
+
+<div class="upd-pop" id="updPop">
+  <div class="up-msg">点击下方命令自动复制，<br>到终端 <b>⌘+V</b> 回车即可更新：</div>
+  <div class="up-cmd" onclick="copyUpd(this)">更新世界杯指南全量</div>
+  <div class="up-hint">💡 也可以说"更新比赛结果"或"更新球员阵容"</div>
+</div>
+
+<!-- ===== 主题切换 ===== -->
+<script>
+function setTheme(name){
+  if(name==='default'){
+    document.documentElement.removeAttribute('data-theme');
+  } else {
+    document.documentElement.setAttribute('data-theme',name);
+  }
+  try{localStorage.setItem('wc-theme',name)}catch(e){}
+  document.querySelectorAll('.theme-switch button').forEach(function(b){
+    b.classList.toggle('active',b.getAttribute('data-theme')===name);
+  });
+}
+(function(){
+  var s=null;
+  try{s=localStorage.getItem('wc-theme')}catch(e){}
+  if(s) setTheme(s);
+})();
+</script>
+
+<script>
+function toggleUpd(){
+  var p=document.getElementById('updPop');
+  p.classList.toggle('show');
+}
+function copyUpd(el){
+  var cmd=el.textContent;
+  navigator.clipboard.writeText(cmd).then(function(){
+    el.textContent='✅ 已复制！去终端粘贴吧';
+    setTimeout(function(){el.textContent=cmd},2000);
+  });
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')document.getElementById('updPop').classList.remove('show');
+});
+</script>
+
+
+<!-- ===== AI 比赛预测系统 ===== -->
+<script>
+(function(){
+  var PRED = {
+    // ===== A组 =====
+    "墨西哥|南非": { s:"2-0", c:"high", r:"东道主墨西哥主场优势巨大，世界杯揭幕战历来对东道主友好。南非实力偏弱，墨西哥阵容深度和大赛经验占优。" },
+    "韩国|捷克": { s:"1-1", c:"mid", r:"孙兴慜领衔的韩国攻击力不俗，但捷克防守纪律性强、中场硬度够。两队实力接近，大概率握手言和。" },
+    "墨西哥|韩国": { s:"2-1", c:"mid", r:"墨西哥主场氛围加成大，但韩国孙兴慜的反击威胁不可忽视。墨西哥整体更均衡，小胜可能性大。" },
+    "捷克|南非": { s:"2-0", c:"high", r:"捷克技术能力和战术素养全面压制南非，绍切克等英超球员坐镇，拿下问题不大。" },
+    "捷克|墨西哥": { s:"1-2", c:"mid", r:"墨西哥主场+东道主气势，捷克防守不错但客场压力大。墨西哥大概率拿下关键三分锁定头名。" },
+    "南非|韩国": { s:"0-2", c:"high", r:"韩国整体实力明显高于南非，孙兴慜+黄喜灿的锋线组合速度和终结能力远超对手。" },
+
+    // ===== B组 =====
+    "加拿大|波黑": { s:"2-1", c:"mid", r:"加拿大东道主首战，戴维斯领衔主场气势足。波黑有哲科、皮亚尼奇等老将，但整体活力不如加拿大。" },
+    "卡塔尔|瑞士": { s:"0-3", c:"high", r:"瑞士大赛经验丰富，扎卡、沙奇里等核心坐镇。卡塔尔2022后实力下滑明显，难以抗衡。" },
+    "加拿大|卡塔尔": { s:"2-0", c:"high", r:"加拿大东道主优势+阵容年轻有冲劲，卡塔尔整体实力差距明显。" },
+    "瑞士|波黑": { s:"1-1", c:"mid", r:"瑞士整体更稳，但波黑有哲科这个高点和皮亚尼奇的定位球，具备逼平对手的能力。" },
+    "瑞士|加拿大": { s:"1-1", c:"mid", r:"两队实力接近，瑞士大赛经验更丰富，但加拿大东道主主场不可忽视。平局是合理结果。" },
+    "波黑|卡塔尔": { s:"2-0", c:"mid", r:"波黑老将经验丰富，哲科大赛气质足。卡塔尔缺乏顶级联赛球员，难以制造威胁。" },
+
+    // ===== C组 =====
+    "海地|苏格兰": { s:"0-2", c:"high", r:"苏格兰整体实力远超海地，罗伯逊、麦克金等英超球员坐镇。海地缺乏顶级联赛球员。" },
+    "巴西|摩洛哥": { s:"2-1", c:"mid", r:"巴西天赋碾压，但摩洛哥2022世界杯四强的防守体系依然坚固。这将是一场硬仗，巴西小胜。" },
+    "巴西|海地": { s:"4-0", c:"high", r:"实力差距悬殊，巴西桑巴足球将全面碾压。维尼修斯、罗德里戈等攻击群将大展身手。" },
+    "摩洛哥|苏格兰": { s:"2-0", c:"mid", r:"摩洛哥2022世界杯四强实力犹在，阿什拉夫、齐耶赫等顶级球员坐镇。苏格兰难以招架。" },
+    "摩洛哥|海地": { s:"3-0", c:"high", r:"摩洛哥实力全面碾压海地，非洲劲旅将轻松拿下三分。" },
+    "苏格兰|巴西": { s:"0-2", c:"high", r:"巴西天赋太高，苏格兰防守再好也难挡维尼修斯的突破和个人能力。" },
+
+    // ===== D组 =====
+    "美国|巴拉圭": { s:"2-0", c:"high", r:"美国东道主首秀，普利西奇、雷纳等球星坐镇，主场气氛火爆。巴拉圭近年来实力下滑。" },
+    "土耳其|澳大利亚": { s:"2-1", c:"mid", r:"土耳其新星居莱尔、耶尔德兹崛起，攻击力十足。澳大利亚防守顽强但创造力不足。" },
+    "美国|澳大利亚": { s:"2-0", c:"high", r:"美国东道主+实力占优，普利西奇领衔的攻击线火力十足。澳大利亚难以客场拿分。" },
+    "土耳其|巴拉圭": { s:"2-0", c:"mid", r:"土耳其年轻一代才华横溢，攻击力明显优于巴拉圭。" },
+    "巴拉圭|澳大利亚": { s:"1-1", c:"mid", r:"两队实力接近，巴拉圭南美风格硬朗，澳大利亚防守组织好。平局是合理结果。" },
+    "土耳其|美国": { s:"1-1", c:"mid", r:"焦点大战！美国东道主vs土耳其新黄金一代。两队都有顶级天赋，平局收场最有可能。" },
+
+    // ===== E组 =====
+    "德国|厄瓜多尔": { s:"3-1", c:"high", r:"德国战车大赛经验丰富，穆西亚拉、维尔茨等新星崛起。厄瓜多尔有技术但整体差距明显。" },
+    "科特迪瓦|库拉索": { s:"3-0", c:"high", r:"非洲杯冠军科特迪瓦实力远超库拉索，阿莱、凯西等球星将轻松取胜。" },
+    "德国|库拉索": { s:"4-0", c:"high", r:"实力差距悬殊，德国将全面碾压。库拉索人口仅15万，难以抵抗。" },
+    "科特迪瓦|厄瓜多尔": { s:"2-1", c:"mid", r:"非洲杯冠军vs南美劲旅，科特迪瓦身体素质和冲击力更强，小胜可能性大。" },
+    "厄瓜多尔|库拉索": { s:"2-0", c:"high", r:"厄瓜多尔有世界杯经验，中场卡塞多坐镇，实力远超库拉索。" },
+    "厄瓜多尔|德国": { s:"1-2", c:"mid", r:"强强对话！德国技术更细腻，但科特迪瓦身体对抗和反击速度极有威胁。德国经验取胜。" },
+    "库拉索|科特迪瓦": { s:"0-3", c:"high", r:"科特迪瓦实力全面碾压库拉索，非洲杯冠军不会给对手机会。" },
+
+    // ===== F组 =====
+    "瑞典|突尼斯": { s:"2-0", c:"mid", r:"瑞典有伊萨克等攻击手，整体实力略高于突尼斯。" },
+    "荷兰|日本": { s:"2-1", c:"mid", r:"焦点大战！荷兰身体优势+范戴克防线vs日本技术流。荷兰经验略胜一筹。" },
+    "荷兰|瑞典": { s:"2-1", c:"mid", r:"荷兰范戴克坐镇后防，德容组织中场。瑞典有伊萨克等攻击手，但整体不如荷兰。" },
+    "突尼斯|日本": { s:"0-2", c:"high", r:"日本旅欧军团实力强劲，久保建英、三笘薰等创造力十足。突尼斯难以抗衡。" },
+    "突尼斯|荷兰": { s:"0-2", c:"high", r:"荷兰整体实力明显高于突尼斯，范戴克+德容的中轴线稳固。" },
+    "日本|瑞典": { s:"2-1", c:"mid", r:"日本技术和团队配合更胜一筹，伊萨克虽强但瑞典整体不如日本流畅。" },
+
+    // ===== G组 =====
+    "伊朗|新西兰": { s:"2-0", c:"high", r:"伊朗防守纪律性极强，塔雷米等攻击手有欧洲联赛经验。新西兰整体实力差距明显。" },
+    "沙特|乌拉圭": { s:"0-2", c:"high", r:"乌拉圭努涅斯、巴尔韦德等英超球星坐镇，沙特难以抗衡。" },
+    "乌拉圭|沙特": { s:"3-0", c:"high", r:"乌拉圭南美传统强队，努涅斯冲击力十足。沙特实力差距明显。" },
+    "伊朗|沙特": { s:"1-1", c:"mid", r:"中东德比火药味十足！两队实力接近，伊朗防守硬朗vs沙特技术流，平局最有可能。" },
+    "乌拉圭|伊朗": { s:"2-0", c:"mid", r:"乌拉圭整体实力更强，努涅斯和巴尔韦德的冲击力将决定比赛。" },
+    "沙特|新西兰": { s:"2-0", c:"mid", r:"沙特有世界杯经验，技术能力优于新西兰。新西兰缺乏顶级联赛球员。" },
+
+    // ===== H组 =====
+    "西班牙|佛得角": { s:"4-0", c:"high", r:"西班牙夺冠热门，亚马尔、佩德里等天才云集。佛得角人口仅50万，难以抵抗。" },
+    "比利时|埃及": { s:"2-1", c:"mid", r:"比利时德布劳内组织能力顶级，埃及萨拉赫反击犀利。比利时经验更丰富，小胜。" },
+    "西班牙|比利时": { s:"2-1", c:"mid", r:"强强对话！西班牙技术流更成熟，比利时黄金一代老化明显。斗牛士军团小胜。" },
+    "佛得角|埃及": { s:"0-1", c:"mid", r:"埃及有萨拉赫这个世界级球星，佛得角虽有奇迹但整体差距大。" },
+    "埃及|西班牙": { s:"0-2", c:"high", r:"西班牙阵容太豪华，萨拉赫独木难支。斗牛士军团将轻松取胜。" },
+    "佛得角|比利时": { s:"0-3", c:"high", r:"比利时德布劳内坐镇，佛得角实力差距悬殊。" },
+
+    // ===== I组 =====
+    "伊拉克|挪威": { s:"0-2", c:"high", r:"挪威有哈兰德这个世界级射手，伊拉克整体实力差距明显。" },
+    "奥地利|约旦": { s:"2-0", c:"high", r:"奥地利阿拉巴领衔，欧洲风格更成熟。约旦首次参赛经验不足。" },
+    "挪威|约旦": { s:"3-0", c:"high", r:"哈兰德领衔的挪威攻击力十足，约旦难以抵挡。" },
+    "伊拉克|奥地利": { s:"0-2", c:"high", r:"奥地利整体实力远超伊拉克，阿拉巴等球星将轻松取胜。" },
+    "约旦|挪威": { s:"0-2", c:"high", r:"哈兰德的速度和终结能力是世界级的，约旦防线将被撕碎。" },
+    "伊拉克|约旦": { s:"1-1", c:"mid", r:"两队实力接近，都是中东球队，风格相似。平局是合理结果。" },
+
+    // ===== J组 =====
+    "法国|塞内加尔": { s:"3-1", c:"high", r:"法国夺冠热门，姆巴佩领衔豪华阵容。塞内加尔有速度但整体差距大。" },
+    "阿根廷|阿尔及利亚": { s:"3-0", c:"high", r:"卫冕冠军阿根廷，梅西最后一届世界杯动力十足。阿尔及利亚实力差距明显。" },
+    "法国|阿尔及利亚": { s:"3-0", c:"high", r:"法国阵容太豪华，姆巴佩的速度将碾压阿尔及利亚防线。" },
+    "塞内加尔|阿根廷": { s:"0-2", c:"mid", r:"梅西告别战，阿根廷全队为传奇送行。塞内加尔有身体优势但技术不如对手。" },
+    "阿尔及利亚|法国": { s:"0-3", c:"high", r:"法国姆巴佩、登贝莱、格列兹曼攻击群碾压级别。阿尔及利亚难以抵抗。" },
+    "塞内加尔|阿尔及利亚": { s:"2-0", c:"mid", r:"塞内加尔身体素质和冲击力更强，非洲冠军底蕴深厚。" },
+
+    // ===== K组 =====
+    "加纳|巴拿马": { s:"2-0", c:"mid", r:"加纳有速度和身体优势，巴拿马整体实力不如对手。" },
+    "英格兰|克罗地亚": { s:"2-1", c:"mid", r:"焦点大战！英格兰贝林厄姆、凯恩领衔，克罗地亚莫德里奇最后一届。英格兰新一代更强。" },
+    "英格兰|加纳": { s:"2-0", c:"high", r:"英格兰阵容厚度和技术能力全面压制加纳，贝林厄姆将统治中场。" },
+    "克罗地亚|巴拿马": { s:"3-0", c:"high", r:"克罗地亚世界杯经验丰富，莫德里奇虽然年迈但组织能力依然顶级。" },
+    "加纳|克罗地亚": { s:"1-2", c:"mid", r:"克罗地亚经验更丰富，莫德里奇的传球是致命武器。加纳有速度但不够成熟。" },
+    "英格兰|巴拿马": { s:"4-0", c:"high", r:"实力差距悬殊，英格兰凯恩、贝林厄姆将轻松碾压。" },
+
+    // ===== L组 =====
+    "葡萄牙|哥伦比亚": { s:"3-1", c:"high", r:"葡萄牙C罗最后一届世界杯，B费、贝尔纳多等中场创造力十足。哥伦比亚有J罗但整体差距大。" },
+    "刚果(金)|乌兹别克": { s:"1-0", c:"low", r:"两队实力接近，都缺乏顶级球星。刚果(金)身体素质略优，小胜可能性大。" },
+    "葡萄牙|乌兹别克": { s:"3-0", c:"high", r:"葡萄牙阵容太豪华，C罗告别战动力十足。乌兹别克难以抵抗。" },
+    "哥伦比亚|刚果(金)": { s:"2-0", c:"mid", r:"哥伦比亚J罗、路易斯·迪亚斯攻击线出色，刚果(金)整体实力不如对手。" },
+    "哥伦比亚|葡萄牙": { s:"1-2", c:"mid", r:"焦点大战！C罗vsJ罗。葡萄牙技术更细腻，B费的创造力是关键。" },
+    "刚果(金)|乌兹别克 ": { s:"1-1", c:"low", r:"两队实力接近，比赛可能比较沉闷。" },
+    "乌兹别克|哥伦比亚": { s:"0-2", c:"high", r:"哥伦比亚J罗和迪亚斯的组合太强，乌兹别克难以抵挡。" },
+    "德国|科特迪瓦": { s:"2-1", c:"mid", r:"强强对话！德国技术更细腻，穆西亚拉和维尔茨的创造力是关键。科特迪瓦身体对抗极强，但德国经验取胜。" },
+    "乌拉圭|佛得角": { s:"3-0", c:"high", r:"乌拉圭南美传统强队，努涅斯冲击力十足。佛得角人口仅50万，难以抵抗。" },
+    "新西兰|埃及": { s:"0-2", c:"high", r:"埃及萨拉赫是世界级球星，新西兰整体实力难以抗衡。" },
+    "比利时|伊朗": { s:"2-0", c:"mid", r:"比利时德布劳内组织能力顶级，伊朗防守纪律性强但进攻创造力不足。" },
+    "西班牙|沙特": { s:"3-0", c:"high", r:"西班牙夺冠热门，亚马尔、佩德里等天才云集。沙特难以抗衡。" },
+    "挪威|塞内加尔": { s:"2-1", c:"mid", r:"哈兰德vs马内接班人，挪威有世界级射手，塞内加尔身体素质出色。挪威小胜。" },
+    "约旦|阿尔及利亚": { s:"0-1", c:"mid", r:"阿尔及利亚马赫雷斯等球星坐镇，约旦首次参赛经验不足。" },
+    "法国|伊拉克": { s:"4-0", c:"high", r:"法国阵容太豪华，姆巴佩领衔攻击群。伊拉克实力差距悬殊。" },
+    "阿根廷|奥地利": { s:"3-0", c:"high", r:"卫冕冠军阿根廷，梅西最后一届世界杯动力十足。奥地利虽有阿拉巴但整体差距大。" },
+    "佛得角|沙特": { s:"0-1", c:"mid", r:"沙特有世界杯经验，技术能力优于佛得角。佛得角首次参赛。" },
+    "乌拉圭|西班牙": { s:"1-2", c:"mid", r:"强强对话！西班牙技术流更成熟，但乌拉圭努涅斯的反击极具威胁。斗牛士军团小胜。" },
+    "埃及|伊朗": { s:"1-1", c:"mid", r:"两队实力接近，埃及萨拉赫vs伊朗防守体系。平局是合理结果。" },
+    "新西兰|比利时": { s:"0-3", c:"high", r:"比利时德布劳内坐镇，新西兰实力差距悬殊。" },
+    "挪威|法国": { s:"1-2", c:"mid", r:"焦点大战！哈兰德vs姆巴佩，两位世界级射手对决。法国整体更强，但哈兰德随时可能爆发。" },
+    "塞内加尔|伊拉克": { s:"3-0", c:"high", r:"塞内加尔身体素质和冲击力碾压伊拉克，非洲冠军将轻松取胜。" },
+    "阿根廷|约旦": { s:"4-0", c:"high", r:"梅西告别战，阿根廷全队为传奇送行。约旦首次世界杯之旅，难以抵抗。" },
+    "阿尔及利亚|奥地利": { s:"1-1", c:"mid", r:"两队实力接近，阿尔及利亚有马赫雷斯等球星，奥地利有阿拉巴。平局最有可能。" },
+    "葡萄牙|刚果(金)": { s:"3-0", c:"high", r:"葡萄牙C罗最后一届世界杯，B费、贝尔纳多等中场创造力十足。刚果(金)实力差距大。" }
+  };
+
+  function norm(s){ return (s||'').replace(/\s+/g,'').replace(/[\(\)]/g,'').toLowerCase(); }
+
+  function getTeamNames(vsLine){
+    var txt = vsLine.textContent || '';
+    var parts = txt.split(/\s*VS\s*/i);
+    if(parts.length!==2) return null;
+    var t1=parts[0].trim(), t2=parts[1].trim();
+    // 去掉末尾分组标记（如 "南非 A" → "南非"）
+    t2=t2.replace(/\s+[A-L]$/,'');
+    return [t1, t2];
+  }
+
+  function findPred(t1, t2){
+    var k1 = t1+'|'+t2, k2 = t2+'|'+t1;
+    if(PRED[k1]) return PRED[k1];
+    if(PRED[k2]) return { s: PRED[k2].s.split('-').reverse().join('-'), c: PRED[k2].c, r: PRED[k2].r };
+    var nt1=norm(t1), nt2=norm(t2);
+    for(var key in PRED){
+      var pts=key.split('|');
+      if((norm(pts[0])===nt1 && norm(pts[1])===nt2)||(norm(pts[0])===nt2 && norm(pts[1])===nt1)){
+        var p=PRED[key];
+        if(norm(pts[0])===nt2) return { s:p.s.split('-').reverse().join('-'), c:p.c, r:p.r };
+        return p;
+      }
+    }
+    return null;
+  }
+
+  function confLabel(c){
+    if(c==='high') return { t:'⭐ 高', c:'high' };
+    if(c==='mid') return { t:'⚡ 中', c:'mid' };
+    return { t:'❓ 低', c:'low' };
+  }
+
+  function injectAll(){
+    var matches = document.querySelectorAll('.match');
+    var cnt=0, missed=[];
+    matches.forEach(function(m){
+      var vsLine = m.querySelector('.vs-line');
+      if(!vsLine) return;
+      var names = getTeamNames(vsLine);
+      if(!names) return;
+      var pred = findPred(names[0], names[1]);
+      if(!pred){ missed.push(names[0]+'|'+names[1]); return; }
+      var cl = confLabel(pred.c);
+      var scores = pred.s.split('-');
+      var s1=parseInt(scores[0]), s2=parseInt(scores[1]);
+      var arrow = s1>s2 ? ' ← '+names[0]+'胜' : (s1<s2 ? ' ← '+names[1]+'胜' : ' ← 平局');
+      var box = document.createElement('div');
+      box.className='pred-box';
+      box.innerHTML =
+        '<div class="pred-head">'+
+          '<span class="pred-tag">🤖 AI预测</span>'+
+          '<span class="pred-score">'+names[0]+' '+pred.s+' '+names[1]+'</span>'+
+          '<span class="pred-hint">（点击展开理由）</span>'+
+          '<span class="pred-conf '+cl.c+'">'+cl.t+' 置信</span>'+
+        '</div>'+
+        '<div class="pred-reason">'+arrow+'。'+pred.r+'</div>';
+      box.addEventListener('click',function(){ box.classList.toggle('open'); });
+      m.querySelector('.info').appendChild(box);
+      cnt++;
+    });
+    console.log('[AI预测] 已注入 '+cnt+' 场，未匹配 '+missed.length+' 场');
+    if(missed.length) console.log('[AI预测] 未匹配:', missed.join(' | '));
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', injectAll);
+  } else {
+    injectAll();
+  }
+})();
+</script>
+</body>
+</html>
