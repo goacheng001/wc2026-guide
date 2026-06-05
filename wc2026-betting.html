@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026世界杯 · 金币竞猜挑战赛</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #e10600;
+    --ink: #e8e8ee;
+    --gray: #8b8ba0;
+    --bg: #0f1117;
+    --gold: #f0b429;
+    --glass: rgba(255,255,255,0.06);
+    --glass-border: rgba(255,255,255,0.1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: var(--bg); color: var(--ink); line-height: 1.7; font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(ellipse at 20% 50%, rgba(120,40,200,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(225,6,0,0.06) 0%, transparent 60%);
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+  .topnav { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-border); }
+  .topnav .wrap { display: flex; gap: 8px; overflow-x: auto; padding: 10px 16px; }
+  .topnav a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 700; white-space: nowrap; padding: 7px 14px; border-radius: 20px; opacity: .82; }
+  .topnav a:hover { background: var(--red); opacity: 1; }
+  .hero { padding: 46px 0 28px; text-align: center; background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%); }
+  .hero h1 { font-size: 42px; line-height: 1.15; font-weight: 900; color: #fff; }
+  .hero h1 span { color: var(--gold); }
+  .hero p { margin-top: 12px; color: #b8bfd4; font-size: 16px; }
+  section { padding: 28px 0 10px; }
+  .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .sec-head .badge { background: linear-gradient(135deg, var(--red), #ff4444); color: #fff; font-size: 13px; font-weight: 900; padding: 4px 12px; border-radius: 8px; }
+  .sec-head h2 { font-size: 25px; font-weight: 900; color: #fff; }
+  /* ===== 金币竞猜 ===== */
+  .bet-center {
+    background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px;
+    padding: 20px; backdrop-filter: blur(10px);
+  }
+  .bet-top {
+    display: grid; grid-template-columns: minmax(0,1.1fr) minmax(260px,.9fr); gap: 16px;
+    align-items: stretch; margin-bottom: 16px;
+  }
+  .bet-panel {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 16px;
+  }
+  .bet-panel h3 { font-size: 18px; color: #fff; margin-bottom: 10px; }
+  .bet-panel p, .bet-panel li { color: #bfc3d4; font-size: 14px; line-height: 1.65; }
+  .bet-form { display: grid; gap: 10px; }
+  .bet-form label { display: grid; gap: 5px; color: #c8c8d8; font-size: 13px; font-weight: 700; }
+  .bet-form input, .bet-form select {
+    width: 100%; border: 1px solid rgba(255,255,255,0.14); border-radius: 8px;
+    background: rgba(255,255,255,0.06); color: #fff; padding: 9px 10px; font: inherit; font-size: 14px;
+  }
+  .bet-form option { color: #111827; }
+  .bet-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .bet-btn {
+    border: 0; border-radius: 8px; padding: 9px 12px; cursor: pointer;
+    background: linear-gradient(135deg, var(--red), #ff4444); color: #fff;
+    font-weight: 900; font-size: 13px;
+  }
+  .bet-btn.secondary { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.14); }
+  .bet-btn:disabled { opacity: .45; cursor: not-allowed; }
+  .bet-status {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 10px;
+  }
+  .bet-stat {
+    background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 10px;
+  }
+  .bet-stat .k { font-size: 12px; color: #8f95a8; }
+  .bet-stat .v { font-size: 19px; color: var(--gold); font-weight: 900; line-height: 1.25; }
+  .bet-board { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 10px; }
+  .bet-board th, .bet-board td {
+    padding: 9px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    text-align: left; font-size: 13px;
+  }
+  .bet-board th { color: #8f95a8; font-weight: 800; }
+  .bet-board td { color: #d7d9e5; }
+  .bet-board tr:last-child td { border-bottom: 0; }
+  .quick-bet-grid {
+    display: grid; grid-template-columns: minmax(220px,.8fr) minmax(0,1.2fr); gap: 14px;
+  }
+  .quick-match-list { display: grid; gap: 7px; max-height: 360px; overflow: auto; padding-right: 4px; }
+  .quick-match {
+    border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.16); color: #fff;
+    border-radius: 9px; padding: 9px 10px; cursor: pointer; text-align: left;
+  }
+  .quick-match.active { border-color: var(--gold); background: rgba(240,180,41,0.1); }
+  .quick-match .qm-teams { font-size: 13px; font-weight: 900; line-height: 1.35; }
+  .quick-match .qm-time { font-size: 12px; color: #9ba3b8; margin-top: 2px; }
+  .quick-bet-slip {
+    border: 1px solid rgba(240,180,41,0.2); background: rgba(240,180,41,0.07);
+    border-radius: 12px; padding: 12px;
+  }
+  .quick-bet-slip .q-title { font-size: 16px; color: #fff; font-weight: 900; margin-bottom: 4px; }
+  .quick-bet-slip .q-sub { color: #9ba3b8; font-size: 12px; margin-bottom: 10px; }
+  .bet-chip {
+    display: inline-flex; align-items: center; gap: 5px; border-radius: 999px;
+    background: rgba(240,180,41,0.12); border: 1px solid rgba(240,180,41,0.25);
+    color: #f8d477; padding: 2px 8px; font-size: 12px; font-weight: 800;
+  }
+  .bet-chip.out { background: rgba(225,6,0,0.12); border-color: rgba(225,6,0,0.3); color: #ff8a8a; }
+  .market-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .market-tab {
+    border: 1px solid rgba(255,255,255,0.12); background: rgba(0,0,0,0.14); color: #d7d9e5;
+    border-radius: 999px; padding: 5px 9px; font-size: 12px; cursor: pointer; font-weight: 800;
+  }
+  .market-tab.active { background: var(--gold); border-color: var(--gold); color: #121212; }
+  .market-options { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 6px; }
+  .market-option {
+    border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06);
+    color: #fff; border-radius: 8px; padding: 7px 8px; cursor: pointer; text-align: left;
+    display: flex; justify-content: space-between; gap: 8px; font-size: 12px;
+  }
+  .market-option.active { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(240,180,41,0.35); }
+  .market-option .odd { color: var(--gold); font-weight: 900; }
+  .stake-row { display: grid; grid-template-columns: minmax(0,1fr) auto auto; gap: 6px; margin-top: 8px; }
+  .stake-row input {
+    min-width: 0; border: 1px solid rgba(255,255,255,0.14); border-radius: 8px;
+    background: rgba(0,0,0,0.18); color: #fff; padding: 7px 8px; font: inherit; font-size: 13px;
+  }
+  .bet-history { margin-top: 8px; display: grid; gap: 6px; }
+  .bet-ticket {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px;
+    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 7px; color: #cbd0df; font-size: 12px;
+  }
+  .bet-ticket b { color: #fff; }
+  
+  .fixture-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+  .fixture-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 12px; }
+  .fixture-card.hot { border-color: rgba(225,6,0,.35); background: rgba(225,6,0,.08); }
+  .fixture-card .f-time { color: var(--red); font-size: 13px; font-weight: 900; }
+  .fixture-card .f-teams { color: #fff; font-size: 15px; font-weight: 900; margin-top: 2px; }
+  .fixture-card .f-note { color: #9ba3b8; font-size: 12px; margin-top: 3px; }
+  .fixture-card .f-pred { margin-top: 8px; color: #f8d477; font-size: 12px; font-weight: 800; }
+  @media (max-width:720px) {
+    .hero h1 { font-size: 32px; }
+    .bet-top, .bet-status, .market-options, .quick-bet-grid { grid-template-columns: 1fr; }
+    .stake-row { grid-template-columns: 1fr 1fr; }
+    .stake-row input { grid-column: 1 / -1; }
+  }
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <div class="wrap">
+    <a href="wc2026.html">← 返回观赛指南</a>
+    <a href="#betting">金币竞猜</a>
+    <a href="#fixtures">全部比赛</a>
+  </div>
+</nav>
+<header class="hero">
+  <div class="wrap">
+    <h1>2026世界杯<br><span>金币竞猜挑战赛</span></h1>
+    <p>娱乐积分玩法：10,000 金币起步，可 All in，不涉及真钱、返奖或提现。</p>
+  </div>
+</header>
+<section id="betting">
+  <div class="wrap">
+    <div class="sec-head"><span class="badge">PLAY</span><h2>开始竞猜</h2></div>
+    <div class="bet-center">
+      <div class="bet-top">
+        <div class="bet-panel">
+          <h3>规则</h3>
+          <p>每个玩家初始获得 <b>10,000 金币</b>。最低下注 10 金币，最高不限制，可以 All in。</p>
+          <ul style="padding-left:20px;margin-top:8px;">
+            <li>余额低于 10 金币自动出局。</li>
+            <li>赔率在下注时锁定，后续变化不影响已下注记录。</li>
+            <li>当前版本为赛前盘，赛果公布后再接结算。</li>
+          </ul>
+          <div class="bet-status">
+            <div class="bet-stat"><div class="k">当前玩家</div><div class="v" id="betCurrentName">未创建</div></div>
+            <div class="bet-stat"><div class="k">金币余额</div><div class="v" id="betCurrentBalance">0</div></div>
+            <div class="bet-stat"><div class="k">下注单数</div><div class="v" id="betCurrentTickets">0</div></div>
+          </div>
+        </div>
+        <div class="bet-panel">
+          <h3>玩家账户</h3>
+          <div class="bet-form">
+            <label>选择玩家<select id="betPlayerSelect"></select></label>
+            <label>新建昵称<input id="betPlayerName" maxlength="16" placeholder="输入昵称"></label>
+            <div class="bet-actions">
+              <button class="bet-btn" id="betCreatePlayer">创建玩家</button>
+              <button class="bet-btn secondary" id="betExport">导出记录</button>
+              <button class="bet-btn secondary" id="betReset">重置竞猜</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bet-panel">
+        <h3>快速竞猜试验区</h3>
+        <p style="color:#9ba3b8;font-size:13px;margin-bottom:12px;">创建账户后，直接选择比赛和玩法下注。</p>
+        <div class="quick-bet-grid">
+          <div class="quick-match-list" id="quickMatchList"></div>
+          <div class="quick-bet-slip" id="quickBetSlip"></div>
+        </div>
+      </div>
+      <div class="bet-panel" style="margin-top:16px;">
+        <h3>排行榜</h3>
+        <table class="bet-board">
+          <thead><tr><th>排名</th><th>玩家</th><th>余额</th><th>下注</th><th>状态</th></tr></thead>
+          <tbody id="betLeaderboard"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="fixtures">
+  <div class="wrap">
+    <div class="sec-head"><span class="badge">72</span><h2>全部小组赛竞猜盘</h2></div>
+    <div class="fixture-grid" id="fixtureGrid"></div>
+  </div>
+</section>
+<script>
+var FIXTURES = [{"id":"墨西哥-vs-南非-0","index":0,"home":"墨西哥","away":"南非","group":"A","time":"6/12 10:00","local":"墨西哥城 20:00","note":"世界杯揭幕战！东道主主场，开幕式+首球，仪式感拉满，值得熬夜看开场","hot":true,"pred":{"home":2,"away":0},"predText":"墨西哥 2-0 南非","predReason":"← 墨西哥胜。东道主墨西哥主场优势巨大，世界杯揭幕战历来对东道主友好。南非实力偏弱，墨西哥阵容深度和大赛经验占优。"},{"id":"韩国-vs-捷克-1","index":1,"home":"韩国","away":"捷克","group":"A","time":"6/12 07:00","local":"瓜达拉哈拉 17:00","note":"孙兴慜世界杯首秀，亚洲球迷关注","hot":false,"pred":{"home":1,"away":1},"predText":"韩国 1-1 捷克","predReason":"← 平局。孙兴慜领衔的韩国攻击力不俗，但捷克防守纪律性强、中场硬度够。两队实力接近，大概率握手言和。"},{"id":"加拿大-vs-波黑-2","index":2,"home":"加拿大","away":"波黑","group":"B","time":"6/13 06:00","local":"多伦多 18:00","note":"东道主加拿大首战，飞翼戴维斯领衔","hot":false,"pred":{"home":2,"away":1},"predText":"加拿大 2-1 波黑","predReason":"← 加拿大胜。加拿大东道主首战，戴维斯领衔主场气势足。波黑有哲科、皮亚尼奇等老将，但整体活力不如加拿大。"},{"id":"美国-vs-巴拉圭-3","index":3,"home":"美国","away":"巴拉圭","group":"D","time":"6/13 09:00","local":"洛杉矶 18:00","note":"东道主美国首秀！队长普利西奇坐镇，主场氛围火爆","hot":true,"pred":{"home":2,"away":0},"predText":"美国 2-0 巴拉圭","predReason":"← 美国胜。美国东道主首秀，普利西奇、雷纳等球星坐镇，主场气氛火爆。巴拉圭近年来实力下滑。"},{"id":"海地-vs-苏格兰-4","index":4,"home":"海地","away":"苏格兰","group":"C","time":"6/14 00:00","local":"波士顿 12:00","note":"苏格兰球迷以热情著称，气氛好","hot":false,"pred":{"home":0,"away":2},"predText":"海地 0-2 苏格兰","predReason":"← 苏格兰胜。苏格兰整体实力远超海地，罗伯逊、麦克金等英超球员坐镇。海地缺乏顶级联赛球员。"},{"id":"卡塔尔-vs-瑞士-5","index":5,"home":"卡塔尔","away":"瑞士","group":"B","time":"6/14 04:00","local":"旧金山 13:00","note":"瑞士稳健，力争开门红","hot":false,"pred":{"home":0,"away":3},"predText":"卡塔尔 0-3 瑞士","predReason":"← 瑞士胜。瑞士大赛经验丰富，扎卡、沙奇里等核心坐镇。卡塔尔2022后实力下滑明显，难以抗衡。"},{"id":"澳大利亚-vs-土耳其-6","index":6,"home":"澳大利亚","away":"土耳其","group":"D","time":"6/14 06:00","local":"温哥华 15:00","note":"关注皇马新星阿尔达·古勒","hot":false,"pred":{"home":1,"away":2},"predText":"澳大利亚 1-2 土耳其","predReason":"← 土耳其胜。土耳其新星居莱尔、耶尔德兹崛起，攻击力十足。澳大利亚防守顽强但创造力不足。"},{"id":"巴西-vs-摩洛哥-7","index":7,"home":"巴西","away":"摩洛哥","group":"C","time":"6/14 09:00","local":"纽约 21:00","note":"死亡之组焦点！夺冠大热巴西 vs 上届黑马摩洛哥，维尼修斯 vs 哈基米","hot":true,"pred":{"home":2,"away":1},"predText":"巴西 2-1 摩洛哥","predReason":"← 巴西胜。巴西天赋碾压，但摩洛哥2022世界杯四强的防守体系依然坚固。这将是一场硬仗，巴西小胜。"},{"id":"科特迪瓦-vs-厄瓜多尔-8","index":8,"home":"科特迪瓦","away":"厄瓜多尔","group":"E","time":"6/15 00:00","local":"费城 12:00","note":"非洲杯冠军出战","hot":false,"pred":{"home":2,"away":1},"predText":"科特迪瓦 2-1 厄瓜多尔","predReason":"← 科特迪瓦胜。非洲杯冠军vs南美劲旅，科特迪瓦身体素质和冲击力更强，小胜可能性大。"},{"id":"德国-vs-库拉索-9","index":9,"home":"德国","away":"库拉索","group":"E","time":"6/15 06:00","local":"休斯顿 17:00","note":"德国双星维尔茨、穆西亚拉登场；库拉索创造历史","hot":false,"pred":{"home":4,"away":0},"predText":"德国 4-0 库拉索","predReason":"← 德国胜。实力差距悬殊，德国将全面碾压。库拉索人口仅15万，难以抵抗。"},{"id":"瑞典-vs-突尼斯-10","index":10,"home":"瑞典","away":"突尼斯","group":"F","time":"6/15 07:00","local":"蒙特雷 17:00","note":"瑞典双高中锋伊萨克、久克雷斯","hot":false,"pred":{"home":2,"away":0},"predText":"瑞典 2-0 突尼斯","predReason":"← 瑞典胜。瑞典有伊萨克等攻击手，整体实力略高于突尼斯。"},{"id":"荷兰-vs-日本-11","index":11,"home":"荷兰","away":"日本","group":"F","time":"6/15 09:00","local":"达拉斯 20:00","note":"亚洲球迷必看！日本久保建英、远藤航挑战欧洲豪强荷兰","hot":true,"pred":{"home":2,"away":1},"predText":"荷兰 2-1 日本","predReason":"← 荷兰胜。焦点大战！荷兰身体优势+范戴克防线vs日本技术流。荷兰经验略胜一筹。"},{"id":"伊朗-vs-新西兰-12","index":12,"home":"伊朗","away":"新西兰","group":"G","time":"6/16 03:00","local":"洛杉矶 12:00","note":"两支防守型球队的较量","hot":false,"pred":{"home":2,"away":0},"predText":"伊朗 2-0 新西兰","predReason":"← 伊朗胜。伊朗防守纪律性极强，塔雷米等攻击手有欧洲联赛经验。新西兰整体实力差距明显。"},{"id":"沙特-vs-乌拉圭-13","index":13,"home":"沙特","away":"乌拉圭","group":"H","time":"6/16 06:00","local":"迈阿密 18:00","note":"乌拉圭三叉戟努涅斯、巴尔韦德","hot":false,"pred":{"home":0,"away":2},"predText":"沙特 0-2 乌拉圭","predReason":"← 乌拉圭胜。乌拉圭努涅斯、巴尔韦德等英超球星坐镇，沙特难以抗衡。"},{"id":"比利时-vs-埃及-14","index":14,"home":"比利时","away":"埃及","group":"G","time":"6/16 09:00","local":"西雅图 18:00","note":"德布劳内 vs 萨拉赫，两大巨星对飙","hot":false,"pred":{"home":2,"away":1},"predText":"比利时 2-1 埃及","predReason":"← 比利时胜。比利时德布劳内组织能力顶级，埃及萨拉赫反击犀利。比利时经验更丰富，小胜。"},{"id":"西班牙-vs-佛得角-15","index":15,"home":"西班牙","away":"佛得角","group":"H","time":"6/16 09:00","local":"亚特兰大 21:00","note":"看18岁天才！欧洲杯冠军西班牙，重点看亚马尔、佩德里的传控魔术","hot":true,"pred":{"home":4,"away":0},"predText":"西班牙 4-0 佛得角","predReason":"← 西班牙胜。西班牙夺冠热门，亚马尔、佩德里等天才云集。佛得角人口仅50万，难以抵抗。"},{"id":"伊拉克-vs-挪威-16","index":16,"home":"伊拉克","away":"挪威","group":"I","time":"6/17 03:00","local":"波士顿 15:00","note":"哈兰德世界杯首秀！挪威时隔28年回归，看进球机器哈兰德如何表演","hot":true,"pred":{"home":0,"away":2},"predText":"伊拉克 0-2 挪威","predReason":"← 挪威胜。挪威有哈兰德这个世界级射手，伊拉克整体实力差距明显。"},{"id":"奥地利-vs-约旦-17","index":17,"home":"奥地利","away":"约旦","group":"J","time":"6/17 03:00","local":"旧金山 12:00","note":"约旦首次参加世界杯","hot":false,"pred":{"home":2,"away":0},"predText":"奥地利 2-0 约旦","predReason":"← 奥地利胜。奥地利阿拉巴领衔，欧洲风格更成熟。约旦首次参赛经验不足。"},{"id":"法国-vs-塞内加尔-18","index":18,"home":"法国","away":"塞内加尔","group":"I","time":"6/17 09:00","local":"纽约 21:00","note":"死亡之组揭幕！姆巴佩领衔的法国对阵非洲劲旅塞内加尔","hot":true,"pred":{"home":3,"away":1},"predText":"法国 3-1 塞内加尔","predReason":"← 法国胜。法国夺冠热门，姆巴佩领衔豪华阵容。塞内加尔有速度但整体差距大。"},{"id":"阿根廷-vs-阿尔及利亚-19","index":19,"home":"阿根廷","away":"阿尔及利亚","group":"J","time":"6/17 09:00","local":"堪萨斯城 20:00","note":"梅西亮相！卫冕冠军阿根廷首战，球王梅西可能的最后一届世界杯","hot":true,"pred":{"home":3,"away":0},"predText":"阿根廷 3-0 阿尔及利亚","predReason":"← 阿根廷胜。卫冕冠军阿根廷，梅西最后一届世界杯动力十足。阿尔及利亚实力差距明显。"},{"id":"加纳-vs-巴拿马-20","index":20,"home":"加纳","away":"巴拿马","group":"L","time":"6/18 00:00","local":"多伦多 12:00","note":"加纳新星库杜斯值得关注","hot":false,"pred":{"home":2,"away":0},"predText":"加纳 2-0 巴拿马","predReason":"← 加纳胜。加纳有速度和身体优势，巴拿马整体实力不如对手。"},{"id":"英格兰-vs-克罗地亚-21","index":21,"home":"英格兰","away":"克罗地亚","group":"L","time":"6/18 06:00","local":"达拉斯 17:00","note":"复仇之战！2018半决赛重演，贝林厄姆 vs 40岁莫德里奇","hot":false,"pred":{"home":2,"away":1},"predText":"英格兰 2-1 克罗地亚","predReason":"← 英格兰胜。焦点大战！英格兰贝林厄姆、凯恩领衔，克罗地亚莫德里奇最后一届。英格兰新一代更强。"},{"id":"葡萄牙-vs-刚果金-22","index":22,"home":"葡萄牙","away":"刚果(金)","group":"K","time":"6/18 09:00","local":"休斯顿 20:00","note":"C罗谢幕之旅首战！41岁的C罗，可能是你最后一次在世界杯看到他","hot":true,"pred":{"home":3,"away":0},"predText":"葡萄牙 3-0 刚果(金)","predReason":"← 葡萄牙胜。葡萄牙C罗最后一届世界杯，B费、贝尔纳多等中场创造力十足。刚果(金)实力差距大。"},{"id":"乌兹别克-vs-哥伦比亚-23","index":23,"home":"乌兹别克","away":"哥伦比亚","group":"K","time":"6/18 09:00","local":"墨西哥城 19:00","note":"哥伦比亚名将哈梅斯、路易斯·迪亚斯","hot":false,"pred":{"home":0,"away":2},"predText":"乌兹别克 0-2 哥伦比亚","predReason":"← 哥伦比亚胜。哥伦比亚J罗和迪亚斯的组合太强，乌兹别克难以抵挡。"},{"id":"捷克-vs-南非-24","index":24,"home":"捷克","away":"南非","group":"A","time":"6/19 00:00","local":"亚特兰大 12:00","note":"两队的出线关键战","hot":false,"pred":{"home":2,"away":0},"predText":"捷克 2-0 南非","predReason":"← 捷克胜。捷克技术能力和战术素养全面压制南非，绍切克等英超球员坐镇，拿下问题不大。"},{"id":"加拿大-vs-卡塔尔-25","index":25,"home":"加拿大","away":"卡塔尔","group":"B","time":"6/19 06:00","local":"温哥华 15:00","note":"东道主加拿大力争出线","hot":false,"pred":{"home":2,"away":0},"predText":"加拿大 2-0 卡塔尔","predReason":"← 加拿大胜。加拿大东道主优势+阵容年轻有冲劲，卡塔尔整体实力差距明显。"},{"id":"瑞士-vs-波黑-26","index":26,"home":"瑞士","away":"波黑","group":"B","time":"6/19 09:00","local":"洛杉矶 18:00","note":"老将哲科能否建功","hot":false,"pred":{"home":1,"away":1},"predText":"瑞士 1-1 波黑","predReason":"← 平局。瑞士整体更稳，但波黑有哲科这个高点和皮亚尼奇的定位球，具备逼平对手的能力。"},{"id":"墨西哥-vs-韩国-27","index":27,"home":"墨西哥","away":"韩国","group":"A","time":"6/19 09:00","local":"瓜达拉哈拉 19:00","note":"孙兴慜对决东道主！关键之战，决定出线形势","hot":true,"pred":{"home":2,"away":1},"predText":"墨西哥 2-1 韩国","predReason":"← 墨西哥胜。墨西哥主场氛围加成大，但韩国孙兴慜的反击威胁不可忽视。墨西哥整体更均衡，小胜可能性大。"},{"id":"苏格兰-vs-摩洛哥-28","index":28,"home":"苏格兰","away":"摩洛哥","group":"C","time":"6/20 00:00","local":"波士顿 12:00","note":"摩洛哥力争小组出线","hot":false,"pred":{"home":0,"away":2},"predText":"苏格兰 0-2 摩洛哥","predReason":"← 摩洛哥胜。摩洛哥2022世界杯四强实力犹在，阿什拉夫、齐耶赫等顶级球员坐镇。苏格兰难以招架。"},{"id":"土耳其-vs-巴拉圭-29","index":29,"home":"土耳其","away":"巴拉圭","group":"D","time":"6/20 06:00","local":"旧金山 15:00","note":"古勒能否率队取胜","hot":false,"pred":{"home":2,"away":0},"predText":"土耳其 2-0 巴拉圭","predReason":"← 土耳其胜。土耳其年轻一代才华横溢，攻击力明显优于巴拉圭。"},{"id":"巴西-vs-海地-30","index":30,"home":"巴西","away":"海地","group":"C","time":"6/20 06:00","local":"费城 18:00","note":"巴西有望大胜，欣赏桑巴足球","hot":false,"pred":{"home":4,"away":0},"predText":"巴西 4-0 海地","predReason":"← 巴西胜。实力差距悬殊，巴西桑巴足球将全面碾压。维尼修斯、罗德里戈等攻击群将大展身手。"},{"id":"美国-vs-澳大利亚-31","index":31,"home":"美国","away":"澳大利亚","group":"D","time":"6/20 09:00","local":"西雅图 18:00","note":"东道主关键战，普利西奇率美国冲击出线","hot":true,"pred":{"home":2,"away":0},"predText":"美国 2-0 澳大利亚","predReason":"← 美国胜。美国东道主+实力占优，普利西奇领衔的攻击线火力十足。澳大利亚难以客场拿分。"},{"id":"厄瓜多尔-vs-库拉索-32","index":32,"home":"厄瓜多尔","away":"库拉索","group":"E","time":"6/21 03:00","local":"堪萨斯城 14:00","note":"厄瓜多尔中场卡塞多领衔","hot":false,"pred":{"home":2,"away":0},"predText":"厄瓜多尔 2-0 库拉索","predReason":"← 厄瓜多尔胜。厄瓜多尔有世界杯经验，中场卡塞多坐镇，实力远超库拉索。"},{"id":"荷兰-vs-瑞典-33","index":33,"home":"荷兰","away":"瑞典","group":"F","time":"6/21 06:00","local":"休斯顿 17:00","note":"荷兰范戴克坐镇后防","hot":false,"pred":{"home":2,"away":1},"predText":"荷兰 2-1 瑞典","predReason":"← 荷兰胜。荷兰范戴克坐镇后防，德容组织中场。瑞典有伊萨克等攻击手，但整体不如荷兰。"},{"id":"德国-vs-科特迪瓦-34","index":34,"home":"德国","away":"科特迪瓦","group":"E","time":"6/21 09:00","local":"多伦多 21:00","note":"强强对话，德国战车对阵非洲杯冠军","hot":true,"pred":{"home":2,"away":1},"predText":"德国 2-1 科特迪瓦","predReason":"← 德国胜。强强对话！德国技术更细腻，穆西亚拉和维尔茨的创造力是关键。科特迪瓦身体对抗极强，但德国经验取胜。"},{"id":"突尼斯-vs-日本-35","index":35,"home":"突尼斯","away":"日本","group":"F","time":"6/21 09:00","local":"蒙特雷 19:00","note":"日本出线关键战，久保建英、堂安律冲锋","hot":true,"pred":{"home":0,"away":2},"predText":"突尼斯 0-2 日本","predReason":"← 日本胜。日本旅欧军团实力强劲，久保建英、三笘薰等创造力十足。突尼斯难以抗衡。"},{"id":"乌拉圭-vs-佛得角-36","index":36,"home":"乌拉圭","away":"佛得角","group":"H","time":"6/22 00:00","local":"迈阿密 12:00","note":"乌拉圭力争提前出线","hot":false,"pred":{"home":3,"away":0},"predText":"乌拉圭 3-0 佛得角","predReason":"← 乌拉圭胜。乌拉圭南美传统强队，努涅斯冲击力十足。佛得角人口仅50万，难以抵抗。"},{"id":"新西兰-vs-埃及-37","index":37,"home":"新西兰","away":"埃及","group":"G","time":"6/22 06:00","local":"温哥华 15:00","note":"看萨拉赫！埃及法老萨拉赫的个人秀","hot":true,"pred":{"home":0,"away":2},"predText":"新西兰 0-2 埃及","predReason":"← 埃及胜。埃及萨拉赫是世界级球星，新西兰整体实力难以抗衡。"},{"id":"比利时-vs-伊朗-38","index":38,"home":"比利时","away":"伊朗","group":"G","time":"6/22 09:00","local":"洛杉矶 18:00","note":"德布劳内指挥比利时进攻","hot":false,"pred":{"home":2,"away":0},"predText":"比利时 2-0 伊朗","predReason":"← 比利时胜。比利时德布劳内组织能力顶级，伊朗防守纪律性强但进攻创造力不足。"},{"id":"西班牙-vs-沙特-39","index":39,"home":"西班牙","away":"沙特","group":"H","time":"6/22 09:00","local":"亚特兰大 21:00","note":"夺冠热门出战，西班牙传控继续表演","hot":true,"pred":{"home":3,"away":0},"predText":"西班牙 3-0 沙特","predReason":"← 西班牙胜。西班牙夺冠热门，亚马尔、佩德里等天才云集。沙特难以抗衡。"},{"id":"挪威-vs-塞内加尔-40","index":40,"home":"挪威","away":"塞内加尔","group":"I","time":"6/23 03:00","local":"纽约 15:00","note":"哈兰德 vs 非洲铁卫，死亡之组激战","hot":true,"pred":{"home":2,"away":1},"predText":"挪威 2-1 塞内加尔","predReason":"← 挪威胜。哈兰德vs马内接班人，挪威有世界级射手，塞内加尔身体素质出色。挪威小胜。"},{"id":"约旦-vs-阿尔及利亚-41","index":41,"home":"约旦","away":"阿尔及利亚","group":"J","time":"6/23 03:00","local":"旧金山 12:00","note":"马赫雷斯领衔阿尔及利亚","hot":false,"pred":{"home":0,"away":1},"predText":"约旦 0-1 阿尔及利亚","predReason":"← 阿尔及利亚胜。阿尔及利亚马赫雷斯等球星坐镇，约旦首次参赛经验不足。"},{"id":"法国-vs-伊拉克-42","index":42,"home":"法国","away":"伊拉克","group":"I","time":"6/23 06:00","local":"费城 18:00","note":"姆巴佩有望刷新数据","hot":false,"pred":{"home":4,"away":0},"predText":"法国 4-0 伊拉克","predReason":"← 法国胜。法国阵容太豪华，姆巴佩领衔攻击群。伊拉克实力差距悬殊。"},{"id":"阿根廷-vs-奥地利-43","index":43,"home":"阿根廷","away":"奥地利","group":"J","time":"6/23 09:00","local":"达拉斯 20:00","note":"看梅西！卫冕冠军关键战，梅西继续告别巡演","hot":true,"pred":{"home":3,"away":0},"predText":"阿根廷 3-0 奥地利","predReason":"← 阿根廷胜。卫冕冠军阿根廷，梅西最后一届世界杯动力十足。奥地利虽有阿拉巴但整体差距大。"},{"id":"巴拿马-vs-克罗地亚-44","index":44,"home":"巴拿马","away":"克罗地亚","group":"L","time":"6/24 00:00","local":"多伦多 12:00","note":"莫德里奇指挥克罗地亚","hot":false,"pred":{"home":0,"away":3},"predText":"巴拿马 0-3 克罗地亚","predReason":"← 克罗地亚胜。克罗地亚世界杯经验丰富，莫德里奇虽然年迈但组织能力依然顶级。"},{"id":"葡萄牙-vs-乌兹别克-45","index":45,"home":"葡萄牙","away":"乌兹别克","group":"K","time":"6/24 06:00","local":"休斯顿 17:00","note":"C罗冲击进球纪录","hot":false,"pred":{"home":3,"away":0},"predText":"葡萄牙 3-0 乌兹别克","predReason":"← 葡萄牙胜。葡萄牙阵容太豪华，C罗告别战动力十足。乌兹别克难以抵抗。"},{"id":"哥伦比亚-vs-刚果金-46","index":46,"home":"哥伦比亚","away":"刚果(金)","group":"K","time":"6/24 09:00","local":"瓜达拉哈拉 19:00","note":"哥伦比亚力争小组头名","hot":false,"pred":{"home":2,"away":0},"predText":"哥伦比亚 2-0 刚果(金)","predReason":"← 哥伦比亚胜。哥伦比亚J罗、路易斯·迪亚斯攻击线出色，刚果(金)整体实力不如对手。"},{"id":"英格兰-vs-加纳-47","index":47,"home":"英格兰","away":"加纳","group":"L","time":"6/24 09:00","local":"波士顿 21:00","note":"夺冠热门出战，凯恩、贝林厄姆领衔英格兰","hot":true,"pred":{"home":2,"away":0},"predText":"英格兰 2-0 加纳","predReason":"← 英格兰胜。英格兰阵容厚度和技术能力全面压制加纳，贝林厄姆将统治中场。"},{"id":"苏格兰-vs-巴西-48","index":48,"home":"苏格兰","away":"巴西","group":"C","time":"6/25 04:00","local":"迈阿密 16:00","note":"死亡之组生死战，巴西收官，维尼修斯表演时刻","hot":true,"pred":{"home":0,"away":2},"predText":"苏格兰 0-2 巴西","predReason":"← 巴西胜。巴西天赋太高，苏格兰防守再好也难挡维尼修斯的突破和个人能力。"},{"id":"摩洛哥-vs-海地-49","index":49,"home":"摩洛哥","away":"海地","group":"C","time":"6/25 04:00","local":"亚特兰大 16:00","note":"摩洛哥力争出线（与上场同时进行）","hot":false,"pred":{"home":3,"away":0},"predText":"摩洛哥 3-0 海地","predReason":"← 摩洛哥胜。摩洛哥实力全面碾压海地，非洲劲旅将轻松拿下三分。"},{"id":"捷克-vs-墨西哥-50","index":50,"home":"捷克","away":"墨西哥","group":"A","time":"6/25 08:00","local":"墨西哥城 18:00","note":"东道主收官，主场冲击头名","hot":false,"pred":{"home":1,"away":2},"predText":"捷克 1-2 墨西哥","predReason":"← 墨西哥胜。墨西哥主场+东道主气势，捷克防守不错但客场压力大。墨西哥大概率拿下关键三分锁定头名。"},{"id":"南非-vs-韩国-51","index":51,"home":"南非","away":"韩国","group":"A","time":"6/25 08:00","local":"蒙特雷 18:00","note":"孙兴慜最后的出线机会（与上场同时）","hot":false,"pred":{"home":0,"away":2},"predText":"南非 0-2 韩国","predReason":"← 韩国胜。韩国整体实力明显高于南非，孙兴慜+黄喜灿的锋线组合速度和终结能力远超对手。"},{"id":"瑞士-vs-加拿大-52","index":52,"home":"瑞士","away":"加拿大","group":"B","time":"6/25 10:00","local":"温哥华 19:00","note":"东道主加拿大主场收官","hot":false,"pred":{"home":1,"away":1},"predText":"瑞士 1-1 加拿大","predReason":"← 平局。两队实力接近，瑞士大赛经验更丰富，但加拿大东道主主场不可忽视。平局是合理结果。"},{"id":"波黑-vs-卡塔尔-53","index":53,"home":"波黑","away":"卡塔尔","group":"B","time":"6/25 10:00","local":"西雅图 19:00","note":"两队争夺出线（与上场同时）","hot":false,"pred":{"home":2,"away":0},"predText":"波黑 2-0 卡塔尔","predReason":"← 波黑胜。波黑老将经验丰富，哲科大赛气质足。卡塔尔缺乏顶级联赛球员，难以制造威胁。"},{"id":"厄瓜多尔-vs-德国-54","index":54,"home":"厄瓜多尔","away":"德国","group":"E","time":"6/26 04:00","local":"纽约 16:00","note":"德国出线战，维尔茨、穆西亚拉冲击头名","hot":true,"pred":{"home":1,"away":2},"predText":"厄瓜多尔 1-2 德国","predReason":"← 德国胜。强强对话！德国技术更细腻，但科特迪瓦身体对抗和反击速度极有威胁。德国经验取胜。"},{"id":"库拉索-vs-科特迪瓦-55","index":55,"home":"库拉索","away":"科特迪瓦","group":"E","time":"6/26 04:00","local":"费城 16:00","note":"非洲杯冠军力争晋级（与上场同时）","hot":false,"pred":{"home":0,"away":3},"predText":"库拉索 0-3 科特迪瓦","predReason":"← 科特迪瓦胜。科特迪瓦实力全面碾压库拉索，非洲杯冠军不会给对手机会。"},{"id":"日本-vs-瑞典-56","index":56,"home":"日本","away":"瑞典","group":"F","time":"6/26 08:00","local":"达拉斯 19:00","note":"日本出线收官战，旅欧军团全力冲击淘汰赛","hot":true,"pred":{"home":2,"away":1},"predText":"日本 2-1 瑞典","predReason":"← 日本胜。日本技术和团队配合更胜一筹，伊萨克虽强但瑞典整体不如日本流畅。"},{"id":"突尼斯-vs-荷兰-57","index":57,"home":"突尼斯","away":"荷兰","group":"F","time":"6/26 08:00","local":"堪萨斯城 19:00","note":"荷兰收官，力争头名（与上场同时）","hot":false,"pred":{"home":0,"away":2},"predText":"突尼斯 0-2 荷兰","predReason":"← 荷兰胜。荷兰整体实力明显高于突尼斯，范戴克+德容的中轴线稳固。"},{"id":"土耳其-vs-美国-58","index":58,"home":"土耳其","away":"美国","group":"D","time":"6/26 09:00","local":"洛杉矶 18:00","note":"东道主收官战，美国 vs 土耳其新星古勒","hot":true,"pred":{"home":1,"away":1},"predText":"土耳其 1-1 美国","predReason":"← 平局。焦点大战！美国东道主vs土耳其新黄金一代。两队都有顶级天赋，平局收场最有可能。"},{"id":"巴拉圭-vs-澳大利亚-59","index":59,"home":"巴拉圭","away":"澳大利亚","group":"D","time":"6/26 09:00","local":"旧金山 18:00","note":"争夺出线名额（与上场同时）","hot":false,"pred":{"home":1,"away":1},"predText":"巴拉圭 1-1 澳大利亚","predReason":"← 平局。两队实力接近，巴拉圭南美风格硬朗，澳大利亚防守组织好。平局是合理结果。"},{"id":"佛得角-vs-沙特-60","index":60,"home":"佛得角","away":"沙特","group":"H","time":"6/27 03:00","local":"休斯顿 14:00","note":"争夺出线名额","hot":false,"pred":{"home":0,"away":1},"predText":"佛得角 0-1 沙特","predReason":"← 沙特胜。沙特有世界杯经验，技术能力优于佛得角。佛得角首次参赛。"},{"id":"乌拉圭-vs-西班牙-61","index":61,"home":"乌拉圭","away":"西班牙","group":"H","time":"6/27 04:00","local":"瓜达拉哈拉 16:00","note":"强强对话！南美硬汉 vs 欧洲冠军，亚马尔 vs 巴尔韦德","hot":true,"pred":{"home":1,"away":2},"predText":"乌拉圭 1-2 西班牙","predReason":"← 西班牙胜。强强对话！西班牙技术流更成熟，但乌拉圭努涅斯的反击极具威胁。斗牛士军团小胜。"},{"id":"埃及-vs-伊朗-62","index":62,"home":"埃及","away":"伊朗","group":"G","time":"6/27 06:00","local":"西雅图 15:00","note":"萨拉赫的出线关键战","hot":false,"pred":{"home":1,"away":1},"predText":"埃及 1-1 伊朗","predReason":"← 平局。两队实力接近，埃及萨拉赫vs伊朗防守体系。平局是合理结果。"},{"id":"新西兰-vs-比利时-63","index":63,"home":"新西兰","away":"比利时","group":"G","time":"6/27 06:00","local":"温哥华 15:00","note":"德布劳内冲击头名（与上场同时）","hot":false,"pred":{"home":0,"away":3},"predText":"新西兰 0-3 比利时","predReason":"← 比利时胜。比利时德布劳内坐镇，新西兰实力差距悬殊。"},{"id":"挪威-vs-法国-64","index":64,"home":"挪威","away":"法国","group":"I","time":"6/27 09:00","local":"波士顿 21:00","note":"巨星对决！哈兰德 vs 姆巴佩，死亡之组头名之争，必看！","hot":true,"pred":{"home":1,"away":2},"predText":"挪威 1-2 法国","predReason":"← 法国胜。焦点大战！哈兰德vs姆巴佩，两位世界级射手对决。法国整体更强，但哈兰德随时可能爆发。"},{"id":"塞内加尔-vs-伊拉克-65","index":65,"home":"塞内加尔","away":"伊拉克","group":"I","time":"6/27 09:00","local":"多伦多 21:00","note":"塞内加尔争夺出线（与上场同时）","hot":false,"pred":{"home":3,"away":0},"predText":"塞内加尔 3-0 伊拉克","predReason":"← 塞内加尔胜。塞内加尔身体素质和冲击力碾压伊拉克，非洲冠军将轻松取胜。"},{"id":"哥伦比亚-vs-葡萄牙-66","index":66,"home":"哥伦比亚","away":"葡萄牙","group":"K","time":"6/28 04:00","local":"迈阿密 16:00","note":"C罗收官战！葡萄牙 vs 哥伦比亚，强强对话定头名","hot":true,"pred":{"home":1,"away":2},"predText":"哥伦比亚 1-2 葡萄牙","predReason":"← 葡萄牙胜。焦点大战！C罗vsJ罗。葡萄牙技术更细腻，B费的创造力是关键。"},{"id":"刚果金-vs-乌兹别克-67","index":67,"home":"刚果(金)","away":"乌兹别克","group":"K","time":"6/28 04:00","local":"亚特兰大 16:00","note":"争夺出线名额（与上场同时）","hot":false,"pred":{"home":1,"away":0},"predText":"刚果(金) 1-0 乌兹别克","predReason":"← 刚果(金)胜。两队实力接近，都缺乏顶级球星。刚果(金)身体素质略优，小胜可能性大。"},{"id":"阿根廷-vs-约旦-68","index":68,"home":"阿根廷","away":"约旦","group":"J","time":"6/28 09:00","local":"堪萨斯城 20:00","note":"梅西小组收官，卫冕冠军冲击头名出线","hot":true,"pred":{"home":4,"away":0},"predText":"阿根廷 4-0 约旦","predReason":"← 阿根廷胜。梅西告别战，阿根廷全队为传奇送行。约旦首次世界杯之旅，难以抵抗。"},{"id":"阿尔及利亚-vs-奥地利-69","index":69,"home":"阿尔及利亚","away":"奥地利","group":"J","time":"6/28 09:00","local":"达拉斯 20:00","note":"争夺出线（与上场同时）","hot":false,"pred":{"home":1,"away":1},"predText":"阿尔及利亚 1-1 奥地利","predReason":"← 平局。两队实力接近，阿尔及利亚有马赫雷斯等球星，奥地利有阿拉巴。平局最有可能。"},{"id":"巴拿马-vs-英格兰-70","index":70,"home":"巴拿马","away":"英格兰","group":"L","time":"6/28 09:00","local":"纽约 21:00","note":"英格兰收官，凯恩、贝林厄姆冲击小组头名","hot":true,"pred":{"home":0,"away":4},"predText":"巴拿马 0-4 英格兰","predReason":"← 英格兰胜。实力差距悬殊，英格兰凯恩、贝林厄姆将轻松碾压。"},{"id":"克罗地亚-vs-加纳-71","index":71,"home":"克罗地亚","away":"加纳","group":"L","time":"6/28 09:00","local":"费城 21:00","note":"莫德里奇率队冲淘汰赛（与上场同时）","hot":false,"pred":{"home":2,"away":1},"predText":"克罗地亚 2-1 加纳","predReason":"← 克罗地亚胜。克罗地亚经验更丰富，莫德里奇的传球是致命武器。加纳有速度但不够成熟。"}];
+(function(){
+  var STORE_KEY='wc2026-betting-v1';
+  var START_BALANCE=10000;
+  var MIN_STAKE=10;
+  var state=loadState();
+  var activeMarket={};
+  var activeChoice={};
+  var quickMatchId=null;
+  var markets=[
+    { key:'result', label:'胜平负' },
+    { key:'score', label:'比分' },
+    { key:'total', label:'进球数' },
+    { key:'firstGoal', label:'首球球队' },
+    { key:'firstTime', label:'首球时间' }
+  ];
+  function loadState(){ try{ var raw=localStorage.getItem(STORE_KEY); if(raw) return JSON.parse(raw); }catch(e){} return { players:[], activeId:null }; }
+  function saveState(){ try{ localStorage.setItem(STORE_KEY,JSON.stringify(state)); }catch(e){} }
+  function uid(prefix){ return prefix+'-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7); }
+  function money(n){ return Math.round(n).toLocaleString('zh-CN'); }
+  function clampOdd(v){ return Math.max(1.15,Math.min(18,Math.round(v*100)/100)); }
+  function resultFromScore(score){ if(!score) return 'draw'; if(score.home>score.away) return 'home'; if(score.home<score.away) return 'away'; return 'draw'; }
+  function oddsFor(match,market){
+    var outcome=resultFromScore(match.pred); var total=match.pred ? match.pred.home+match.pred.away : 2;
+    var base={ home: outcome==='home'?1.72:(outcome==='draw'?2.55:3.35), draw: outcome==='draw'?2.75:3.25, away: outcome==='away'?1.72:(outcome==='draw'?2.55:3.35) };
+    if(market==='result') return [{key:'home',label:match.home+'胜',odd:base.home},{key:'draw',label:'平局',odd:base.draw},{key:'away',label:match.away+'胜',odd:base.away}];
+    if(market==='total') return [{key:'over25',label:'大 2.5 球',odd:total>=3?1.82:2.08},{key:'under25',label:'小 2.5 球',odd:total>=3?2.02:1.78},{key:'over35',label:'大 3.5 球',odd:total>=3?2.62:3.10}];
+    if(market==='score'){
+      var scores=['0-0','1-0','0-1','1-1','2-0','0-2','2-1','1-2','3-0','0-3','3-1','1-3','2-2']; var predKey=match.pred ? match.pred.home+'-'+match.pred.away : '1-1';
+      return scores.map(function(score){ var parts=score.split('-'); var h=parseInt(parts[0],10), a=parseInt(parts[1],10); var distance=Math.abs(h-(match.pred?match.pred.home:1))+Math.abs(a-(match.pred?match.pred.away:1)); var rare=h+a>=4 ? 2.2 : 0; return {key:score,label:score,odd:clampOdd(score===predKey ? 6.2 : 7.4+distance*1.35+rare)}; });
+    }
+    if(market==='firstGoal') return [{key:'home',label:match.home+'先进球',odd:outcome==='home'?1.88:2.35},{key:'away',label:match.away+'先进球',odd:outcome==='away'?1.88:2.35},{key:'none',label:'无进球',odd:9.50}];
+    return [{key:'0-15',label:'0-15 分钟',odd:3.80},{key:'16-30',label:'16-30 分钟',odd:4.10},{key:'31-45+',label:'31-45+ 分钟',odd:4.30},{key:'46-60',label:'46-60 分钟',odd:4.60},{key:'61-75',label:'61-75 分钟',odd:5.20},{key:'76-90+',label:'76-90+ 分钟',odd:5.80},{key:'none',label:'无进球',odd:9.50}];
+  }
+  function currentPlayer(){ return state.players.find(function(p){return p.id===state.activeId;})||null; }
+  function createPlayer(name){ var clean=(name||'').trim().slice(0,16); if(!clean) return alert('请输入玩家昵称'); if(state.players.some(function(p){return p.name===clean;})) return alert('这个昵称已经存在'); var player={id:uid('player'),name:clean,balance:START_BALANCE,bets:[],createdAt:new Date().toISOString(),busted:false}; state.players.push(player); state.activeId=player.id; saveState(); renderAll(); }
+  function ensurePlayer(){ var player=currentPlayer(); if(player) return player; alert('请先创建或选择玩家'); return null; }
+  function marketLabel(key){ var m=markets.find(function(item){return item.key===key;}); return m ? m.label : key; }
+  function placeBet(match,market,choice,stakeInput){
+    var player=ensurePlayer(); if(!player) return; if(player.busted || player.balance<MIN_STAKE) return alert('该玩家已出局，不能继续下注');
+    var stake=parseInt(stakeInput && stakeInput.value,10); if(!Number.isFinite(stake)||stake<MIN_STAKE) return alert('最低下注 10 金币'); if(stake>player.balance) return alert('余额不足，可以直接输入当前余额 All in');
+    if(player.bets.some(function(b){return b.matchId===match.id && b.market===market && b.status==='pending';})) return alert('同一场比赛的同一玩法只能保留一单');
+    player.balance-=stake;
+    player.bets.push({id:uid('bet'),matchId:match.id,match:match.home+' VS '+match.away,market:market,marketLabel:marketLabel(market),choice:choice.key,choiceLabel:choice.label,odd:choice.odd,stake:stake,potential:Math.round(stake*choice.odd),status:'pending',createdAt:new Date().toISOString()});
+    if(player.balance<MIN_STAKE) player.busted=true; saveState(); renderAll();
+  }
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g,function(ch){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]; }); }
+  function renderAccountPanel(){
+    var select=document.getElementById('betPlayerSelect'), nameEl=document.getElementById('betCurrentName'), balanceEl=document.getElementById('betCurrentBalance'), ticketsEl=document.getElementById('betCurrentTickets'), board=document.getElementById('betLeaderboard');
+    select.innerHTML=state.players.length?'':'<option value="">暂无玩家</option>'; state.players.forEach(function(player){ var option=document.createElement('option'); option.value=player.id; option.textContent=player.name+' · '+money(player.balance)+' 金币'; option.selected=player.id===state.activeId; select.appendChild(option); });
+    var player=currentPlayer(); nameEl.textContent=player?player.name:'未创建'; balanceEl.textContent=player?money(player.balance):'0'; ticketsEl.textContent=player?player.bets.length:'0';
+    var ranked=state.players.slice().sort(function(a,b){ if(a.busted!==b.busted) return a.busted?1:-1; return b.balance-a.balance; });
+    board.innerHTML=ranked.map(function(player,index){ var status=player.busted||player.balance<MIN_STAKE?'<span class="bet-chip out">已出局</span>':'<span class="bet-chip">竞猜中</span>'; return '<tr><td>#'+(index+1)+'</td><td>'+escapeHtml(player.name)+'</td><td>'+money(player.balance)+'</td><td>'+player.bets.length+'</td><td>'+status+'</td></tr>'; }).join('') || '<tr><td colspan="5">先创建玩家账户</td></tr>';
+  }
+  function renderQuickBet(){
+    var list=document.getElementById('quickMatchList'), slip=document.getElementById('quickBetSlip'); if(!quickMatchId) quickMatchId=(FIXTURES.find(function(m){return m.hot;})||FIXTURES[0]).id;
+    var visible=FIXTURES.filter(function(m){return m.hot;}).slice(0,12); if(visible.length<8) visible=FIXTURES.slice(0,12);
+    list.innerHTML=visible.map(function(m){ return '<button class="quick-match '+(m.id===quickMatchId?'active':'')+'" data-match-id="'+m.id+'"><div class="qm-teams">'+escapeHtml(m.home)+' VS '+escapeHtml(m.away)+'</div><div class="qm-time">'+escapeHtml(m.time)+(m.hot?' · 焦点战':'')+'</div></button>'; }).join('');
+    list.querySelectorAll('.quick-match').forEach(function(btn){ btn.addEventListener('click',function(){ quickMatchId=btn.getAttribute('data-match-id'); renderQuickBet(); }); });
+    var match=FIXTURES.find(function(m){return m.id===quickMatchId;})||FIXTURES[0], market=activeMarket[match.id]||'result', options=oddsFor(match,market), savedChoice=activeChoice[match.id], choice=savedChoice?(options.find(function(o){return o.key===savedChoice.key;})||options[0]):options[0], player=currentPlayer(); activeChoice[match.id]=choice;
+    var existing=player?player.bets.filter(function(b){return b.matchId===match.id;}):[];
+    slip.innerHTML='<div class="q-title">'+escapeHtml(match.home)+' VS '+escapeHtml(match.away)+'</div><div class="q-sub">'+escapeHtml(match.time)+' · 余额 '+(player?money(player.balance):'0')+' 金币</div><div class="market-tabs">'+markets.map(function(item){return '<button class="market-tab '+(item.key===market?'active':'')+'" data-action="q-market" data-market="'+item.key+'">'+item.label+'</button>';}).join('')+'</div><div class="market-options">'+options.map(function(option){return '<button class="market-option '+(option.key===choice.key?'active':'')+'" data-action="q-choice" data-choice="'+option.key+'"><span>'+escapeHtml(option.label)+'</span><span class="odd">'+option.odd.toFixed(2)+'</span></button>';}).join('')+'</div><div class="stake-row"><input id="quickStake" type="number" min="10" step="10" placeholder="下注金币，最低10"><button class="bet-btn secondary" data-action="q-allin">All in</button><button class="bet-btn" data-action="q-place">下注</button></div><div class="bet-history">'+existing.slice(-5).map(function(b){return '<div class="bet-ticket"><span><b>'+escapeHtml(b.marketLabel)+'</b> · '+escapeHtml(b.choiceLabel)+' @ '+b.odd.toFixed(2)+'</span><span>'+money(b.stake)+' → 最高返 '+money(b.potential)+'</span></div>';}).join('')+'</div>';
+    slip.querySelectorAll('button').forEach(function(btn){ btn.addEventListener('click',function(){ var action=btn.getAttribute('data-action'); if(action==='q-market'){ activeMarket[match.id]=btn.getAttribute('data-market'); activeChoice[match.id]=null; renderAll(); } if(action==='q-choice'){ var selected=options.find(function(item){return item.key===btn.getAttribute('data-choice');}); if(selected) activeChoice[match.id]=selected; renderAll(); } if(action==='q-allin'){ var p=currentPlayer(), input=document.getElementById('quickStake'); if(p&&input) input.value=Math.max(0,Math.floor(p.balance)); } if(action==='q-place'){ var liveMarket=activeMarket[match.id]||market, liveOptions=oddsFor(match,liveMarket), savedLiveChoice=activeChoice[match.id], liveChoice=savedLiveChoice?(liveOptions.find(function(o){return o.key===savedLiveChoice.key;})||liveOptions[0]):liveOptions[0]; placeBet(match,liveMarket,liveChoice,document.getElementById('quickStake')); } }); });
+  }
+  function renderFixtures(){
+    var grid=document.getElementById('fixtureGrid');
+    grid.innerHTML=FIXTURES.map(function(m){ return '<div class="fixture-card '+(m.hot?'hot':'')+'"><div class="f-time">'+escapeHtml(m.time)+' · '+escapeHtml(m.group)+'组</div><div class="f-teams">'+escapeHtml(m.home)+' VS '+escapeHtml(m.away)+'</div><div class="f-note">'+escapeHtml(m.note)+'</div><div class="f-pred">AI预测：'+escapeHtml(m.predText||'待定')+'</div></div>'; }).join('');
+  }
+  function exportData(){ var text=JSON.stringify(state,null,2); if(navigator.clipboard){ navigator.clipboard.writeText(text).then(function(){ alert('竞猜记录已复制到剪贴板'); }); } else { alert(text); } }
+  function bindControls(){ var create=document.getElementById('betCreatePlayer'), input=document.getElementById('betPlayerName'), select=document.getElementById('betPlayerSelect'), reset=document.getElementById('betReset'), exportBtn=document.getElementById('betExport'); create.addEventListener('click',function(){ createPlayer(input.value); input.value=''; }); input.addEventListener('keydown',function(e){ if(e.key==='Enter') create.click(); }); select.addEventListener('change',function(){ state.activeId=select.value; saveState(); renderAll(); }); exportBtn.addEventListener('click',exportData); reset.addEventListener('click',function(){ if(confirm('确定清空所有玩家和下注记录吗？')){ state={players:[],activeId:null}; saveState(); renderAll(); } }); }
+  function renderAll(){ renderAccountPanel(); renderQuickBet(); renderFixtures(); }
+  bindControls(); renderAll(); window.WC2026Betting={ state:state, render:renderAll };
+})();
+</script>
+</body>
+</html>
