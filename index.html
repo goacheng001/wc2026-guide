@@ -309,6 +309,97 @@
     .pred-box .pred-conf { margin-left: 0; }
   }
 
+  /* ===== 金币竞猜 ===== */
+  .bet-center {
+    background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px;
+    padding: 20px; backdrop-filter: blur(10px);
+  }
+  .bet-top {
+    display: grid; grid-template-columns: minmax(0,1.1fr) minmax(260px,.9fr); gap: 16px;
+    align-items: stretch; margin-bottom: 16px;
+  }
+  .bet-panel {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 16px;
+  }
+  .bet-panel h3 { font-size: 18px; color: #fff; margin-bottom: 10px; }
+  .bet-panel p, .bet-panel li { color: #bfc3d4; font-size: 14px; line-height: 1.65; }
+  .bet-form { display: grid; gap: 10px; }
+  .bet-form label { display: grid; gap: 5px; color: #c8c8d8; font-size: 13px; font-weight: 700; }
+  .bet-form input, .bet-form select {
+    width: 100%; border: 1px solid rgba(255,255,255,0.14); border-radius: 8px;
+    background: rgba(255,255,255,0.06); color: #fff; padding: 9px 10px; font: inherit; font-size: 14px;
+  }
+  .bet-form option { color: #111827; }
+  .bet-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .bet-btn {
+    border: 0; border-radius: 8px; padding: 9px 12px; cursor: pointer;
+    background: linear-gradient(135deg, var(--red), #ff4444); color: #fff;
+    font-weight: 900; font-size: 13px;
+  }
+  .bet-btn.secondary { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.14); }
+  .bet-btn:disabled { opacity: .45; cursor: not-allowed; }
+  .bet-status {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 10px;
+  }
+  .bet-stat {
+    background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 10px;
+  }
+  .bet-stat .k { font-size: 12px; color: #8f95a8; }
+  .bet-stat .v { font-size: 19px; color: var(--gold); font-weight: 900; line-height: 1.25; }
+  .bet-board { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 10px; }
+  .bet-board th, .bet-board td {
+    padding: 9px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    text-align: left; font-size: 13px;
+  }
+  .bet-board th { color: #8f95a8; font-weight: 800; }
+  .bet-board td { color: #d7d9e5; }
+  .bet-board tr:last-child td { border-bottom: 0; }
+  .bet-chip {
+    display: inline-flex; align-items: center; gap: 5px; border-radius: 999px;
+    background: rgba(240,180,41,0.12); border: 1px solid rgba(240,180,41,0.25);
+    color: #f8d477; padding: 2px 8px; font-size: 12px; font-weight: 800;
+  }
+  .bet-chip.out { background: rgba(225,6,0,0.12); border-color: rgba(225,6,0,0.3); color: #ff8a8a; }
+  .bet-box {
+    margin-top: 8px; padding: 10px 12px; border-radius: 12px;
+    background: rgba(240,180,41,0.08); border: 1px solid rgba(240,180,41,0.22);
+  }
+  .bet-box .bet-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .bet-box .bet-title { font-weight: 900; color: #f8d477; font-size: 13px; }
+  .bet-box .bet-note { color: #9ba3b8; font-size: 12px; }
+  .market-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .market-tab {
+    border: 1px solid rgba(255,255,255,0.12); background: rgba(0,0,0,0.14); color: #d7d9e5;
+    border-radius: 999px; padding: 5px 9px; font-size: 12px; cursor: pointer; font-weight: 800;
+  }
+  .market-tab.active { background: var(--gold); border-color: var(--gold); color: #121212; }
+  .market-options { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 6px; }
+  .market-option {
+    border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06);
+    color: #fff; border-radius: 8px; padding: 7px 8px; cursor: pointer; text-align: left;
+    display: flex; justify-content: space-between; gap: 8px; font-size: 12px;
+  }
+  .market-option.active { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(240,180,41,0.35); }
+  .market-option .odd { color: var(--gold); font-weight: 900; }
+  .stake-row { display: grid; grid-template-columns: minmax(0,1fr) auto auto; gap: 6px; margin-top: 8px; }
+  .stake-row input {
+    min-width: 0; border: 1px solid rgba(255,255,255,0.14); border-radius: 8px;
+    background: rgba(0,0,0,0.18); color: #fff; padding: 7px 8px; font: inherit; font-size: 13px;
+  }
+  .bet-history { margin-top: 8px; display: grid; gap: 6px; }
+  .bet-ticket {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px;
+    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 7px; color: #cbd0df; font-size: 12px;
+  }
+  .bet-ticket b { color: #fff; }
+  @media (max-width: 720px) {
+    .bet-top, .bet-status, .market-options { grid-template-columns: 1fr; }
+    .stake-row { grid-template-columns: 1fr 1fr; }
+    .stake-row input { grid-column: 1 / -1; }
+  }
+
   /* ===== 主题切换器 ===== */
   .theme-switch { display: flex; gap: 6px; margin-left: auto; align-items: center; }
   .theme-switch button {
@@ -472,6 +563,7 @@
 <nav class="topnav">
   <div class="wrap">
     <a href="#guide">🔰 小白入门</a>
+    <a href="#betting">🎮 金币竞猜</a>
     <a href="#groups">🏆 32强分组</a>
     <a href="#group-stage">📅 小组赛</a>
     <a href="#knockout">⚔️ 淘汰赛</a>
@@ -542,6 +634,59 @@
         <h3><span class="ico">📺</span> 在哪看？</h3>
         <p>中国大陆预计由 <span class="hl">央视CCTV5</span> 转播大部分场次，手机可看<span class="hl">咪咕视频、央视频</span>。</p>
         <p style="margin-top:6px;">建议：先收藏本页，挑你感兴趣的球队/球星场次，设个闹钟，凌晨场可以第二天看回放。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 金币竞猜 ===== -->
+<section id="betting">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="badge">PLAY</span>
+      <h2>金币竞猜挑战赛</h2>
+      <span class="en">COIN PREDICTION</span>
+    </div>
+    <div class="bet-center">
+      <div class="bet-top">
+        <div class="bet-panel">
+          <h3>规则</h3>
+          <p>每个玩家初始获得 <b>10,000 金币</b>。竞猜只用于娱乐积分，不涉及真钱、返奖或提现。</p>
+          <ul style="padding-left:20px;margin-top:8px;">
+            <li>最低下注 10 金币，最高不限制，可以 All in。</li>
+            <li>余额低于 10 金币自动出局，仍可查看赛程和排行榜。</li>
+            <li>赔率在下注时锁定，后续变化不影响已下注记录。</li>
+            <li>当前版本为赛前盘，赛果公布后可手动结算。</li>
+          </ul>
+          <div class="bet-status">
+            <div class="bet-stat"><div class="k">当前玩家</div><div class="v" id="betCurrentName">未创建</div></div>
+            <div class="bet-stat"><div class="k">金币余额</div><div class="v" id="betCurrentBalance">0</div></div>
+            <div class="bet-stat"><div class="k">下注单数</div><div class="v" id="betCurrentTickets">0</div></div>
+          </div>
+        </div>
+        <div class="bet-panel">
+          <h3>玩家账户</h3>
+          <div class="bet-form">
+            <label>选择玩家
+              <select id="betPlayerSelect"></select>
+            </label>
+            <label>新建昵称
+              <input id="betPlayerName" maxlength="16" placeholder="输入昵称">
+            </label>
+            <div class="bet-actions">
+              <button class="bet-btn" id="betCreatePlayer">创建玩家</button>
+              <button class="bet-btn secondary" id="betExport">导出记录</button>
+              <button class="bet-btn secondary" id="betReset">重置竞猜</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bet-panel">
+        <h3>排行榜</h3>
+        <table class="bet-board">
+          <thead><tr><th>排名</th><th>玩家</th><th>余额</th><th>下注</th><th>状态</th></tr></thead>
+          <tbody id="betLeaderboard"></tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -1261,6 +1406,340 @@ document.addEventListener('keydown',function(e){
   } else {
     injectAll();
   }
+})();
+</script>
+
+<!-- ===== 金币竞猜系统 ===== -->
+<script>
+(function(){
+  var STORE_KEY='wc2026-betting-v1';
+  var START_BALANCE=10000;
+  var MIN_STAKE=10;
+  var state=loadState();
+  var activeMarket={};
+  var activeChoice={};
+
+  function loadState(){
+    try{
+      var raw=localStorage.getItem(STORE_KEY);
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    return { players:[], activeId:null };
+  }
+
+  function saveState(){
+    try{ localStorage.setItem(STORE_KEY,JSON.stringify(state)); }catch(e){}
+  }
+
+  function uid(prefix){
+    return prefix+'-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
+  }
+
+  function money(n){
+    return Math.round(n).toLocaleString('zh-CN');
+  }
+
+  function norm(s){
+    return (s||'').replace(/\s+/g,'').replace(/[\(\)]/g,'').toLowerCase();
+  }
+
+  function getTeamNames(vsLine){
+    var txt=vsLine.textContent||'';
+    var parts=txt.split(/\s*VS\s*/i);
+    if(parts.length!==2) return null;
+    var t1=parts[0].trim();
+    var t2=parts[1].trim().replace(/\s+[A-L]$/,'');
+    return [t1,t2];
+  }
+
+  function getMatchId(names,index){
+    return norm(names[0])+'-vs-'+norm(names[1])+'-'+index;
+  }
+
+  function readPred(match){
+    var scoreEl=match.querySelector('.pred-score');
+    if(!scoreEl) return null;
+    var txt=scoreEl.textContent||'';
+    var m=txt.match(/(\d+)\s*-\s*(\d+)/);
+    if(!m) return null;
+    return { home:parseInt(m[1],10), away:parseInt(m[2],10) };
+  }
+
+  function clampOdd(v){
+    return Math.max(1.15,Math.min(18,Math.round(v*100)/100));
+  }
+
+  function resultFromScore(score){
+    if(!score) return 'draw';
+    if(score.home>score.away) return 'home';
+    if(score.home<score.away) return 'away';
+    return 'draw';
+  }
+
+  function oddsFor(names,pred,market){
+    var outcome=resultFromScore(pred);
+    var total=pred ? pred.home+pred.away : 2;
+    var base={
+      home: outcome==='home'?1.72:(outcome==='draw'?2.55:3.35),
+      draw: outcome==='draw'?2.75:3.25,
+      away: outcome==='away'?1.72:(outcome==='draw'?2.55:3.35)
+    };
+    if(market==='result'){
+      return [
+        { key:'home', label:names[0]+'胜', odd:base.home },
+        { key:'draw', label:'平局', odd:base.draw },
+        { key:'away', label:names[1]+'胜', odd:base.away }
+      ];
+    }
+    if(market==='total'){
+      var overFav=total>=3;
+      return [
+        { key:'over25', label:'大 2.5 球', odd:overFav?1.82:2.08 },
+        { key:'under25', label:'小 2.5 球', odd:overFav?2.02:1.78 },
+        { key:'over35', label:'大 3.5 球', odd:overFav?2.62:3.10 }
+      ];
+    }
+    if(market==='score'){
+      var scores=['0-0','1-0','0-1','1-1','2-0','0-2','2-1','1-2','3-0','0-3','3-1','1-3','2-2'];
+      var predKey=pred ? pred.home+'-'+pred.away : '1-1';
+      return scores.map(function(score){
+        var parts=score.split('-');
+        var h=parseInt(parts[0],10), a=parseInt(parts[1],10);
+        var distance=Math.abs(h-(pred?pred.home:1))+Math.abs(a-(pred?pred.away:1));
+        var rare=h+a>=4 ? 2.2 : 0;
+        var odd=score===predKey ? 6.2 : 7.4+distance*1.35+rare;
+        return { key:score, label:score, odd:clampOdd(odd) };
+      });
+    }
+    if(market==='firstGoal'){
+      return [
+        { key:'home', label:names[0]+'先进球', odd:outcome==='home'?1.88:2.35 },
+        { key:'away', label:names[1]+'先进球', odd:outcome==='away'?1.88:2.35 },
+        { key:'none', label:'无进球', odd:9.50 }
+      ];
+    }
+    return [
+      { key:'0-15', label:'0-15 分钟', odd:3.80 },
+      { key:'16-30', label:'16-30 分钟', odd:4.10 },
+      { key:'31-45+', label:'31-45+ 分钟', odd:4.30 },
+      { key:'46-60', label:'46-60 分钟', odd:4.60 },
+      { key:'61-75', label:'61-75 分钟', odd:5.20 },
+      { key:'76-90+', label:'76-90+ 分钟', odd:5.80 },
+      { key:'none', label:'无进球', odd:9.50 }
+    ];
+  }
+
+  var markets=[
+    { key:'result', label:'胜平负' },
+    { key:'score', label:'比分' },
+    { key:'total', label:'进球数' },
+    { key:'firstGoal', label:'首球球队' },
+    { key:'firstTime', label:'首球时间' }
+  ];
+
+  function currentPlayer(){
+    return state.players.find(function(p){return p.id===state.activeId;})||null;
+  }
+
+  function createPlayer(name){
+    var clean=(name||'').trim().slice(0,16);
+    if(!clean) return alert('请输入玩家昵称');
+    if(state.players.some(function(p){return p.name===clean;})) return alert('这个昵称已经存在');
+    var player={ id:uid('player'), name:clean, balance:START_BALANCE, bets:[], createdAt:new Date().toISOString(), busted:false };
+    state.players.push(player);
+    state.activeId=player.id;
+    saveState();
+    renderAll();
+  }
+
+  function ensurePlayer(){
+    var player=currentPlayer();
+    if(player) return player;
+    alert('请先在“金币竞猜挑战赛”里创建或选择玩家');
+    location.hash='#betting';
+    return null;
+  }
+
+  function setActiveMarket(matchId,market){
+    activeMarket[matchId]=market;
+    activeChoice[matchId]=null;
+    renderBetBoxes();
+  }
+
+  function setChoice(matchId,market,choice){
+    activeChoice[matchId]=choice;
+    renderBetBoxes();
+  }
+
+  function placeBet(matchId,names,market,choice,stakeInput){
+    var player=ensurePlayer();
+    if(!player) return;
+    if(player.busted || player.balance<MIN_STAKE) return alert('该玩家已出局，不能继续下注');
+    var stake=parseInt(stakeInput.value,10);
+    if(!Number.isFinite(stake) || stake<MIN_STAKE) return alert('最低下注 10 金币');
+    if(stake>player.balance) return alert('余额不足，可以直接输入当前余额 All in');
+    if(player.bets.some(function(b){return b.matchId===matchId && b.market===market && b.status==='pending';})){
+      return alert('同一场比赛的同一玩法只能保留一单');
+    }
+    player.balance-=stake;
+    player.bets.push({
+      id:uid('bet'),
+      matchId:matchId,
+      match:names[0]+' VS '+names[1],
+      market:market,
+      marketLabel:marketLabel(market),
+      choice:choice.key,
+      choiceLabel:choice.label,
+      odd:choice.odd,
+      stake:stake,
+      potential:Math.round(stake*choice.odd),
+      status:'pending',
+      createdAt:new Date().toISOString()
+    });
+    if(player.balance<MIN_STAKE) player.busted=true;
+    saveState();
+    renderAll();
+  }
+
+  function marketLabel(key){
+    var m=markets.find(function(item){return item.key===key;});
+    return m ? m.label : key;
+  }
+
+  function renderAccountPanel(){
+    var select=document.getElementById('betPlayerSelect');
+    var nameEl=document.getElementById('betCurrentName');
+    var balanceEl=document.getElementById('betCurrentBalance');
+    var ticketsEl=document.getElementById('betCurrentTickets');
+    var board=document.getElementById('betLeaderboard');
+    if(!select || !nameEl || !balanceEl || !ticketsEl || !board) return;
+    select.innerHTML='';
+    if(!state.players.length){
+      select.innerHTML='<option value="">暂无玩家</option>';
+    }else{
+      state.players.forEach(function(player){
+        var option=document.createElement('option');
+        option.value=player.id;
+        option.textContent=player.name+' · '+money(player.balance)+' 金币';
+        option.selected=player.id===state.activeId;
+        select.appendChild(option);
+      });
+    }
+    var player=currentPlayer();
+    nameEl.textContent=player ? player.name : '未创建';
+    balanceEl.textContent=player ? money(player.balance) : '0';
+    ticketsEl.textContent=player ? player.bets.length : '0';
+    var ranked=state.players.slice().sort(function(a,b){
+      if(a.busted!==b.busted) return a.busted ? 1 : -1;
+      return b.balance-a.balance;
+    });
+    board.innerHTML=ranked.map(function(player,index){
+      var status=player.busted||player.balance<MIN_STAKE ? '<span class="bet-chip out">已出局</span>' : '<span class="bet-chip">竞猜中</span>';
+      return '<tr><td>#'+(index+1)+'</td><td>'+escapeHtml(player.name)+'</td><td>'+money(player.balance)+'</td><td>'+player.bets.length+'</td><td>'+status+'</td></tr>';
+    }).join('') || '<tr><td colspan="5">先创建玩家账户</td></tr>';
+  }
+
+  function renderBetBoxes(){
+    document.querySelectorAll('.bet-box').forEach(function(box){box.remove();});
+    var player=currentPlayer();
+    document.querySelectorAll('.match').forEach(function(match,index){
+      var vsLine=match.querySelector('.vs-line');
+      var info=match.querySelector('.info');
+      if(!vsLine || !info) return;
+      var names=getTeamNames(vsLine);
+      if(!names) return;
+      var matchId=getMatchId(names,index);
+      var pred=readPred(match);
+      var market=activeMarket[matchId]||'result';
+      var options=oddsFor(names,pred,market);
+      var savedChoice=activeChoice[matchId];
+      var choice=savedChoice ? (options.find(function(option){return option.key===savedChoice.key;})||options[0]) : options[0];
+      activeChoice[matchId]=choice;
+      var existing=player ? player.bets.filter(function(b){return b.matchId===matchId;}) : [];
+      var box=document.createElement('div');
+      box.className='bet-box';
+      box.innerHTML=
+        '<div class="bet-head"><span class="bet-title">金币竞猜</span><span class="bet-note">赛前盘 · 可 All in · 赔率下单时锁定</span></div>'+
+        '<div class="market-tabs">'+markets.map(function(item){
+          return '<button class="market-tab '+(item.key===market?'active':'')+'" data-action="market" data-market="'+item.key+'">'+item.label+'</button>';
+        }).join('')+'</div>'+
+        '<div class="market-options">'+options.map(function(option){
+          return '<button class="market-option '+(option.key===choice.key?'active':'')+'" data-action="choice" data-choice="'+option.key+'">'+
+            '<span>'+escapeHtml(option.label)+'</span><span class="odd">'+option.odd.toFixed(2)+'</span></button>';
+        }).join('')+'</div>'+
+        '<div class="stake-row"><input type="number" min="10" step="10" placeholder="下注金币，最低10"><button class="bet-btn secondary" data-action="allin">All in</button><button class="bet-btn" data-action="place">下注</button></div>'+
+        '<div class="bet-history">'+existing.slice(-3).map(function(b){
+          return '<div class="bet-ticket"><span><b>'+escapeHtml(b.marketLabel)+'</b> · '+escapeHtml(b.choiceLabel)+' @ '+b.odd.toFixed(2)+'</span><span>'+money(b.stake)+' → 最高返 '+money(b.potential)+'</span></div>';
+        }).join('')+'</div>';
+      box.addEventListener('click',function(e){
+        var target=e.target.closest('button');
+        if(!target) return;
+        var action=target.getAttribute('data-action');
+        if(action==='market') setActiveMarket(matchId,target.getAttribute('data-market'));
+        if(action==='choice'){
+          var selected=options.find(function(item){return item.key===target.getAttribute('data-choice');});
+          if(selected) setChoice(matchId,market,selected);
+        }
+        if(action==='allin'){
+          var p=currentPlayer();
+          var input=box.querySelector('input');
+          if(p && input) input.value=Math.max(0,Math.floor(p.balance));
+        }
+        if(action==='place'){
+          var input=box.querySelector('input');
+          var liveMarket=activeMarket[matchId]||market;
+          var liveOptions=oddsFor(names,pred,liveMarket);
+          var savedLiveChoice=activeChoice[matchId];
+          var liveChoice=savedLiveChoice ? (liveOptions.find(function(option){return option.key===savedLiveChoice.key;})||liveOptions[0]) : liveOptions[0];
+          placeBet(matchId,names,liveMarket,liveChoice,input);
+        }
+      });
+      info.appendChild(box);
+    });
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g,function(ch){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+    });
+  }
+
+  function exportData(){
+    var text=JSON.stringify(state,null,2);
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(text).then(function(){ alert('竞猜记录已复制到剪贴板'); });
+    }else{
+      alert(text);
+    }
+  }
+
+  function bindControls(){
+    var create=document.getElementById('betCreatePlayer');
+    var input=document.getElementById('betPlayerName');
+    var select=document.getElementById('betPlayerSelect');
+    var reset=document.getElementById('betReset');
+    var exportBtn=document.getElementById('betExport');
+    if(create) create.addEventListener('click',function(){ createPlayer(input.value); if(input) input.value=''; });
+    if(input) input.addEventListener('keydown',function(e){ if(e.key==='Enter') create.click(); });
+    if(select) select.addEventListener('change',function(){ state.activeId=select.value; saveState(); renderAll(); });
+    if(exportBtn) exportBtn.addEventListener('click',exportData);
+    if(reset) reset.addEventListener('click',function(){
+      if(confirm('确定清空所有玩家和下注记录吗？')){
+        state={ players:[], activeId:null };
+        saveState();
+        renderAll();
+      }
+    });
+  }
+
+  function renderAll(){
+    renderAccountPanel();
+    renderBetBoxes();
+  }
+
+  bindControls();
+  renderAll();
+  window.WC2026Betting={ state:state, render:renderAll };
 })();
 </script>
 </body>
